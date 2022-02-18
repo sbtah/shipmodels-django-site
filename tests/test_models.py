@@ -1,8 +1,9 @@
 import pytest
 from galeria.models import ImagePost
-from mixer.backend.django import mixer
 from django.contrib.auth import get_user_model
-from django.core.files import File
+from mixer.backend.django import mixer
+
+
 pytestmark = pytest.mark.django_db
 
 
@@ -20,3 +21,8 @@ class TestImagePost():
 
         image = mixer.blend(ImagePost, title='Test')
         assert str(image) == "Test"
+
+    def test_user_is_assigned(self):
+        """Test that crated_by field is properly linked to user."""
+
+        pass
