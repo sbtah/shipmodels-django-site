@@ -16,3 +16,4 @@ class ImageGalleryListView(generic.ListView):
 
     model = ImagePost
     template_name = 'galeria/galleries_list.html'
+    context_object_name = 'galleries'
