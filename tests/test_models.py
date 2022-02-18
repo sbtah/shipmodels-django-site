@@ -26,3 +26,6 @@ class TestImagePost():
         """Test that crated_by field is properly linked to user."""
 
         pass
+
+    def test(self):
+        pass
