@@ -27,6 +27,8 @@ class ImagePost(models.Model):
         return reverse('galeria:image', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
+        """Custom save method that scales down images that customer will upload."""
+
         if self.image:
             super().save(*args, **kwargs)
             img = Image.open(self.image.path)
