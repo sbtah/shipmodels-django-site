@@ -2,7 +2,6 @@ import pytest
 from galeria.models import ImagePost
 from django.contrib.auth import get_user_model
 from mixer.backend.django import mixer
-from django.contrib.auth import get_user_model
 
 
 pytestmark = pytest.mark.django_db
@@ -58,3 +57,9 @@ class TestUserModel():
             password=password,
         )
         assert user.email == email.lower()
+
+    def test_new_user_with_invalid_email(self):
+        """Test creating user with no email raises an error."""
+
+        with pytest.raises(Exception) as error:
+            get_user_model().objects.create_user('', 'test123!')
