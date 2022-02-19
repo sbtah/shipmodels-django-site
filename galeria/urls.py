@@ -4,5 +4,6 @@ from galeria import views
 app_name = 'galeria'
 
 urlpatterns = [
-    path('', views.ImagePostListView.as_view(), name='image-list'),
+    path('gallery/', views.ImageGalleryListView.as_view(), name='gallery-list'),
+    path('image-list/', views.ImagePostListView.as_view(), name='image-list'),
 ]

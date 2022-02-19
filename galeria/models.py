@@ -13,7 +13,7 @@ class ImagePost(models.Model):
         help_text=(_("Short Title")),
         unique=True
     )
-    slug = models.CharField(max_length=100, unique=True)
+    slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
     image = models.ImageField(
         upload_to="images/",
         default="default.jpg",
@@ -56,7 +56,12 @@ class ImageGallery(models.Model):
     """Class for ImageGallery object."""
 
     title = models.CharField(max_length=50, unique=True)
-    slug = models.CharField(max_length=100, unique=True)
+    slug = models.CharField(
+        max_length=100,
+        unique=True,
+        blank=True,
+        null=True
+    )
     gallery = models.ManyToManyField(ImagePost)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -66,9 +71,10 @@ class ImageGallery(models.Model):
     class Meta:
 
         ordering = ('-created',)
+        verbose_name_plural = 'ImageGalleries'
 
     def get_absolute_url(self):
-        return reverse('galeria:galeria')
+        return reverse('galeria:gallery', kwargs={'slug': self.slug})
 
     # TD: Meta for plural, Slug on save!
     def __str__(self):
