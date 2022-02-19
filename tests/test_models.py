@@ -89,16 +89,3 @@ class TestUserModel():
                 email='test@test.com',
                 password='testpass123',
             )
-
-    # TD : Testcase for creation user with email that is already used.
-    # TD : Testcase for creation user with bad full_name.
-
-    # def test_creating_user_wrong_fullname(self):
-    #     """"""
-
-    #     with pytest.raises(Exception) as error:
-    #         get_user_model().objects.create_user(
-    #             email='test@test.com',
-    #             password='test123!',
-    #             full_name='1',
-    #         )
