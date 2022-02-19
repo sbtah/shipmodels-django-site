@@ -76,3 +76,5 @@ class TestUserModel():
         )
         assert user.is_superuser == True
         assert user.is_staff == True
+
+    # Add test case for full_name validator on User model.
