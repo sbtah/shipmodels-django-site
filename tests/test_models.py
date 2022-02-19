@@ -2,12 +2,13 @@ import pytest
 from galeria.models import ImagePost
 from django.contrib.auth import get_user_model
 from mixer.backend.django import mixer
+from django.contrib.auth import get_user_model
 
 
 pytestmark = pytest.mark.django_db
 
 
-class TestImagePost():
+class TestImagePostModel():
     """Test cases for ImagePost object."""
 
     def test_model_can_be_created(self):
@@ -29,3 +30,20 @@ class TestImagePost():
 
     def test(self):
         pass
+
+
+class TestUserModel():
+    """Test cases for User object."""
+
+    def test_create_user_with_email_succesful(self):
+        """Test creating new user with email."""
+
+        assert get_user_model().objects.all().count() == 0
+        email = 'test@test.com'
+        password = 'testpass123!'
+        user = get_user_model().objects.create_user(
+            email=email,
+            password=password,
+        )
+        assert user.email == 'test@test.com'
+        assert user.check_password(password) == True
