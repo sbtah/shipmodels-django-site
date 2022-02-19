@@ -47,3 +47,14 @@ class TestUserModel():
         )
         assert user.email == 'test@test.com'
         assert user.check_password(password) == True
+
+    def test_new_user_email_normalized(self):
+        """Test that email for new user is normalized."""
+
+        email = 'test@TEST.com'
+        password = 'testpass123!'
+        user = get_user_model().objects.create_user(
+            email=email,
+            password=password,
+        )
+        assert user.email == email.lower()
