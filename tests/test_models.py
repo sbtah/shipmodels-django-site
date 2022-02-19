@@ -63,3 +63,16 @@ class TestUserModel():
 
         with pytest.raises(Exception) as error:
             get_user_model().objects.create_user('', 'test123!')
+
+    def test_create_super_user(self):
+        """Test creating new super user."""
+
+        assert get_user_model().objects.filter(is_superuser=True).exists() == False
+        email = 'admin@admin.com'
+        password = 'testpass123!'
+        user = get_user_model().objects.create_superuser(
+            email=email,
+            password=password,
+        )
+        assert user.is_superuser == True
+        assert user.is_staff == True
