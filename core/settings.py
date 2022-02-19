@@ -121,6 +121,8 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CUSTOM USER MODEL
+AUTH_USER_MODEL = 'users.User'
 
 # EMAIL SETTINGS
 # EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
