@@ -77,4 +77,28 @@ class TestUserModel():
         assert user.is_superuser == True
         assert user.is_staff == True
 
-    # Add test case for full_name validator on User model.
+    def test_create_user_with_email_already_used(self):
+        """Test that creation user with used email raises an exception."""
+
+        user_1 = get_user_model().objects.create_user(
+            email='test@test.com',
+            password='testpass123',
+        )
+        with pytest.raises(Exception) as error:
+            get_user_model().objects.create_user(
+                email='test@test.com',
+                password='testpass123',
+            )
+
+    # TD : Testcase for creation user with email that is already used.
+    # TD : Testcase for creation user with bad full_name.
+
+    # def test_creating_user_wrong_fullname(self):
+    #     """"""
+
+    #     with pytest.raises(Exception) as error:
+    #         get_user_model().objects.create_user(
+    #             email='test@test.com',
+    #             password='test123!',
+    #             full_name='1',
+    #         )
