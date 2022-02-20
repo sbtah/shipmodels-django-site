@@ -12,7 +12,7 @@ class LoginCustomUserView(SuccessMessageMixin, LoginView):
 
     authentication_form = CustomUserAuthenticationForm
     template_name = 'panel/login_user.html'
-    # next_page = 'home'
+    next_page = 'home'
     success_message = "Your are logged in"
 
 
@@ -20,5 +20,5 @@ class LogoutCustomUserView(SuccessMessageMixin, LogoutView):
     """Class based view to logout users."""
 
     template_name = 'panel/logout_user.html'
-    # success_url = reverse_lazy('home')
+    success_url = reverse_lazy('home')
     success_message = "Your are logged out"

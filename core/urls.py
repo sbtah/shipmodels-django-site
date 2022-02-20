@@ -3,9 +3,11 @@ from django.urls import path
 from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
+from core.views import home_view
 
 
 urlpatterns = [
+    path('', home_view, name='home'),
     path('admin/', admin.site.urls),
     path('gallery/', include('gallery.urls')),
     path('orders/', include('orders.urls')),
