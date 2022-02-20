@@ -11,7 +11,7 @@ class Order(models.Model):
     phone_number = models.DecimalField(
         max_digits=12, decimal_places=0, help_text=(_('Phone number')))
     email = models.EmailField(help_text=(_('Email address')))
-    model = models.CharField(help_text=(_('Model')))
+    model = models.CharField(max_length=50, help_text=(_('Model')))
     comment = models.TextField(help_text=(_('Description')))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

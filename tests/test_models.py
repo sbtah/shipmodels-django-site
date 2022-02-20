@@ -1,5 +1,6 @@
 import pytest
 from galeria.models import ImagePost, ImageGallery
+from orders.models import Order
 from django.contrib.auth import get_user_model
 from mixer.backend.django import mixer
 
@@ -94,4 +95,9 @@ class TestUserModel():
 class TestOrderModel():
     """Test Cases for Order object."""
 
-    pass
+    def test_order_can_be_created(self):
+        """Test that Order object can be created."""
+
+        assert Order.objects.all().count() == 0
+        order = mixer.blend(Order)
+        assert Order.objects.all().count() == 1
