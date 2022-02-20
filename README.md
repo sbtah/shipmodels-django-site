@@ -5,4 +5,4 @@
 - Backend and SEO was done by Sbtah.
 - Have fun reading the code.
 - Project is built with django templating language.
-- In future will be changed to DRF/React.
+- In future project will be updated to DRF/React.
