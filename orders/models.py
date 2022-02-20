@@ -25,4 +25,4 @@ class Order(models.Model):
         return reverse('orders:order-detail', kwargs={'pk': self.id})
 
     def __str__(self):
-        return f"Order ID:{self.id}, By:{self.title}, Model:{self.model}"
+        return f"Order ID:{self.id}, By:{self.full_name}, Model:{self.model}"
