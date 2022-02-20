@@ -13,7 +13,9 @@ LOGOUT_URL = reverse('panel:logout')
     ('panel:login'),
     ('panel:logout'),
     ('home'),
-    ('orders:order-create')
+    ('orders:order-create'),
+    ('gallery:gallery-list'),
+    ('gallery:image-list'),
 ])
 def test_response_from_urls(client, param):
     """Test reponse from urls."""

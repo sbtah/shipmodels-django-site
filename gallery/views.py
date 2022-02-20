@@ -7,7 +7,7 @@ class ImagePostListView(generic.ListView):
     """ListView for ImagePost objects."""
 
     model = ImagePost
-    template_name = 'galeria/post_list.html'
+    template_name = 'gallery/image_list.html'
     context_object_name = 'images'
 
 
@@ -15,5 +15,5 @@ class ImageGalleryListView(generic.ListView):
     """ListView for ImageGallery objects."""
 
     model = ImagePost
-    template_name = 'galeria/galleries_list.html'
+    template_name = 'gallery/gallery_list.html'
     context_object_name = 'galleries'
