@@ -47,7 +47,7 @@ class ImagePost(models.Model):
                 img.thumbnail(output_size)
                 img.save(self.image.path)
 
-    # TD: Slug on save!
+    # TD: Slug on save POLISH slug!
     def __str__(self):
         return self.title
 
@@ -76,6 +76,6 @@ class ImageGallery(models.Model):
     def get_absolute_url(self):
         return reverse('galeria:gallery', kwargs={'slug': self.slug})
 
-    # TD: Meta for plural, Slug on save!
+    # TD: Slug on save POLISH slug!
     def __str__(self):
         return self.title

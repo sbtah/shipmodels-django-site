@@ -4,9 +4,11 @@ from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('galeria/', include('galeria.urls')),
+    path('galeria/', include('gallery.urls')),
+    path('orders/', include('orders.urls')),
 ]
 
 

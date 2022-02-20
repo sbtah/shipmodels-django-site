@@ -1,5 +1,8 @@
+
 import pytest
-from galeria.models import ImagePost
+from django.urls import reverse
+from gallery.models import ImagePost, ImageGallery
+from orders.models import Order
 from django.contrib.auth import get_user_model
 from mixer.backend.django import mixer
 
@@ -89,3 +92,30 @@ class TestUserModel():
                 email='test@test.com',
                 password='testpass123',
             )
+
+
+class TestOrderModel():
+    """Test Cases for Order object."""
+
+    def test_order_can_be_created(self):
+        """Test that Order object can be created."""
+
+        assert Order.objects.all().count() == 0
+        order = mixer.blend(Order)
+        assert Order.objects.all().count() == 1
+
+    def test_str_method_of_order(self):
+        """Test that __str__ is properly generated."""
+
+        order = mixer.blend(Order, full_name='Tester', model='Statek')
+        assert str(
+            order) == "Order ID:1, By:Tester, Model:Statek"
+
+    # def test_order_model_absolute_url(self):
+    #     """Test absolute url method of Order model."""
+
+    #     order = mixer.blend(Order)
+    #     assert order.get_absolute_url() != reverse(
+    #         'orders:order-detail',
+    #         args=[order.id]
+    #     )
