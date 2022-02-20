@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
@@ -18,6 +19,10 @@ class Order(models.Model):
     class Meta:
 
         ordering = ('-created',)
+
+    def get_absolute_url(self):
+        """Return abosolute url to single object."""
+        return reverse('orders:order-detail', kwargs={'pk': self.id})
 
     def __str__(self):
         return f"Order ID:{self.id}, By:{self.title}, Model:{self.model}"

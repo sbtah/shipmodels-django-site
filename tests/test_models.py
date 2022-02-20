@@ -1,5 +1,5 @@
 import pytest
-from galeria.models import ImagePost
+from galeria.models import ImagePost, ImageGallery
 from django.contrib.auth import get_user_model
 from mixer.backend.django import mixer
 
@@ -89,3 +89,9 @@ class TestUserModel():
                 email='test@test.com',
                 password='testpass123',
             )
+
+
+class TestOrderModel():
+    """Test Cases for Order object."""
+
+    pass
