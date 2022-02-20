@@ -11,14 +11,13 @@ LOGOUT_URL = reverse('panel:logout')
 @pytest.mark.parametrize('param', [
 
     ('panel:login'),
-    ('panel:logout'),
     ('home'),
     ('orders:order-create'),
     ('gallery:gallery-list'),
     ('gallery:image-list'),
 ])
-def test_response_from_urls(client, param):
-    """Test reponse from urls."""
+def test_response_from_public_urls(client, param):
+    """Test reponse from public urls."""
 
     temp_url = reverse(param)
     response = client.get(temp_url)

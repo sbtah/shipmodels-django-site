@@ -125,6 +125,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CUSTOM USER MODEL
 AUTH_USER_MODEL = 'users.User'
 
+# CUSTOM USER LOGIN URL
+LOGIN_URL = 'panel:login'
 # EMAIL SETTINGS
 # EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
 # EMAIL_HOST = os.getenv('EMAIL_HOST')
