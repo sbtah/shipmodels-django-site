@@ -1,7 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
+# TD : User have to be logged in to create an Order.
 
 
 class Order(models.Model):
@@ -22,7 +23,7 @@ class Order(models.Model):
 
     def get_absolute_url(self):
         """Return abosolute url to single object."""
-        return reverse('orders:order-detail', kwargs={'pk': self.id})
+        return reverse('panel:order-detail', kwargs={'pk': self.id})
 
     def __str__(self):
         return f"Order ID:{self.id}, By:{self.full_name}, Model:{self.model}"

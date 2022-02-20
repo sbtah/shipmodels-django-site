@@ -1,4 +1,6 @@
+
 import pytest
+from django.urls import reverse
 from galeria.models import ImagePost, ImageGallery
 from orders.models import Order
 from django.contrib.auth import get_user_model
@@ -108,3 +110,12 @@ class TestOrderModel():
         order = mixer.blend(Order, full_name='Tester', model='Statek')
         assert str(
             order) == "Order ID:1, By:Tester, Model:Statek"
+
+    # def test_order_model_absolute_url(self):
+    #     """Test absolute url method of Order model."""
+
+    #     order = mixer.blend(Order)
+    #     assert order.get_absolute_url() != reverse(
+    #         'orders:order-detail',
+    #         args=[order.id]
+    #     )
