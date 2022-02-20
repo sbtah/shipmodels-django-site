@@ -12,9 +12,11 @@ LOGOUT_URL = reverse('panel:logout')
 
     ('panel:login'),
     ('panel:logout'),
+    ('home'),
+    ('orders:order-create')
 ])
-def test_user_urls_views_response(client, param):
-    """Test reponse from user urls."""
+def test_response_from_urls(client, param):
+    """Test reponse from urls."""
 
     temp_url = reverse(param)
     response = client.get(temp_url)

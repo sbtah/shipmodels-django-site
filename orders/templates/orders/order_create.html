@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Order{% endblock title %}
+{% block content %}
+Order:
+<form class="" action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="Submit">Place order</button>
+</form>
+{% endblock content %}
