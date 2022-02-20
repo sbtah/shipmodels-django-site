@@ -5,7 +5,7 @@ from orders.forms import OrderForm
 from django.contrib.messages.views import SuccessMessageMixin
 
 
-class CreateOrderView(generic.CreateView, SuccessMessageMixin):
+class OrderCreateView(generic.CreateView, SuccessMessageMixin):
     """CreateView for Order object."""
 
     form_class = OrderForm
