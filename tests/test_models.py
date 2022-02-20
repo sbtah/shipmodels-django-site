@@ -1,7 +1,7 @@
 
 import pytest
 from django.urls import reverse
-from galeria.models import ImagePost, ImageGallery
+from gallery.models import ImagePost, ImageGallery
 from orders.models import Order
 from django.contrib.auth import get_user_model
 from mixer.backend.django import mixer

@@ -1,4 +1,4 @@
-from galeria.models import ImagePost
+from gallery.models import ImagePost
 from django.views import generic
 from django.urls import reverse, reverse_lazy
 
