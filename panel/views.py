@@ -1,3 +1,2 @@
-from django.shortcuts import render
-
-# Create your views here.
+from orders.models import Order
+from orders.forms import OrderForm
