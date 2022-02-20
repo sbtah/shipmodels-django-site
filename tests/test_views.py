@@ -61,7 +61,7 @@ class TestLoginCustomUserView():
         # Decode response to HTML to check for error message.
         html = response.content.decode('utf8')
         assert response.status_code == 200
-        assert '<ul class="errorlist nonfield"><li>Please enter a correct email and password. Note that both fields may be case-sensitive.</li></ul>' in html
+        assert 'Please enter a correct email and password. Note that both fields may be case-sensitive.' in html
 
 
 # def test_user_creation_view(client, user_data):
