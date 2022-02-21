@@ -6,7 +6,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 
 class OrderCreateView(generic.CreateView, SuccessMessageMixin):
-    """CreateView for Order object."""
+    """
+    CreateView for Order object.
+    This is a public View.
+    """
 
     form_class = OrderForm
     template_name = 'orders/order_create.html'

@@ -44,3 +44,36 @@ class LogoutCustomUserView(LoginRequiredMixin, SuccessMessageMixin, LogoutView):
     template_name = 'panel/logout_user.html'
     success_url = reverse_lazy('home')
     success_message = "Your are logged out"
+
+
+class OrderListView(LoginRequiredMixin, generic.ListView):
+    """ListView for Order objects. This view is available for logged users."""
+
+    model = Order
+    template_name = 'panel/list_order.html'
+    context_object_name = 'orders'
+
+
+class OrderDetailView(LoginRequiredMixin, generic.DetailView):
+    """DetailView for Order object, available for logged in users."""
+
+    model = Order
+    template_name = 'panel/detail_order.html'
+    context_object_name = 'order'
+
+
+class OrderUpdateView(LoginRequiredMixin, generic.UpdateView):
+    """UpdateView for Order object for logged users only."""
+
+    model = Order
+    form_class = OrderForm
+    template_name = 'panel/update_order.html'
+    success_url = reverse_lazy('panel:panel')
+
+
+class OrderDeleteView(LoginRequiredMixin, generic.DeleteView):
+    """DeleteView for order object. Available for logged in users."""
+
+    model = Order
+    template_name = 'panel/delete_order.html'
+    success_url = reverse_lazy('panel:panel')
