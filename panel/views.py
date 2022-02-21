@@ -43,6 +43,7 @@ class LogoutCustomUserView(LoginRequiredMixin, SuccessMessageMixin, LogoutView):
 
     template_name = 'panel/logout_user.html'
     success_url = reverse_lazy('home')
+    next_page = 'home'
     success_message = "Your are logged out"
 
 

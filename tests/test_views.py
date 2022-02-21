@@ -8,6 +8,7 @@ pytestmark = pytest.mark.django_db
 LOGIN_URL = reverse('panel:login')
 LOGOUT_URL = reverse('panel:logout')
 CREATE_ORDER_URL = reverse('orders:order-create')
+LIST_ORDER_URL = reverse('panel:order-list')
 
 
 @pytest.mark.parametrize('param', [
@@ -86,9 +87,7 @@ class TestLogoutCustomUserView():
         )
         client.force_login(user=user)
         response = client.get(LOGOUT_URL)
-        assert response.status_code == 200
-        html = response.content.decode('utf8')
-        assert 'Bye!' in html
+        assert response.status_code == 302
 
 
 class TestOrderCreateView():
@@ -103,3 +102,13 @@ class TestOrderCreateView():
         assert Order.objects.filter(email='test@test.com').exists() == True
         assert response.status_code == 302
         assert response.url == reverse('home')
+
+
+class TestOrderListView():
+    """Test cases for Order's private ListView."""
+
+    def test_list_order_view_without_user(self, client):
+        """Test endpoint access of order list view without logged user."""
+
+        response = client.get(LIST_ORDER_URL)
+        assert response.status_code == 302
