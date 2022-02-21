@@ -64,11 +64,26 @@ class TestLoginCustomUserView():
         assert 'Please enter a correct email and password. Note that both fields may be case-sensitive.' in html
 
 
-# def test_user_creation_view(client, user_data):
-#     """Test if user is created in db."""
-#     user_model = get_user_model()
-#     assert user_model.objects.count() == 0
-#     register_url = reverse('users:register-user')
-#     response = client.post(register_url, data=user_data)
+class TestLogoutCustomUserView():
+    """Test cases for LogoutCustomUserView."""
 
-#     assert get_user_model().objects.all().count() == 1
+    def test_user_logout_without_user(self, client):
+        """Test that view is not allowed for public use."""
+
+        response = client.get(LOGOUT_URL)
+        assert response.status_code == 302
+
+    def test_user_logged_out(self, client):
+        """Test that user cant be logged out."""
+
+        email = 'test2@test2.com'
+        password = 'testpass123!'
+        user = get_user_model().objects.create_user(
+            email=email,
+            password=password,
+        )
+        client.force_login(user=user)
+        response = client.get(LOGOUT_URL)
+        assert response.status_code == 200
+        html = response.content.decode('utf8')
+        assert 'Bye!' in html
