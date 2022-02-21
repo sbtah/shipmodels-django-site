@@ -95,10 +95,11 @@ class TestOrderCreateView():
     """Test cases for Order's Public CreateView."""
 
     def test_create_order_view_saves_data(self, client, order_data):
-        """Test that order can be created in database."""
+        """Test that order can be created in database via View."""
 
         assert Order.objects.all().count() == 0
         response = client.post(CREATE_ORDER_URL, data=order_data)
         assert Order.objects.all().count() == 1
+        assert Order.objects.filter(email='test@test.com').exists() == True
         assert response.status_code == 302
         assert response.url == reverse('home')
