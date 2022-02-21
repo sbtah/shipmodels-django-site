@@ -1,11 +1,13 @@
 import pytest
 from django.urls import reverse
 from django.contrib.auth import get_user_model
+from orders.models import Order
 
 
 pytestmark = pytest.mark.django_db
 LOGIN_URL = reverse('panel:login')
 LOGOUT_URL = reverse('panel:logout')
+CREATE_ORDER_URL = reverse('orders:order-create')
 
 
 @pytest.mark.parametrize('param', [
@@ -87,3 +89,16 @@ class TestLogoutCustomUserView():
         assert response.status_code == 200
         html = response.content.decode('utf8')
         assert 'Bye!' in html
+
+
+class TestOrderCreateView():
+    """Test cases for Order's Public CreateView."""
+
+    def test_create_order_view_saves_data(self, client, order_data):
+        """Test that order can be created in database."""
+
+        assert Order.objects.all().count() == 0
+        response = client.post(CREATE_ORDER_URL, data=order_data)
+        assert Order.objects.all().count() == 1
+        assert response.status_code == 302
+        assert response.url == reverse('home')
