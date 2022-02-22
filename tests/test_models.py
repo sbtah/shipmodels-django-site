@@ -1,4 +1,3 @@
-
 import pytest
 from django.urls import reverse
 from gallery.models import ImagePost, ImageGallery
@@ -13,25 +12,25 @@ pytestmark = pytest.mark.django_db
 class TestImagePostModel():
     """Test cases for ImagePost object."""
 
-    def test_model_can_be_created(self):
+    def test_image_can_be_created(self):
         """Test that ImagePost object is created"""
         assert ImagePost.objects.all().count() == 0
         image = mixer.blend(ImagePost)
         assert ImagePost.objects.all().count() == 1
 
-    def test_str_method_of_model(self):
+    def test_str_method_of_image(self):
         """Test that __str__ is properly generated."""
 
         image = mixer.blend(ImagePost, title='Test')
         assert str(image) == "Test"
 
-    def test_create_slug_for_post_signal(self):
+    def test_create_slug_for_image_signal(self):
         """Test that creating slug from title is working on save."""
 
         image = mixer.blend(ImagePost, title='Testąt')
         assert image.slug == 'testat'
 
-    def test_create_slug_for_post_must_be_unique(self):
+    def test_create_slug_for_image_must_be_unique(self):
         """Test that slug can only be saved with unique slug."""
 
         image = mixer.blend(ImagePost, title='Testąt')
@@ -45,6 +44,41 @@ class TestImagePostModel():
         assert image.get_absolute_url() == reverse(
             'gallery:image-detail',
             args=[image.slug])
+
+
+class TestImageGalleryModel():
+    """Test cases for ImagePost object."""
+
+    def test_gallery_can_be_created(self):
+        """Test that ImagePost object is created"""
+        assert ImageGallery.objects.all().count() == 0
+        gallery = mixer.blend(ImageGallery)
+        assert ImageGallery.objects.all().count() == 1
+
+    def test_str_method_of_gallery(self):
+        """Test that __str__ is properly generated."""
+
+        gallery = mixer.blend(ImageGallery, title='Test')
+        assert str(gallery) == "Test"
+
+    def test_create_slug_for_gallery_signal(self):
+        """Test that creating slug from title is working on save."""
+
+        gallery = mixer.blend(ImageGallery, title='Testąt')
+        assert gallery.slug == 'testat'
+
+    def test_create_slug_for_gallery_must_be_unique(self):
+        """Test that slug can only be saved with unique slug."""
+
+        gallery = mixer.blend(ImageGallery, title='Testąt')
+        with pytest.raises(Exception) as error:
+            gallery_2 = mixer.blend(ImageGallery, title='Testąt')
+
+    def test_absolute_url_of_created_image(self):
+        """Test get_absolute_url() method of ImageGallery objects."""
+
+        # Implement after DetailView
+        pass
 
 
 class TestUserModel():

@@ -51,7 +51,6 @@ class ImagePost(models.Model):
                 img.thumbnail(output_size)
                 img.save(self.image.path)
 
-    # TD: Slug on save POLISH slug!
     def __str__(self):
         return self.title
 
@@ -88,5 +87,12 @@ class ImageGallery(models.Model):
 @receiver(post_save, sender=ImagePost)
 def create_slug_for_post(sender, instance, created, **kwargs):
     """Slugify signal for ImagePost object."""
+    if created:
+        instance.slug = slugify(unidecode(instance.title))
+
+
+@receiver(post_save, sender=ImageGallery)
+def create_slug_for_gallery(sender, instance, created, **kwargs):
+    """Slugify signal for ImageGallery object."""
     if created:
         instance.slug = slugify(unidecode(instance.title))
