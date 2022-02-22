@@ -124,3 +124,26 @@ class TestOrderListView():
         response = client.get(LIST_ORDER_URL)
         assert len(response.context['orders']) == 2
         assert response.status_code == 200
+
+
+class TestOrderDetailView():
+    """Test cases for OrderDetailView."""
+
+    def test_detail_order_view_without_user(self, client):
+        """Test endpoint access of order list view without logged user."""
+
+        order = mixer.blend(Order)
+        response = client.get(
+            reverse('panel:order-detail', kwargs={'pk': order.id}))
+        assert response.status_code == 302
+
+    def test_detail_order_view_user_logged_in(self, client, example_user):
+        """Test OrderDetailView with user logged in."""
+
+        user = example_user
+        client.force_login(user)
+        order = mixer.blend(Order)
+        response = client.get(
+            reverse('panel:order-detail', kwargs={'pk': order.id}))
+        assert response.context_data['object'] != ''
+        assert response.status_code == 200
