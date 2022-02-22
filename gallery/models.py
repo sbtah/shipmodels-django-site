@@ -3,6 +3,10 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.utils.text import slugify
+from unidecode import unidecode
 
 
 class ImagePost(models.Model):
@@ -34,7 +38,7 @@ class ImagePost(models.Model):
         ordering = ('-created',)
 
     def get_absolute_url(self):
-        return reverse('galeria:image', kwargs={'slug': self.slug})
+        return reverse('gallery:image-detail', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
         """Custom save method that scales down images that customer will upload."""
@@ -47,7 +51,6 @@ class ImagePost(models.Model):
                 img.thumbnail(output_size)
                 img.save(self.image.path)
 
-    # TD: Slug on save POLISH slug!
     def __str__(self):
         return self.title
 
@@ -79,3 +82,17 @@ class ImageGallery(models.Model):
     # TD: Slug on save POLISH slug!
     def __str__(self):
         return self.title
+
+
+@receiver(post_save, sender=ImagePost)
+def create_slug_for_post(sender, instance, created, **kwargs):
+    """Slugify signal for ImagePost object."""
+    if created:
+        instance.slug = slugify(unidecode(instance.title))
+
+
+@receiver(post_save, sender=ImageGallery)
+def create_slug_for_gallery(sender, instance, created, **kwargs):
+    """Slugify signal for ImageGallery object."""
+    if created:
+        instance.slug = slugify(unidecode(instance.title))
