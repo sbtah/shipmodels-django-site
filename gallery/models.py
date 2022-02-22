@@ -3,6 +3,10 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.utils.text import slugify
+from unidecode import unidecode
 
 
 class ImagePost(models.Model):
@@ -79,3 +83,10 @@ class ImageGallery(models.Model):
     # TD: Slug on save POLISH slug!
     def __str__(self):
         return self.title
+
+
+@receiver(post_save, sender=ImagePost)
+def create_slug_for_post(sender, instance, created, **kwargs):
+    """Slugify signal for ImagePost object."""
+    if created:
+        instance.slug = slugify(unidecode(instance.title))

@@ -25,13 +25,11 @@ class TestImagePostModel():
         image = mixer.blend(ImagePost, title='Test')
         assert str(image) == "Test"
 
-    def test_user_is_assigned(self):
-        """Test that crated_by field is properly linked to user."""
+    def test_create_slug_for_post_signal(self):
+        """Test that creating slug from title is working on save."""
 
-        pass
-
-    def test(self):
-        pass
+        image = mixer.blend(ImagePost, title='Testąt')
+        assert image.slug == 'testat'
 
 
 class TestUserModel():
