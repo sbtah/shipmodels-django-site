@@ -3,14 +3,15 @@ from django.urls import path
 from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
-from core.views import home_view
+from core import views
 
 
 urlpatterns = [
-    path('', home_view, name='home'),
     path('admin/', admin.site.urls),
+    path('', views.home_view, name='home'),
     path('gallery/', include('gallery.urls')),
     path('orders/', include('orders.urls')),
+    path('about/', views.about_view, name='about'),
     path('panel/', include('panel.urls')),
 ]
 
