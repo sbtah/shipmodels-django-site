@@ -2,6 +2,7 @@ import pytest
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from orders.models import Order
+from gallery.models import ImagePost, ImageGallery
 from mixer.backend.django import mixer
 
 
@@ -10,6 +11,7 @@ LOGIN_URL = reverse('panel:login')
 LOGOUT_URL = reverse('panel:logout')
 CREATE_ORDER_URL = reverse('orders:order-create')
 LIST_ORDER_URL = reverse('panel:order-list')
+LIST_IMAGEPOST_URL = reverse('gallery:gallery-list')
 
 
 @pytest.mark.parametrize('param', [
@@ -146,4 +148,17 @@ class TestOrderDetailView():
         response = client.get(
             reverse('panel:order-detail', kwargs={'pk': order.id}))
         assert response.context_data['object'] != ''
+        assert response.status_code == 200
+
+
+class TestImagePostListView():
+    """Test cases for ImagePostListView."""
+
+    def test_list_image_view_lists_data(self, client):
+        """Test that image list properly lists data."""
+
+        image_1 = mixer.blend(ImagePost)
+        image_2 = mixer.blend(ImagePost)
+        response = client.get(LIST_IMAGEPOST_URL)
+        assert len(response.context_data['object_list']) == 2
         assert response.status_code == 200
