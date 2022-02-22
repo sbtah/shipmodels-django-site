@@ -13,7 +13,7 @@ LIST_ORDER_URL = reverse('panel:order-list')
 
 
 @pytest.mark.parametrize('param', [
-
+    ('about'),
     ('panel:login'),
     ('home'),
     ('orders:order-create'),
