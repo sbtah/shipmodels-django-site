@@ -2,6 +2,7 @@ import pytest
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from orders.models import Order
+from mixer.backend.django import mixer
 
 
 pytestmark = pytest.mark.django_db
@@ -112,3 +113,14 @@ class TestOrderListView():
 
         response = client.get(LIST_ORDER_URL)
         assert response.status_code == 302
+
+    def test_list_order_view_user_logged_in(self, client, example_user):
+        """Test OrderListView with authenticated user."""
+
+        user = example_user
+        order_1 = mixer.blend(Order)
+        order_2 = mixer.blend(Order)
+        client.force_login(user)
+        response = client.get(LIST_ORDER_URL)
+        assert len(response.context['orders']) == 2
+        assert response.status_code == 200
