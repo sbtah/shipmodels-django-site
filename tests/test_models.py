@@ -31,6 +31,21 @@ class TestImagePostModel():
         image = mixer.blend(ImagePost, title='Testąt')
         assert image.slug == 'testat'
 
+    def test_create_slug_for_post_must_be_unique(self):
+        """Test that slug can only be saved with unique slug."""
+
+        image = mixer.blend(ImagePost, title='Testąt')
+        with pytest.raises(Exception) as error:
+            image_2 = mixer.blend(ImagePost, title='Testąt')
+
+    def test_absolute_url_of_created_image(self):
+        """Test get_absolute_url() method of ImagePost objects."""
+
+        image = mixer.blend(ImagePost, title='Testąt')
+        assert image.get_absolute_url() == reverse(
+            'gallery:image-detail',
+            args=[image.slug])
+
 
 class TestUserModel():
     """Test cases for User object."""
