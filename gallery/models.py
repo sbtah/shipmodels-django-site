@@ -38,7 +38,7 @@ class ImagePost(models.Model):
         ordering = ('-created',)
 
     def get_absolute_url(self):
-        return reverse('galeria:image', kwargs={'slug': self.slug})
+        return reverse('gallery:image-detail', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
         """Custom save method that scales down images that customer will upload."""
