@@ -43,16 +43,20 @@ img {
   max-width: 100%;
 }
 section {
+
   margin: 1.5rem;
 }
 h2 {
+
   font-family: var(--ff-secondary);
   font-size: var(--fs-h2);
   font-weight: var(--fw-bold);
   letter-spacing: 1px;
   padding: 1.5rem;
 }
+
 h2::after {
+
   content: "";
   display: block;
   width: 7.5rem;
@@ -88,6 +92,7 @@ p {
   margin: 2rem 0 2rem 0;
   text-align: center;
   line-height: 1.5;
+
 }
 .btn {
   display: flex;
@@ -251,6 +256,7 @@ header {
   margin-bottom: 3rem;
 }
 /* ABOUT US SECTION */
+
 .about__us-container {
   display: flex;
   flex-direction: column;
@@ -277,6 +283,8 @@ header {
   border-radius: 0.8rem;
   overflow: hidden;
   /* margin: 1rem; */
+
+
 }
 .card__overlay {
   background-color: #0d3b66;
@@ -286,6 +294,8 @@ header {
 }
 .card__txt {
   text-align: center;
+
+
   margin: 2rem 1rem 2rem 1rem;
 }
 /* SLIDER */
@@ -331,7 +341,9 @@ header {
   border-radius: 50%;
   height: 2rem;
   width: 2rem;
+
   font-weight: var(--fw-bold);
+
   font-size: var(--fs-body);
   cursor: pointer;
 }
@@ -345,6 +357,7 @@ header {
   right: 6%;
   transform: translate(50%, -50%);
 }
+
 .gallery__btn {
   margin-top: 2rem;
 }
@@ -353,6 +366,7 @@ header {
   font-weight: var(--fw-regular);
   text-align: left;
   padding: 1.5rem 0 1.5rem 0;
+
 }
 .contact__info {
   display: flex;
@@ -374,8 +388,10 @@ header {
   margin: 0 auto;
   padding-top: 1.5rem;
 
+
   background-color: var(--clr-gray);
   /* height: 40rem; */
+
   max-width: 40rem;
 }
 .form__right {
@@ -418,8 +434,10 @@ header {
 /* ARROW ICON BACK TO TOP */
 .svg {
   fill: var(--clr-primary);
+
   height: 40px;
   width: 40px;
+
   transition: 0.5s ease-in;
 }
 .svg:hover {
@@ -440,7 +458,9 @@ footer {
   color: var(--clr-primary);
 }
 .footer__container {
+
   padding: 3rem 1.5rem 3rem 1.5rem;
+
 }
 .footer__h4 {
   text-align: left;
@@ -451,9 +471,11 @@ footer {
   color: var(--clr-primary);
   margin-top: 0.5rem;
 }
+
 .footer__link:hover {
   color: var(--clr-accent);
 }
+
 .footer__p {
   font-size: var(--fs-footer);
   margin: 0;
@@ -462,6 +484,7 @@ footer {
 /* MEDIA QUERY */
 /* 400Px */
 @media (min-width: 400px) {
+
   :root {
     --fs-h1: 3.25rem;
   }
@@ -494,6 +517,7 @@ footer {
   section {
     margin: 3rem;
   }
+
   /* DONT SHOW BUTTON ON SCREEN MORE THEN 800PX */
   .nav-toggle {
     display: none;
@@ -503,6 +527,7 @@ footer {
     visibility: visible;
     z-index: 100;
   }
+
   .hero__content {
     align-items: flex-start;
     margin-top: 6rem;
@@ -563,6 +588,7 @@ footer {
     margin: 0;
     width: 40rem;
   }
+
 }
 /* 1600px */
 @media (min-width: 1600px) {
@@ -573,6 +599,7 @@ footer {
     --fs-h4: 2rem;
     --fs-body: 1.25rem;
   }
+
   section {
     margin: 6rem;
   }
@@ -622,4 +649,5 @@ footer {
   100% {
     transform: scale(1);
   }
+
 }
