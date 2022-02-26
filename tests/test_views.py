@@ -155,10 +155,26 @@ class TestImagePostListView():
     """Test cases for ImagePostListView."""
 
     def test_list_image_view_lists_data(self, client):
-        """Test that image list properly lists data."""
+        """Test that image list view properly lists data."""
 
         image_1 = mixer.blend(ImagePost)
         image_2 = mixer.blend(ImagePost)
         response = client.get(LIST_IMAGEPOST_URL)
         assert len(response.context_data['object_list']) == 2
+        assert response.status_code == 200
+
+
+class TestImagePostDetailView():
+    """Test cases for ImagePostDetailView."""
+
+    def test_detail_image_view_return_data(self, client):
+        """Test that image detail view properly returns data."""
+
+        image_1 = mixer.blend(ImagePost, title='test slug')
+        response = client.get(reverse(
+            'gallery:image-detail',
+            args=[image_1.slug]),
+        )
+        html = response.content.decode('utf8')
+        assert '<title>Shipmodels | test slug</title>' in html
         assert response.status_code == 200

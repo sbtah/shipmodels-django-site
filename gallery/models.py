@@ -89,6 +89,7 @@ def create_slug_for_post(sender, instance, created, **kwargs):
     """Slugify signal for ImagePost object."""
     if created:
         instance.slug = slugify(unidecode(instance.title))
+        instance.save()
 
 
 @receiver(post_save, sender=ImageGallery)
@@ -96,3 +97,4 @@ def create_slug_for_gallery(sender, instance, created, **kwargs):
     """Slugify signal for ImageGallery object."""
     if created:
         instance.slug = slugify(unidecode(instance.title))
+        instance.save()
