@@ -152,5 +152,4 @@ cython_debug/
 #.idea/
 
 # Media files
-*.jpg
-!default.jpg
+.vscode
