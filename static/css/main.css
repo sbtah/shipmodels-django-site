@@ -124,6 +124,9 @@ header {
   align-items: center;
   padding: 2rem;
 }
+.header__subpage {
+  background: var(--clr-gray);
+}
 .logo {
   display: flex;
   align-items: center;
@@ -141,6 +144,9 @@ header {
   letter-spacing: 1px;
   text-decoration: none;
   color: var(--clr-white);
+}
+.logo__text--sub {
+  color: var(--clr-primary);
 }
 
 .nav-toggle {
@@ -172,6 +178,9 @@ header {
 .nav__link:hover {
   background-color: var(--clr-accent);
   color: var(--clr-white);
+}
+.nav__link--sub {
+  color: var(--clr-primary);
 }
 
 /* MEDIA FOR NAVIGATION MENU  */
