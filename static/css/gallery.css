@@ -1,0 +1,30 @@
+.header__subpage {
+  background: var(--clr-gray);
+}
+.gallery__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  max-width: 1600px;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  grid-gap: 2rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+.card {
+  text-decoration: none;
+}
+
+.card__title {
+  font-size: var(--fs-h4);
+  margin: 1rem 0 1rem 0;
+  color: var(--clr-primary);
+}
+.card:hover {
+  background: var(--clr-accent);
+  transition: 0.5s ease-out;
+}
+.card:hover > .card__title {
+  color: var(--clr-gray);
+}
