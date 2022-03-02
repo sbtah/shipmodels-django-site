@@ -124,9 +124,7 @@ header {
   align-items: center;
   padding: 2rem;
 }
-.header__subpage {
-  background: var(--clr-gray);
-}
+
 .logo {
   display: flex;
   align-items: center;
