@@ -16,9 +16,7 @@ class ImagePostDetailView(generic.DetailView):
 
     model = ImagePost
     template_name = 'gallery/image_detail.html'
-
-    def get_queryset(self):
-        return get_object_or_404(ImagePost, slug=self.kwargs['slug'])
+    context_object_name = 'image'
 
 
 class ImageGalleryListView(generic.ListView):
