@@ -1,3 +1,86 @@
 {% extends 'base.html' %}
 {% block title %}About{% endblock title %}
-{% block content %}About{% endblock content %}
+{% block content %}
+<!-- SECTION ABOUT US -->
+<div id="about">
+    <h2 class="section__h2">O nas</h2>
+    <h3>Modele to nasza pasja.</h3>
+    <section class="about__us">
+        <div class="about__us-container">
+            <img src="/media/default.jpg" alt="" class="about__img" />
+            <p class="about__txt">
+                Specjalizujemy się w budowie modeli statków handlowych oraz okrętów
+                wojennych. <br />
+                Wykonujemy także modele żaglowców.
+            </p>
+        </div>
+
+        <!-- CARDS CONTAINER -->
+        <div class="card__container">
+            <!-- Card 1 -->
+
+            <div class="card">
+                <div class="card__overlay">
+                    <img src="/static/images/background.jpg" alt="picture of ship" class="card__img" />
+                </div>
+                <h4 class="card__title">Doświadczenie</h4>
+                <p class="card__txt">
+                    Mamy wieloletnie doświadczenie w budowie modeli redukcyjnych, od
+                    drewnianych modeli szkutniczych do wielkoformatowych modeli z
+                    tworzyw sztucznych
+                </p>
+            </div>
+            <!-- CARD 2 -->
+            <div class="card">
+                <div class="card__overlay">
+                    <img src="/static/images/background.jpg" alt="picture of ship" class="card__img" />
+                </div>
+                <h4 class="card__title">Dokładność</h4>
+                <p class="card__txt">
+                    Oferujemy wierne repliki w skalach wyłącznie 1:50 i 1:100. Do
+                    budowy wykorzystujemy plany stoczniowe, modelarskie oraz zdjęcia.
+                    Nasze modele cechują się dokładnością i wiernością z oryginałami.
+                </p>
+            </div>
+            <!-- CARD 3 -->
+            <div class="card">
+                <div class="card__overlay">
+                    <img src="/static/images/background.jpg" alt="picture of ship" class="card__img" />
+                </div>
+
+                <h4 class="card__title">Wybór</h4>
+                <p class="card__txt">
+                    Na życzenie stosujemy dowolne materiały do stylizacji osprzętu
+                    :<br /><br />
+                    chromowanie<br />
+                    złocenie <br />itp.
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- SECTION WORK -->
+<div id="work">
+    <h2 class="section__h2">Nasza praca</h2>
+    <section class="work">
+        <div class="slider">
+            <div class="slide">
+                <img src="/static/images/background.jpg" alt="Photo 1" />
+            </div>
+            <div class="slide">
+                <img src="/static/images/eng.png" alt="Photo 2" />
+            </div>
+            <div class="slide">
+                <img src="/static/images/background.jpg" alt="Photo 3" />
+            </div>
+            <div class="slide">
+                <img src="/static/images/background.jpg" alt="Photo 4" />
+            </div>
+            <button class="slider__btn slider__btn--left">&larr;</button>
+            <button class="slider__btn slider__btn--right">&rarr;</button>
+        </div>
+        <div class="dots"></div>
+        <a href="gallery.html" class="btn gallery__btn">Galeria</a>
+    </section>
+</div>
+{% endblock content %}

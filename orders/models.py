@@ -1,19 +1,30 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 # from django.contrib.auth import get_user_model
 # TD : User have to be logged in to create an Order.
+
+
+def phone_number_validator(val):
+    """Custom validator for orders's phone_number"""
+
+    if val < 0:
+        raise ValidationError(
+            _('Phone number should have only positive digits'),
+            params={'value': val}
+        )
 
 
 class Order(models.Model):
     """Class for Order object."""
 
-    full_name = models.CharField(max_length=50, help_text=(_('Full name')))
+    full_name = models.CharField(max_length=50)
     phone_number = models.DecimalField(
-        max_digits=12, decimal_places=0, help_text=(_('Phone number')))
-    email = models.EmailField(help_text=(_('Email address')))
-    model = models.CharField(max_length=50, help_text=(_('Model')))
-    comment = models.TextField(help_text=(_('Description')))
+        max_digits=12, decimal_places=0, validators=[phone_number_validator])
+    email = models.EmailField()
+    model = models.CharField(max_length=50)
+    comment = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
