@@ -11,7 +11,7 @@ LOGIN_URL = reverse('panel:login')
 LOGOUT_URL = reverse('panel:logout')
 CREATE_ORDER_URL = reverse('orders:order-create')
 LIST_ORDER_URL = reverse('panel:order-list')
-LIST_IMAGEPOST_URL = reverse('gallery:gallery-list')
+LIST_IMAGEPOST_URL = reverse('gallery:image-list')
 
 
 @pytest.mark.parametrize('param', [
@@ -160,6 +160,7 @@ class TestImagePostListView():
         image_1 = mixer.blend(ImagePost)
         image_2 = mixer.blend(ImagePost)
         response = client.get(LIST_IMAGEPOST_URL)
+        assert ImagePost.objects.all().count() == 2
         assert len(response.context_data['object_list']) == 2
         assert response.status_code == 200
 
