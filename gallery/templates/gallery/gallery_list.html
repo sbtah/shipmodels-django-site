@@ -6,14 +6,15 @@
 <h3>Poniżej przedstawiamy nasze dostępne modele.</h3>
 <section class="gallery">
     <div class="gallery__container">
-
+        {% for gallery in galleries %}
         <!-- Item 1 -->
         <a href="" class="card">
             <div class="card__overlay">
-                <img src="{% static 'images/background.jpg' %}" alt="picture of ship" class="card__img" />
+                <img src="{% static 'images/background.jpg' %}" alt="{{ gallery.title }}" class="card__img" />
             </div>
-            <div class="card__title">Nazwa modelu</div>
+            <div class="card__title">{{ gallery.title }}</div>
         </a>
+        {% endfor %}
     </div>
 </section>
 {% endblock content %}

@@ -1,4 +1,5 @@
 from PIL import Image
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
@@ -65,7 +66,7 @@ class ImageGallery(models.Model):
         blank=True,
         null=True
     )
-    gallery = models.ManyToManyField(ImagePost)
+    posts = models.ManyToManyField(ImagePost)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(get_user_model(),
@@ -79,7 +80,6 @@ class ImageGallery(models.Model):
     def get_absolute_url(self):
         return reverse('galeria:gallery', kwargs={'slug': self.slug})
 
-    # TD: Slug on save POLISH slug!
     def __str__(self):
         return self.title
 
