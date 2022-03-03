@@ -194,3 +194,15 @@ class Test_main_panel_view():
         html = response.content.decode('utf8')
         assert '<title>Shipmodels | Login</title>' in html
         assert response.status_code == 200
+
+    def test_main_panel_view_lists_data(self, client, example_user):
+        """Test main_panel_view with logged user."""
+
+        user = example_user
+        client.force_login(user)
+        order = mixer.blend(Order, full_name='tester tester')
+        gallery = mixer.blend(ImageGallery, title='Test Ship')
+        response = client.get(PANEL_URL)
+        assert response.status_code == 200
+        assert response.context['galleries_count'] == 1
+        assert response.context['orders_count'] == 1
