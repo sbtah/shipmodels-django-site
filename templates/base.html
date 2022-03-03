@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <!-- CSS -->
-  <link rel="stylesheet" href="\static\css\main.css" />
-  <link rel="stylesheet" href="/static/css/gallery.css" />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
   <!-- ICONIFY -->
   <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
   <title>Shipmodels</title>
@@ -25,8 +25,8 @@
     <div class="overlay">
       <header>
         <div class="logo">
-          <a href=""><img src="/static/images/eng.png" alt="" class="logo__lang" /></a>
-          <a href="/" class="logo__text">Shipmodels.pl</a>
+          <a href=""><img src="{% static 'images/eng.png' %}" alt="" class="logo__lang" /></a>
+          <a href="{% url 'home' %}" class="logo__text">Shipmodels.pl</a>
         </div>
         <button class="nav-toggle" aria-label="toggle navigation">
           <span class="iconify" data-icon="heroicons-solid:menu-alt-3"></span>
@@ -46,15 +46,15 @@
 
       <div class="hero__content">
         <h1 class="hero__h1">Tworzymy profesjonalne modele</h1>
-        <a href="#about" class="btn work__btn" id="work__btn">Więcej</a>
+        <a href="{% url 'about' %}" class="btn work__btn" id="work__btn">Więcej</a>
       </div>
     </div>
   </div>
   {% block content %}{% endblock content %}
   {% include 'footer.html' %}
   <!-- JS -->
-  <script src="/static/js/main.js"></script>
-  <script src="/static/js/slider.js"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/slider.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
