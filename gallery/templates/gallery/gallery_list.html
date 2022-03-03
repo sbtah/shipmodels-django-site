@@ -1,76 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Galleries{% endblock title %}
 {% block content %}
-<h2 class="section__h2">Galeria</h2>
+<h2 class="section__h2">Gallery</h2>
 <h3>Poniżej przedstawiamy nasze dostępne modele.</h3>
 <section class="gallery">
-
     <div class="gallery__container">
+
         <!-- Item 1 -->
         <a href="" class="card">
             <div class="card__overlay">
-                <img src="/static/images/background.jpg" alt="picture of ship" class="card__img" />
+                <img src="{% static 'images/background.jpg' %}" alt="picture of ship" class="card__img" />
             </div>
             <div class="card__title">Nazwa modelu</div>
         </a>
-        <!-- end of item 1 -->
-        <!-- Item 2 -->
-        <a href="" class="card">
-            <div class="card__overlay">
-                <img src="/static/images/background.jpg" alt="picture of ship" class="card__img" />
-            </div>
-            <div class="card__title">Nazwa modelu</div>
-        </a>
-        <!-- end of item 2 -->
-        <!-- Item 3 -->
-        <a href="" class="card">
-            <div class="card__overlay">
-                <img src="/static/images/background.jpg" alt="picture of ship" class="card__img" />
-            </div>
-            <div class="card__title">Nazwa modelu</div>
-        </a>
-        <!-- end of item 3 -->
-        <!-- Item 4 -->
-        <a href="" class="card">
-            <div class="card__overlay">
-                <img src="/static/images/background.jpg" alt="picture of ship" class="card__img" />
-            </div>
-            <div class="card__title">Nazwa modelu</div>
-        </a>
-        <!-- end of item 4 -->
-        <!-- Item 5 -->
-        <a href="" class="card">
-            <div class="card__overlay">
-                <img src="/static/images/background.jpg" alt="picture of ship" class="card__img" />
-            </div>
-            <div class="card__title">Nazwa modelu</div>
-        </a>
-        <!-- end of item 5 -->
-        <!-- Item 6 -->
-        <a href="" class="card">
-            <div class="card__overlay">
-                <img src="/static/images/background.jpg" alt="picture of ship" class="card__img" />
-            </div>
-            <div class="card__title">Nazwa modelu</div>
-        </a>
-        <!-- end of item 6 -->
-        <!-- Item 7 -->
-        <a href="" class="card">
-            <div class="card__overlay">
-                <img src="/static/images/background.jpg" alt="picture of ship" class="card__img" />
-            </div>
-            <div class="card__title">Nazwa modelu</div>
-        </a>
-        <!-- end of item 7 -->
-        <!-- Item 8 -->
-        <a href="" class="card">
-            <div class="card__overlay">
-                <img src="/static/images/background.jpg" alt="picture of ship" class="card__img" />
-            </div>
-            <div class="card__title">Nazwa modelu</div>
-        </a>
-        <!-- end of item 8 -->
-
+    </div>
 </section>
-<!-- end of item 8 -->
 {% endblock content %}
