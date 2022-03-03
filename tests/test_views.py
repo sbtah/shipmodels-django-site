@@ -7,6 +7,9 @@ from mixer.backend.django import mixer
 
 
 pytestmark = pytest.mark.django_db
+
+
+PANEL_URL = reverse('panel:panel')
 LOGIN_URL = reverse('panel:login')
 LOGOUT_URL = reverse('panel:logout')
 CREATE_ORDER_URL = reverse('orders:order-create')
@@ -178,4 +181,16 @@ class TestImagePostDetailView():
         )
         html = response.content.decode('utf8')
         assert '<title>Shipmodels | test slug</title>' in html
+        assert response.status_code == 200
+
+
+class Test_main_panel_view():
+    """Test cases for main_panel_view."""
+
+    def test_main_panel_view_without_user(self, client):
+        """Test that only logged users can access mini admin panel."""
+
+        response = client.get(PANEL_URL, follow=True)
+        html = response.content.decode('utf8')
+        assert '<title>Shipmodels | Login</title>' in html
         assert response.status_code == 200
