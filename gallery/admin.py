@@ -8,6 +8,5 @@ class ImageGalleryAdmin(admin.ModelAdmin):
     form = ImageGalleryForm
 
 
-admin.site.register(ImageGalleryAdmin)
 admin.site.register(ImagePost)
-admin.site.register(ImageGallery)
+admin.site.register(ImageGallery, ImageGalleryAdmin)
