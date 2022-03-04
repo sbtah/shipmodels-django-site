@@ -29,6 +29,7 @@
 </head>
 
 <body>
+  <!-- MESSAGES needs to be styled! -->
   {% if messages %} {% for message in messages %}
   <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert">
     {{ message }}
@@ -36,6 +37,7 @@
   </div>
   {% endfor %}
   {% endif %}
+  <!-- END of MESSAGES - place it elsewhere if needed-->
   <div class="hero__container" id="home">
     <div class="overlay">
       <header>
