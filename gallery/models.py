@@ -77,8 +77,9 @@ class ImageGallery(models.Model):
         ordering = ('-created',)
         verbose_name_plural = 'ImageGalleries'
 
+    # Detail View is not implemented yet!
     def get_absolute_url(self):
-        return reverse('galeria:gallery', kwargs={'slug': self.slug})
+        return reverse('gallery:gallery-detail', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title
