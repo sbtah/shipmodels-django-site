@@ -23,4 +23,4 @@ class ImageGalleryForm(forms.ModelForm):
 
     class Meta:
         model = ImageGallery
-        fields = ('title', 'posts')
+        fields = ('title', 'slug', 'posts', 'created_by')
