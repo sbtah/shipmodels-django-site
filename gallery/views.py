@@ -1,6 +1,5 @@
 from gallery.models import ImageGallery, ImagePost
 from django.views import generic
-from django.shortcuts import get_object_or_404
 
 
 # Views for ImagePosts

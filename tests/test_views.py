@@ -19,8 +19,10 @@ LIST_IMAGEPOST_URL = reverse('gallery:image-list')
 
 @pytest.mark.parametrize('param', [
     ('about'),
-    ('panel:login'),
     ('home'),
+    ('cookies'),
+    ('privacy-policy'),
+    ('panel:login'),
     ('orders:order-create'),
     ('gallery:gallery-list'),
     ('gallery:image-list'),
