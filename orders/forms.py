@@ -8,26 +8,27 @@ class OrderForm(forms.ModelForm):
 
     def clean_phone_number(self):
         """Custom clean """
-        phone_number = self.cleaned_data['phone_number']
+        phone_number = self.cleaned_data['numer_telefonu']
         if phone_number < 0:
             raise forms.ValidationError(
-                _('Phone number should have positive value'))
+                _('Błędny numer telefonu'))
         return phone_number
 
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
-        self.fields['full_name'].widget.attrs.update(
+        self.fields['imię_i_nazwisko'].widget.attrs.update(
             {'class': 'form__input form__label'})
-        self.fields['phone_number'].widget.attrs.update(
+        self.fields['numer_telefonu'].widget.attrs.update(
             {'class': 'form__input form__label'})
         self.fields['email'].widget.attrs.update(
             {'class': 'form__input form__label'})
         self.fields['model'].widget.attrs.update(
             {'class': 'form__input form__label'})
-        self.fields['comment'].widget.attrs.update(
+        self.fields['komentarz'].widget.attrs.update(
             {'class': 'form__input form__label'})
 
     class Meta:
         model = Order
-        fields = ('full_name', 'phone_number', 'email', 'model', 'comment',)
+        fields = ('imię_i_nazwisko', 'numer_telefonu',
+                  'email', 'model', 'komentarz',)

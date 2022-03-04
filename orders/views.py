@@ -2,6 +2,7 @@ from django.views import generic
 from django.urls import reverse
 from orders.models import Order
 from orders.forms import OrderForm
+from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
 
 
@@ -13,7 +14,7 @@ class OrderCreateView(SuccessMessageMixin, generic.CreateView):
 
     form_class = OrderForm
     template_name = 'orders/order_create.html'
-    success_message = 'Order created, thank you'
+    success_message = _('Zamówienie złożone, dziękujemy')
     model = Order
 
     def get_success_url(self):

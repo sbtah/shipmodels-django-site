@@ -154,7 +154,7 @@ class TestOrderModel():
     def test_str_method_of_order(self):
         """Test that __str__ is properly generated."""
 
-        order = mixer.blend(Order, full_name='Tester', model='Statek')
+        order = mixer.blend(Order, imię_i_nazwisko='Tester', model='Statek')
         assert str(
             order) == "Order ID:1, By:Tester, Model:Statek"
 

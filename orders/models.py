@@ -11,7 +11,7 @@ def phone_number_validator(val):
 
     if val < 0:
         raise ValidationError(
-            _('Phone number should have only positive value'),
+            _('Błędny numer telefonu'),
             params={'value': val}
         )
 
@@ -19,22 +19,29 @@ def phone_number_validator(val):
 class Order(models.Model):
     """Class for Order object."""
 
-    full_name = models.CharField(max_length=50)
-    phone_number = models.DecimalField(
-        max_digits=12, decimal_places=0, validators=[phone_number_validator])
-    email = models.EmailField()
-    model = models.CharField(max_length=50)
-    comment = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    imię_i_nazwisko = models.CharField(
+        max_length=50, verbose_name=_('Imię i Nazwisko'))
+    numer_telefonu = models.DecimalField(
+        max_digits=12,
+        decimal_places=0,
+        validators=[phone_number_validator],
+        verbose_name=_('Numer telefonu')
+    )
+    email = models.EmailField(verbose_name=_('Email'))
+    model = models.CharField(max_length=50, verbose_name=_('Model'))
+    komentarz = models.TextField(
+        blank=True, null=True, verbose_name=_('Komentarz'))
+    dodano = models.DateTimeField(auto_now_add=True, verbose_name=_('Dodano'))
+    zaktualizowano = models.DateTimeField(
+        auto_now=True, verbose_name=_('Zaktualizowano'))
 
     class Meta:
 
-        ordering = ('-created',)
+        ordering = ('-dodano',)
 
     def get_absolute_url(self):
         """Return abosolute url to single object."""
         return reverse('panel:order-detail', kwargs={'pk': self.id})
 
     def __str__(self):
-        return f"Order ID:{self.id}, By:{self.full_name}, Model:{self.model}"
+        return f"Order ID:{self.id}, By:{self.imię_i_nazwisko}, Model:{self.model}"
