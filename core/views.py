@@ -15,3 +15,19 @@ def about_view(request):
     return render(request, 'about.html', {
 
     })
+
+
+def cookies_view(request):
+    """Cookies policy view."""
+
+    return render(request, 'cookies.html', {
+
+    })
+
+
+def privacy_policy_view(request):
+    """Privacy policy view."""
+
+    return render(request, 'privacy.html', {
+
+    })

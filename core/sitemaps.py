@@ -7,7 +7,13 @@ class StaticViewSitemap(Sitemap):
     """Sitemap class for xml file for site."""
 
     def items(self):
-        return ['home', 'about', 'orders:order-create']
+        return [
+            'home',
+            'about',
+            'cookies',
+            'privacy-policy',
+            'orders:order-create'
+        ]
 
     def location(self, item):
         return reverse(item)
