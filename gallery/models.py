@@ -1,5 +1,4 @@
 from PIL import Image
-from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
@@ -16,23 +15,39 @@ class ImagePost(models.Model):
     title = models.CharField(
         max_length=25,
         help_text=(_("Short Title")),
-        unique=True
+        unique=True,
+        verbose_name=_('Title')
     )
-    slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
+    slug = models.CharField(
+        max_length=100,
+        unique=True,
+        blank=True,
+        null=True,
+        verbose_name=_('Link')
+    )
     image = models.ImageField(
         upload_to="images/",
         default="default.jpg",
         blank=True,
-        null=True
+        null=True,
+        verbose_name=_('Image')
     )
     image_description = models.CharField(
         max_length=100,
-        help_text=(_("Alt Description for Photo"))
+        help_text=(_("Alt Description for Photo")),
+        verbose_name=_('Image description')
     )
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    created_by = models.ForeignKey(get_user_model(),
-                                   on_delete=models.CASCADE)
+    created = models.DateTimeField(
+        auto_now_add=True, verbose_name=_('Created'))
+    updated = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('Updated'),
+    )
+    created_by = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        verbose_name=_('Created By')
+    )
 
     class Meta:
 
@@ -59,25 +74,38 @@ class ImagePost(models.Model):
 class ImageGallery(models.Model):
     """Class for ImageGallery object."""
 
-    title = models.CharField(max_length=50, unique=True)
+    title = models.CharField(
+        max_length=50,
+        unique=True,
+        verbose_name=_('Title'),
+    )
     slug = models.CharField(
         max_length=100,
         unique=True,
         blank=True,
-        null=True
+        null=True,
+        verbose_name=_('Link'),
     )
-    posts = models.ManyToManyField(ImagePost)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    created_by = models.ForeignKey(get_user_model(),
-                                   on_delete=models.CASCADE)
+    posts = models.ManyToManyField(
+        ImagePost,
+        verbose_name=_('Posts'),
+    )
+    created = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('Created'),
+    )
+    updated = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
+    created_by = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        verbose_name=_('Created by')
+    )
 
     class Meta:
 
         ordering = ('-created',)
         verbose_name_plural = 'ImageGalleries'
 
-    # Detail View is not implemented yet!
     def get_absolute_url(self):
         return reverse('gallery:gallery-detail', kwargs={'slug': self.slug})
 
