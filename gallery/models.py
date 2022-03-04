@@ -12,11 +12,11 @@ from unidecode import unidecode
 class ImagePost(models.Model):
     """Class for ImagePost object."""
 
-    title = models.CharField(
+    tytuł = models.CharField(
         max_length=25,
-        help_text=(_("Short Title")),
+        help_text=(_("Krótki tytuł")),
         unique=True,
-        verbose_name=_('Title')
+        verbose_name=_('Tytuł')
     )
     slug = models.CharField(
         max_length=100,
@@ -25,33 +25,33 @@ class ImagePost(models.Model):
         null=True,
         verbose_name=_('Link')
     )
-    image = models.ImageField(
+    obraz = models.ImageField(
         upload_to="images/",
         default="default.jpg",
         blank=True,
         null=True,
-        verbose_name=_('Image')
+        verbose_name=_('Obraz')
     )
-    image_description = models.CharField(
+    obraz_opis = models.CharField(
         max_length=100,
         help_text=(_("Alt Description for Photo")),
-        verbose_name=_('Image description')
+        verbose_name=_('Obraz opis')
     )
-    created = models.DateTimeField(
-        auto_now_add=True, verbose_name=_('Created'))
-    updated = models.DateTimeField(
+    dodano = models.DateTimeField(
+        auto_now_add=True, verbose_name=_('Dodano'))
+    zaktualizowano = models.DateTimeField(
         auto_now=True,
-        verbose_name=_('Updated'),
+        verbose_name=_('Zaktualizowano'),
     )
-    created_by = models.ForeignKey(
+    dodane_przez = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
-        verbose_name=_('Created By')
+        verbose_name=_('Dodane przez')
     )
 
     class Meta:
 
-        ordering = ('-created',)
+        ordering = ('-dodano',)
 
     def get_absolute_url(self):
         return reverse('gallery:image-detail', kwargs={'slug': self.slug})
@@ -59,16 +59,16 @@ class ImagePost(models.Model):
     def save(self, *args, **kwargs):
         """Custom save method that scales down images that customer will upload."""
 
-        if self.image:
+        if self.obraz:
             super().save(*args, **kwargs)
-            img = Image.open(self.image.path)
+            img = Image.open(self.obraz.path)
             if img.height > 700 or img.width > 700:
                 output_size = (700, 700)
                 img.thumbnail(output_size)
-                img.save(self.image.path)
+                img.save(self.obraz.path)
 
     def __str__(self):
-        return self.title
+        return self.tytuł
 
 
 class ImageGallery(models.Model):
@@ -117,7 +117,7 @@ class ImageGallery(models.Model):
 def create_slug_for_post(sender, instance, created, **kwargs):
     """Slugify signal for ImagePost object."""
     if created:
-        instance.slug = slugify(unidecode(instance.title))
+        instance.slug = slugify(unidecode(instance.tytuł))
         instance.save()
 
 

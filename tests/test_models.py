@@ -21,26 +21,26 @@ class TestImagePostModel():
     def test_str_method_of_image(self):
         """Test that __str__ is properly generated."""
 
-        image = mixer.blend(ImagePost, title='Test')
+        image = mixer.blend(ImagePost, tytuł='Test')
         assert str(image) == "Test"
 
     def test_create_slug_for_image_signal(self):
         """Test that creating slug from title is working on save."""
 
-        image = mixer.blend(ImagePost, title='Testąt')
+        image = mixer.blend(ImagePost, tytuł='Testąt')
         assert image.slug == 'testat'
 
     def test_create_slug_for_image_must_be_unique(self):
         """Test that slug can only be saved with unique slug."""
 
-        image = mixer.blend(ImagePost, title='Testąt')
+        image = mixer.blend(ImagePost, tytuł='Testąt')
         with pytest.raises(Exception) as error:
-            image_2 = mixer.blend(ImagePost, title='Testąt')
+            image_2 = mixer.blend(ImagePost, tytuł='Testąt')
 
     def test_absolute_url_of_created_image(self):
         """Test get_absolute_url() method of ImagePost objects."""
 
-        image = mixer.blend(ImagePost, title='Testąt')
+        image = mixer.blend(ImagePost, tytuł='Testąt')
         assert image.get_absolute_url() == reverse(
             'gallery:image-detail',
             args=[image.slug])

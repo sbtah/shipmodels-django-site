@@ -176,7 +176,7 @@ class TestImagePostDetailView():
     def test_detail_image_view_return_data(self, client):
         """Test that image detail view properly returns data."""
 
-        image_1 = mixer.blend(ImagePost, title='test slug')
+        image_1 = mixer.blend(ImagePost, tytuł='test slug')
         response = client.get(reverse(
             'gallery:image-detail',
             args=[image_1.slug]),
