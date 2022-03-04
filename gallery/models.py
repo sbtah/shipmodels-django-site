@@ -43,10 +43,10 @@ class ImagePost(models.Model):
         auto_now=True,
         verbose_name=_('Zaktualizowano'),
     )
-    dodane_przez = models.ForeignKey(
+    dodał = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
-        verbose_name=_('Dodane przez')
+        verbose_name=_('Dodał')
     )
 
     class Meta:
@@ -74,10 +74,10 @@ class ImagePost(models.Model):
 class ImageGallery(models.Model):
     """Class for ImageGallery object."""
 
-    title = models.CharField(
+    tytuł = models.CharField(
         max_length=50,
         unique=True,
-        verbose_name=_('Title'),
+        verbose_name=_('Tytuł'),
     )
     slug = models.CharField(
         max_length=100,
@@ -86,31 +86,32 @@ class ImageGallery(models.Model):
         null=True,
         verbose_name=_('Link'),
     )
-    posts = models.ManyToManyField(
+    zdjęcia = models.ManyToManyField(
         ImagePost,
-        verbose_name=_('Posts'),
+        verbose_name=_('Zdjęcia'),
     )
-    created = models.DateTimeField(
+    dodano = models.DateTimeField(
         auto_now_add=True,
-        verbose_name=_('Created'),
+        verbose_name=_('Dodano'),
     )
-    updated = models.DateTimeField(auto_now=True, verbose_name=_('Updated'))
-    created_by = models.ForeignKey(
+    zaktualizowano = models.DateTimeField(
+        auto_now=True, verbose_name=_('Zaktualizowano'))
+    dodał = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
-        verbose_name=_('Created by')
+        verbose_name=_('Dodał')
     )
 
     class Meta:
 
-        ordering = ('-created',)
+        ordering = ('-dodano',)
         verbose_name_plural = 'ImageGalleries'
 
     def get_absolute_url(self):
         return reverse('gallery:gallery-detail', kwargs={'slug': self.slug})
 
     def __str__(self):
-        return self.title
+        return self.tytuł
 
 
 @receiver(post_save, sender=ImagePost)
@@ -125,5 +126,5 @@ def create_slug_for_post(sender, instance, created, **kwargs):
 def create_slug_for_gallery(sender, instance, created, **kwargs):
     """Slugify signal for ImageGallery object."""
     if created:
-        instance.slug = slugify(unidecode(instance.title))
+        instance.slug = slugify(unidecode(instance.tytuł))
         instance.save()

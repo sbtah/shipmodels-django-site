@@ -58,21 +58,21 @@ class TestImageGalleryModel():
     def test_str_method_of_gallery(self):
         """Test that __str__ is properly generated."""
 
-        gallery = mixer.blend(ImageGallery, title='Test')
+        gallery = mixer.blend(ImageGallery, tytuł='Test')
         assert str(gallery) == "Test"
 
     def test_create_slug_for_gallery_signal(self):
         """Test that creating slug from title is working on save."""
 
-        gallery = mixer.blend(ImageGallery, title='Testąt')
+        gallery = mixer.blend(ImageGallery, tytuł='Testąt')
         assert gallery.slug == 'testat'
 
     def test_create_slug_for_gallery_must_be_unique(self):
         """Test that slug can only be saved with unique slug."""
 
-        gallery = mixer.blend(ImageGallery, title='Testąt')
+        gallery = mixer.blend(ImageGallery, tytuł='Testąt')
         with pytest.raises(Exception) as error:
-            gallery_2 = mixer.blend(ImageGallery, title='Testąt')
+            gallery_2 = mixer.blend(ImageGallery, tytuł='Testąt')
 
     def test_absolute_url_of_created_image(self):
         """Test get_absolute_url() method of ImageGallery objects."""
