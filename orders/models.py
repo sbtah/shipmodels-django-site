@@ -11,7 +11,7 @@ def phone_number_validator(val):
 
     if val < 0:
         raise ValidationError(
-            _('Phone number should have only positive digits'),
+            _('Phone number should have only positive value'),
             params={'value': val}
         )
 

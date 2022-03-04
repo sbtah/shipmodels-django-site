@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 class OrderForm(forms.ModelForm):
     """Modelform for Order object."""
 
-    def clean_posts(self):
+    def clean_phone_number(self):
         """Custom clean """
         phone_number = self.cleaned_data['phone_number']
         if phone_number < 0:
