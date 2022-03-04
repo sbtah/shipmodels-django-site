@@ -669,3 +669,11 @@ footer {
     transform: scale(1);
   }
 }
+
+/* ALERT Message */
+/* To trzeba jakos wystylizowac funkcjonalność działa po stronie Javascriptu */
+/* Dodatkowo ma element button , cały HTML jest w Base.html */
+.alert {
+  background-color: yellow;
+  color: blue;
+}

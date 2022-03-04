@@ -5,7 +5,7 @@ from orders.forms import OrderForm
 from django.contrib.messages.views import SuccessMessageMixin
 
 
-class OrderCreateView(generic.CreateView, SuccessMessageMixin):
+class OrderCreateView(SuccessMessageMixin, generic.CreateView):
     """
     CreateView for Order object.
     This is a public View.
