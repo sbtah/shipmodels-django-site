@@ -10,13 +10,13 @@ def fullname_validator(val):
 
     if len(val) < 2:
         raise ValidationError(
-            _('Should be letters only and more then 1 character long'),
+            _('Błędne Imię i Nazwisko'),
             params={'value': val}
         )
 
     elif not val.isalpha():
         raise ValidationError(
-            _('Should be letters only and more then 1 character long'),
+            _('Błędne Imię i Nazwisko'),
             params={'value': val}
         )
 
@@ -28,9 +28,9 @@ class UserManager(BaseUserManager):
         """Creates and saves new user."""
 
         if not email:
-            raise ValueError(_('Users must have an email address'))
+            raise ValueError(_('Użytkownik musi posiadać email'))
         elif get_user_model().objects.filter(email=email).exists():
-            raise ValueError(_('You cant not use this email address'))
+            raise ValueError(_('Nie możesz użyć tego adresu email'))
         user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
         user.save(using=self.db)
@@ -54,7 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         unique=True,
         max_length=100,
-        help_text=(_('Your email address')),
+        help_text=(_('Twój adres email')),
     )
     full_name = models.CharField(
         max_length=100, validators=[fullname_validator])
