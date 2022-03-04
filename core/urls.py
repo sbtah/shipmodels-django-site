@@ -18,11 +18,11 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_view, name='home'),
-    path('about/', views.about_view, name='about'),
+    path('o-nas/', views.about_view, name='about'),
     path('cookies/', views.cookies_view, name='cookies'),
-    path('privacy-policy/', views.privacy_policy_view, name='privacy-policy'),
-    path('gallery/', include('gallery.urls')),
-    path('orders/', include('orders.urls')),
+    path('polityka-prywatnosci/', views.privacy_policy_view, name='privacy-policy'),
+    path('galeria/', include('gallery.urls')),
+    path('zamowienia/', include('orders.urls')),
     path('panel/', include('panel.urls')),
     path('sitemap.xml', sitemap, {
         'sitemaps': sitemaps

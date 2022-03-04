@@ -21,9 +21,10 @@ class ImageGalleryForm(forms.ModelForm):
 
     def clean_posts(self):
         """Custom clean """
-        posts = self.cleaned_data['posts']
+        posts = self.cleaned_data['zdjęcia']
         if len(posts) > 9:
-            raise forms.ValidationError(_('You can add maximum 9 images'))
+            raise forms.ValidationError(
+                _('Możesz dodać tylko 9 zdjęć do galerii.'))
         return posts
 
     class Meta:
