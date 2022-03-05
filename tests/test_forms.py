@@ -1,7 +1,7 @@
 import pytest
 from orders.models import Order
 from orders.forms import OrderForm
-from django.core.exceptions import ValidationError
+from django import forms
 
 
 pytestmark = pytest.mark.django_db
@@ -27,7 +27,7 @@ class TestOrderForm():
         form.save()
         assert Order.objects.all().count() == 1
 
-    def test_forms_clean_method(self):
+    def test_forms_clean_phone_number(self):
         """Test that data cannot be saved with bad phone number"""
 
         order_data = {
@@ -39,6 +39,5 @@ class TestOrderForm():
         }
         form = OrderForm(data=order_data)
         assert Order.objects.all().count() == 0
-        assert not form.is_valid()
-        with pytest.raises(Exception) as error:
-            form.save()
+        assert 'Błędny numer telefonu' in form['numer_telefonu'].errors
+        assert form.is_valid() == False
