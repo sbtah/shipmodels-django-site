@@ -114,6 +114,16 @@ class TestOrderCreateView():
         assert response.url == reverse('home')
 
 
+class TestOrderUpdateView():
+    """Test cases for OrderUpdateView."""
+    pass
+
+
+class TestOrderDeleteView():
+    """Test cases for OrderUpdateView."""
+    pass
+
+
 class TestOrderListView():
     """Test cases for Order's private ListView."""
 
@@ -217,8 +227,14 @@ class TestImagePostCreateView():
         assert response.status_code == 200
 
 
+class TestImagePostUpdateView():
+    """Test cases for ImagePostUpdateView - this view is for logged users only."""
+    # View is not implemented yet!
+    pass
+
+
 class TestImagePostDeleteView():
-    """Test cases for ImagePostCreateView - this view is for logged users only."""
+    """Test cases for ImagePostDeleteView - this view is for logged users only."""
     # View is not implemented yet!
     pass
 
