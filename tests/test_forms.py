@@ -10,7 +10,7 @@ pytestmark = pytest.mark.django_db
 class TestOrderForm():
     """Test case for OrderForm."""
 
-    def test_form_object_created(self):
+    def test_order_form_object_created(self):
         """Test that object is created through form."""
 
         order_data = {
@@ -27,7 +27,7 @@ class TestOrderForm():
         form.save()
         assert Order.objects.all().count() == 1
 
-    def test_forms_clean_phone_number(self):
+    def test_order_form_clean_phone_number(self):
         """Test that data cannot be saved with bad phone number"""
 
         order_data = {
