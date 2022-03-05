@@ -3,6 +3,29 @@ from gallery.models import ImageGallery, ImagePost
 from django.utils.translation import gettext_lazy as _
 
 
+class ImagePostForm(forms.ModelForm):
+    """Model form for ImagePost objects."""
+
+    def __init__(self, *args, **kwargs):
+        """Custom __init__ that applies css classes to form style."""
+
+        super().__init__(*args, **kwargs)
+        self.fields['tytuł'].widget.attrs.update(
+            {'class': 'form__input form__label'})
+        self.fields['slug'].widget.attrs.update(
+            {'class': 'form__input form__label'})
+        self.fields['obraz'].widget.attrs.update(
+            {'class': 'form__input form__label'})
+        self.fields['obraz_opis'].widget.attrs.update(
+            {'class': 'form__input form__label'})
+        self.fields['dodał'].widget.attrs.update(
+            {'class': 'form__input form__label'})
+
+    class Meta:
+        model = ImagePost
+        fields = ('tytuł', 'slug', 'obraz', 'obraz_opis', 'dodał')
+
+
 class ImageGalleryForm(forms.ModelForm):
     """Model form for ImageGallery object."""
 
