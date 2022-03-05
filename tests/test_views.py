@@ -72,7 +72,7 @@ class TestLoginCustomUserView():
         # Decode response to HTML to check for error message.
         html = response.content.decode('utf8')
         assert response.status_code == 200
-        assert 'Please enter a correct email and password. Note that both fields may be case-sensitive.' in html
+        assert 'Wprowadź poprawne wartości pól email oraz hasło. Uwaga: wielkość liter ma znaczenie.' in html
 
 
 class TestLogoutCustomUserView():

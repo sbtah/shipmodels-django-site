@@ -4,7 +4,7 @@ from orders.forms import OrderForm
 from gallery.models import ImageGallery, ImagePost
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from users.forms import CustomUserAuthenticationForm, CustomUserCreationForm
+from users.forms import CustomUserAuthenticationForm
 from django.views import generic
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'core.middleware.ForceDefaultLanguageMiddleware',
     # This LocaleMiddleware have to be exactly here.
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -140,8 +141,8 @@ LOGIN_URL = 'panel:login'
 
 # Languages settings
 LANGUAGES = (
-    ('pl', _('Polish')),
-    ('en', _('English')),
+    ('pl', _('Polski')),
+    ('en', _('Angielski')),
 )
 
 LOCALE_PATHS = (

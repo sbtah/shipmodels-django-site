@@ -2,17 +2,14 @@ from django.shortcuts import render
 from django.utils.translation import get_language, activate, gettext
 
 
-def translate(language):
-    """"""
+# def translate(language):
+#     """"""
 
-    current_language = get_language()
-    try:
-        activate(language)
-        text = gettext('Imię i Nazwisko')
-    finally:
-        activate(current_language)
-
-    return text
+#     current_language = get_language()
+#     try:
+#         activate(language)
+#     finally:
+#         activate(current_language)
 
 
 def home_view(request):

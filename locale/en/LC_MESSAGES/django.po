@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 19:12+0000\n"
+"POT-Creation-Date: 2022-03-05 06:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,85 +18,147 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/settings.py:143
-msgid "Polish"
-msgstr ""
-
 #: core/settings.py:144
-msgid "English"
-msgstr ""
+msgid "Polski"
+msgstr "Polish"
+
+#: core/settings.py:145
+msgid "Angielski"
+msgstr "English"
+
+#: core/urls.py:30
+msgid "o-nas/"
+msgstr "about-us/"
+
+#: core/urls.py:32
+msgid "polityka-prywatnosci/"
+msgstr "privacy-policy/"
+
+#: core/urls.py:34
+msgid "galeria/"
+msgstr "gallery/"
+
+#: core/urls.py:35
+msgid "zamowienia/"
+msgstr "orders/"
 
 #: gallery/forms.py:27
 msgid "Możesz dodać tylko 9 zdjęć do galerii."
-msgstr ""
+msgstr "You can add only 9 images to gallery."
 
 #: gallery/models.py:17
 msgid "Krótki tytuł"
-msgstr ""
+msgstr "Short title"
 
 #: gallery/models.py:19 gallery/models.py:80
 msgid "Tytuł"
-msgstr ""
+msgstr "Title"
 
 #: gallery/models.py:26 gallery/models.py:87
 msgid "Link"
-msgstr ""
+msgstr "Link"
 
 #: gallery/models.py:33
 msgid "Obraz"
-msgstr ""
+msgstr "Image"
 
 #: gallery/models.py:37
-msgid "Alt Description for Photo"
-msgstr ""
+msgid "Alt opis dla zdjęcia"
+msgstr "Alt description for image"
 
 #: gallery/models.py:38
 msgid "Obraz opis"
-msgstr ""
+msgstr "Image description"
 
 #: gallery/models.py:41 gallery/models.py:95 orders/models.py:34
 msgid "Dodano"
-msgstr ""
+msgstr "Created"
 
 #: gallery/models.py:44 gallery/models.py:98 orders/models.py:36
 msgid "Zaktualizowano"
-msgstr ""
+msgstr "Updated"
 
 #: gallery/models.py:49 gallery/models.py:102
 msgid "Dodał"
-msgstr ""
+msgstr "Created By"
 
 #: gallery/models.py:91
 msgid "Zdjęcia"
-msgstr ""
+msgstr "Images"
+
+#: gallery/templates/gallery/gallery_list.html:4
+#: gallery/templates/gallery/gallery_list.html:6 templates/navbar.html:11
+msgid "Galeria"
+msgstr "Gallery"
+
+#: gallery/templates/gallery/gallery_list.html:7
+msgid "Poniżej przedstawiamy nasze dostępne modele."
+msgstr "Our available models are presented below."
+
+#: gallery/templates/gallery/image_list.html:3
+msgid "Obrazy"
+msgstr "Images"
 
 #: orders/forms.py:14 orders/models.py:14
 msgid "Błędny numer telefonu"
-msgstr ""
+msgstr "Wrong phone number"
 
 #: orders/models.py:23
 msgid "Imię i Nazwisko"
-msgstr "Full Name"
+msgstr "First name and last name"
 
 #: orders/models.py:28
 msgid "Numer telefonu"
-msgstr ""
+msgstr "Phone number"
 
 #: orders/models.py:30
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: orders/models.py:31
 msgid "Model"
-msgstr ""
+msgstr "Model;"
 
 #: orders/models.py:33
 msgid "Komentarz"
-msgstr ""
+msgstr "Comment"
+
+#: orders/templates/orders/order_create.html:3
+#: orders/templates/orders/order_create.html:7 templates/navbar.html:14
+msgid "Zamówienia"
+msgstr "Orders"
+
+#: orders/templates/orders/order_create.html:44
+msgid "Zamów"
+msgstr "Order"
 
 #: orders/views.py:17
 msgid "Zamówienie złożone, dziękujemy"
-msgstr ""
+msgstr "Order placed, thank you"
+
+#: templates/base.html:64
+msgid "Tworzymy profesjonalne modele"
+msgstr "We create professional models"
+
+#: templates/base.html:65
+msgid "Więcej"
+msgstr "More"
+
+#: templates/footer.html:50
+msgid "Polityka Prywatności"
+msgstr "Pravacy Policy"
+
+#: templates/footer.html:51
+msgid "Polityka Cookies"
+msgstr "Cookies Policy"
+
+#: templates/footer.html:57
+msgid "© Strona Wykonana przez : Marcin Zygan & Grzegorz Zygan"
+msgstr "© Website Created by: Marcin Zygan & Grzegorz Zygan"
+
+#: templates/navbar.html:8
+msgid "O nas"
+msgstr "About Us"
 
 #: users/admin.py:14
 msgid "Personal Info"

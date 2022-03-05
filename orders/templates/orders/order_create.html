@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
-{% block title %}Order{% endblock title %}
+{% load i18n %}
+{% block title %}{% translate 'Zamówienia' %}{% endblock title %}
 {% block content %}
 <!-- SECTION ORDERS -->
 <div id="orders">
-    <h2 class="section__h2">Zamówienia</h2>
+    <h2 class="section__h2">{% translate 'Zamówienia' %}</h2>
     <h3>
-        W razie jakichkolwiek pytań prosimy o kontakt w dowolnej formie podanej
-        poniżej.
-    </h3>'<footer></footer>
+        {% translate 'W razie jakichkolwiek pytań prosimy o kontakt w dowolnej formie podanej
+        poniżej.' %}
+    </h3>
     <section class="orders">
         <h2 class="orders__h2">GÓRECKI SHIPMODELS</h2>
         <div class="orders__container">
@@ -40,7 +41,7 @@
                 <form action="" method="POST" enctype="" class="form">
                     {% csrf_token %}
                     {{ form }}
-                    <button class="btn" type="submit">Place an Order</button>
+                    <button class="btn" type="submit">{% translate 'Zamów' %}</button>
                 </form>
             </div>
         </div>

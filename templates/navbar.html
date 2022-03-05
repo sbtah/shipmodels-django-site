@@ -1,16 +1,17 @@
+{% load i18n %}
 <nav class="nav">
     <ul class="nav__list">
         <li class="nav__item">
-            <a href="#home" class="nav__link">Home</a>
+            <a href="{% url 'home' %}" class="nav__link">Home</a>
         </li>
         <li class="nav__item">
-            <a href="{% url 'about' %}" class="nav__link">O nas</a>
+            <a href="{% url 'about' %}" class="nav__link">{% translate "O nas" %}</a>
         </li>
         <li class="nav__item">
-            <a href="{% url 'gallery:gallery-list' %}" class="nav__link">Galeria</a>
+            <a href="{% url 'gallery:gallery-list' %}" class="nav__link">{% translate "Galeria" %}</a>
         </li>
         <li class="nav__item">
-            <a href="{% url 'orders:order-create' %}" class="nav__link">Zamówienia</a>
+            <a href="{% url 'orders:order-create' %}" class="nav__link">{% translate "Zamówienia" %}</a>
         </li>
     </ul>
 </nav>

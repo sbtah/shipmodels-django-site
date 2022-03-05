@@ -34,7 +34,7 @@ class ImagePost(models.Model):
     )
     obraz_opis = models.CharField(
         max_length=100,
-        help_text=(_("Alt Description for Photo")),
+        help_text=(_("Alt opis dla zdjęcia")),
         verbose_name=_('Obraz opis')
     )
     dodano = models.DateTimeField(

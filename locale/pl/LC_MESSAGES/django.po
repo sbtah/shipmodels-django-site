@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-04 19:12+0000\n"
+"POT-Creation-Date: 2022-03-05 06:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,12 +20,28 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: core/settings.py:143
-msgid "Polish"
+#: core/settings.py:144
+msgid "Polski"
 msgstr ""
 
-#: core/settings.py:144
-msgid "English"
+#: core/settings.py:145
+msgid "Angielski"
+msgstr ""
+
+#: core/urls.py:30
+msgid "o-nas/"
+msgstr ""
+
+#: core/urls.py:32
+msgid "polityka-prywatnosci/"
+msgstr ""
+
+#: core/urls.py:34
+msgid "galeria/"
+msgstr ""
+
+#: core/urls.py:35
+msgid "zamowienia/"
 msgstr ""
 
 #: gallery/forms.py:27
@@ -49,7 +65,7 @@ msgid "Obraz"
 msgstr ""
 
 #: gallery/models.py:37
-msgid "Alt Description for Photo"
+msgid "Alt opis dla zdjęcia"
 msgstr ""
 
 #: gallery/models.py:38
@@ -70,6 +86,19 @@ msgstr ""
 
 #: gallery/models.py:91
 msgid "Zdjęcia"
+msgstr ""
+
+#: gallery/templates/gallery/gallery_list.html:4
+#: gallery/templates/gallery/gallery_list.html:6 templates/navbar.html:11
+msgid "Galeria"
+msgstr ""
+
+#: gallery/templates/gallery/gallery_list.html:7
+msgid "Poniżej przedstawiamy nasze dostępne modele."
+msgstr ""
+
+#: gallery/templates/gallery/image_list.html:3
+msgid "Obrazy"
 msgstr ""
 
 #: orders/forms.py:14 orders/models.py:14
@@ -96,8 +125,41 @@ msgstr ""
 msgid "Komentarz"
 msgstr ""
 
+#: orders/templates/orders/order_create.html:3
+#: orders/templates/orders/order_create.html:7 templates/navbar.html:14
+msgid "Zamówienia"
+msgstr ""
+
+#: orders/templates/orders/order_create.html:44
+msgid "Zamów"
+msgstr ""
+
 #: orders/views.py:17
 msgid "Zamówienie złożone, dziękujemy"
+msgstr ""
+
+#: templates/base.html:64
+msgid "Tworzymy profesjonalne modele"
+msgstr ""
+
+#: templates/base.html:65
+msgid "Więcej"
+msgstr ""
+
+#: templates/footer.html:50
+msgid "Polityka Prywatności"
+msgstr ""
+
+#: templates/footer.html:51
+msgid "Polityka Cookies"
+msgstr ""
+
+#: templates/footer.html:57
+msgid "© Strona Wykonana przez : Marcin Zygan & Grzegorz Zygan"
+msgstr ""
+
+#: templates/navbar.html:8
+msgid "O nas"
 msgstr ""
 
 #: users/admin.py:14

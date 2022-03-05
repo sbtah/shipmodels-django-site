@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load static %}
-{% block title %}Galleries{% endblock title %}
+{% block title %}{% translate "Galeria" %}{% endblock title %}
 {% block content %}
-<h2 class="section__h2">Gallery</h2>
-<h3>Poniżej przedstawiamy nasze dostępne modele.</h3>
+<h2 class="section__h2">{% translate "Galeria" %}</h2>
+<h3>{% translate "Poniżej przedstawiamy nasze dostępne modele." %}</h3>
 <section class="gallery">
     <div class="gallery__container">
         {% for gallery in galleries %}
         <!-- Item 1 -->
         <a href="{{ gallery.get_absolute_url }}" class="card">
             <div class="card__overlay">
-                <img src="{% static 'images/background.jpg' %}" alt="{{ gallery.title }}" class="card__img" />
+                <img src="{% static 'images/background.jpg' %}" alt="{{ gallery.tytuł }}" class="card__img" />
             </div>
             <div class="card__title">{{ gallery.slug }}</div>
         </a>

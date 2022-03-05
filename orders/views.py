@@ -3,7 +3,6 @@ from django.urls import reverse
 from orders.models import Order
 from orders.forms import OrderForm
 from django.utils.translation import gettext as _
-from django.utils.translation import get_language, activate, gettext
 from django.contrib.messages.views import SuccessMessageMixin
 
 
