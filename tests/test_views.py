@@ -1,3 +1,4 @@
+from ast import arg
 import pytest
 from django.urls import reverse
 from django.contrib.auth import get_user_model
@@ -229,8 +230,16 @@ class TestImagePostCreateView():
 
 class TestImagePostUpdateView():
     """Test cases for ImagePostUpdateView - this view is for logged users only."""
-    # View is not implemented yet!
-    pass
+
+    def test_image_post_update_view_without_user(self, client):
+        """Test that image can not be updated without authenticated user."""
+
+        image = mixer.blend(ImagePost, tytuł='test')
+        assert ImagePost.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:image-update', args=[image.id]), data={'tytuł': 'fail'})
+        assert response.status_code == 302
+        assert ImagePost.objects.filter(tytuł='fail').exists() == False
 
 
 class TestImagePostDeleteView():
