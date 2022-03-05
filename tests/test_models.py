@@ -74,11 +74,13 @@ class TestImageGalleryModel():
         with pytest.raises(Exception) as error:
             gallery_2 = mixer.blend(ImageGallery, tytuł='Testąt')
 
-    def test_absolute_url_of_created_image(self):
+    def test_absolute_url_of_created_gallery(self):
         """Test get_absolute_url() method of ImageGallery objects."""
 
-        # Implement after DetailView
-        pass
+        gallery = mixer.blend(ImageGallery, tytuł='Testąt')
+        assert gallery.get_absolute_url() == reverse(
+            'gallery:gallery-detail',
+            args=[gallery.slug])
 
 
 class TestUserModel():

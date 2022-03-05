@@ -1,7 +1,6 @@
 import pytest
 from orders.models import Order
 from orders.forms import OrderForm
-from django import forms
 
 
 pytestmark = pytest.mark.django_db
