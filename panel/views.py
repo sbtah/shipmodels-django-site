@@ -92,3 +92,22 @@ class ImagePostCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = 'panel/create_image.html'
     success_url = reverse_lazy('panel:panel')
     success_message = _("Obraz dodany")
+
+
+class ImagePostUpdateView(LoginRequiredMixin, generic.UpdateView):
+    """Update view for ImagePost object - only for logged users."""
+
+    model = ImagePost
+    form_class = ImagePostForm
+    template_name = 'panel/update_image.html'
+    success_message = _("Zmiany wykonane")
+    success_url = reverse_lazy('panel:panel')
+
+
+class ImagePostDeleteView(LoginRequiredMixin, generic.DeleteView):
+    """DeleteView for ImagePost object - only for logged users."""
+
+    model = ImagePost
+    template_name = 'panel/delete_image.html'
+    success_message = _("Obraz usunięty")
+    success_url = reverse_lazy('panel:panel')
