@@ -12,9 +12,10 @@ pytestmark = pytest.mark.django_db
 PANEL_URL = reverse('panel:panel')
 LOGIN_URL = reverse('panel:login')
 LOGOUT_URL = reverse('panel:logout')
-CREATE_ORDER_URL = reverse('orders:order-create')
+CREATE_IMAGE_URL = reverse('panel:image-create')
 LIST_ORDER_URL = reverse('panel:order-list')
 LIST_IMAGEPOST_URL = reverse('gallery:image-list')
+CREATE_ORDER_URL = reverse('orders:order-create')
 
 
 @pytest.mark.parametrize('param', [
@@ -98,6 +99,7 @@ class TestLogoutCustomUserView():
         assert response.status_code == 302
 
 
+# Order related Test cases.
 class TestOrderCreateView():
     """Test cases for Order's Public CreateView."""
 
@@ -156,8 +158,9 @@ class TestOrderDetailView():
         assert response.status_code == 200
 
 
+# ImagePost related Test cases.
 class TestImagePostListView():
-    """Test cases for ImagePostListView."""
+    """Test cases for public ImagePostListView."""
 
     def test_list_image_view_lists_data(self, client):
         """Test that image list view properly lists data."""
@@ -171,7 +174,7 @@ class TestImagePostListView():
 
 
 class TestImagePostDetailView():
-    """Test cases for ImagePostDetailView."""
+    """Test cases for public ImagePostDetailView."""
 
     def test_detail_image_view_return_data(self, client):
         """Test that image detail view properly returns data."""
@@ -184,6 +187,40 @@ class TestImagePostDetailView():
         html = response.content.decode('utf8')
         assert '<title>Shipmodels | test slug</title>' in html
         assert response.status_code == 200
+
+
+class TestImagePostCreateView():
+    """Test cases for ImagePostCreateView - this view is for logged users only."""
+
+    def test_image_post_create_view_without_user(self, client):
+        """Test that image cant be created by unauthenticated user."""
+
+        assert ImagePost.objects.all().count() == 0
+        response = client.get(CREATE_IMAGE_URL)
+        assert response.status_code == 302
+
+    def test_image_post_create_view_user_logged_in(self, client, example_user):
+        """Test that image is created by authenticated user."""
+
+        user = example_user
+        image_data = {
+            'tytuł': 'test',
+            'obraz_opis': 'opis',
+            'dodał': user.id
+        }
+        client.force_login(user)
+        assert ImagePost.objects.all().count() == 0
+        response = client.post(CREATE_IMAGE_URL, data=image_data, follow=True)
+        html = response.content.decode('utf8')
+        assert '<title>Shipmodels | Admin</title>' in html
+        assert ImagePost.objects.all().count() == 1
+        assert response.status_code == 200
+
+
+class TestImagePostDeleteView():
+    """Test cases for ImagePostCreateView - this view is for logged users only."""
+    # View is not implemented yet!
+    pass
 
 
 class Test_main_panel_view():
