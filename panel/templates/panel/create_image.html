@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% translate 'Dodaj obraz' %}{% endblock title %}
+{% block content %}
+<div class="orders__container">
+    <div class="form__container">
+        <form action="" method="POST" enctype="" class="form">
+            {% csrf_token %}
+            {{ form }}
+            <button class="btn" type="submit">{% translate 'Dodaj obraz' %}</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
