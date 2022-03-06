@@ -117,12 +117,74 @@ class TestOrderCreateView():
 
 class TestOrderUpdateView():
     """Test cases for OrderUpdateView."""
-    pass
+
+    def test_update_order_view_without_user(self, client):
+        """Test that order can not be updated without user logged in."""
+
+        data = {
+            'imię_i_nazwisko': 'Test tester',
+            'numer_telefonu': 671671671,
+            'email': 'test@test.com',
+            'model': 'Ship',
+            'komentarz': 'Do it asap!',
+        }
+        order = mixer.blend(Order, imię_i_nazwisko='Joe Doe')
+        assert Order.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:order-update', kwargs={'pk': order.id}), data=data)
+        assert response.status_code == 302
+        assert Order.objects.filter(
+            imię_i_nazwisko='Test tester').exists() == False
+
+    def test_update_order_view_user_logged_in(self, client, example_user):
+        """Test that order can be updated with authenticated user."""
+
+        user = example_user
+        client.force_login(user)
+        data = {
+            'imię_i_nazwisko': 'Test tester',
+            'numer_telefonu': 671671671,
+            'email': 'test@test.com',
+            'model': 'Ship',
+            'komentarz': 'Do it asap!',
+        }
+        order = mixer.blend(Order, imię_i_nazwisko='Joe Doe')
+        assert Order.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:order-update', kwargs={'pk': order.id}), data=data)
+        assert response.status_code == 302
+        assert Order.objects.filter(
+            imię_i_nazwisko='Test tester').exists() == True
 
 
 class TestOrderDeleteView():
     """Test cases for OrderUpdateView."""
-    pass
+
+    def test_delete_order_view_without_user(self, client):
+        """Test that order can not be deleted without user logged in."""
+
+        order = mixer.blend(Order, imię_i_nazwisko='Joe Doe')
+        assert Order.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:order-delete', kwargs={'pk': order.id}))
+        assert response.status_code == 302
+        assert Order.objects.all().count() == 1
+        assert Order.objects.filter(
+            imię_i_nazwisko='Joe Doe').exists() == True
+
+    def test_delete_order_view_user_logged_in(self, client, example_user):
+        """Test that order can be deleted by authenticated user."""
+
+        user = example_user
+        client.force_login(user)
+        order = mixer.blend(Order, imię_i_nazwisko='Joe Doe')
+        assert Order.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:order-delete', kwargs={'pk': order.id}))
+        assert response.status_code == 302
+        assert Order.objects.all().count() == 0
+        assert Order.objects.filter(
+            imię_i_nazwisko='Joe Doe').exists() == False
 
 
 class TestOrderListView():

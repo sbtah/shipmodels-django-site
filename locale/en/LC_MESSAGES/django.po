@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-05 06:23+0000\n"
+"POT-Creation-Date: 2022-03-06 08:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr "gallery/"
 msgid "zamowienia/"
 msgstr "orders/"
 
-#: gallery/forms.py:27
+#: gallery/forms.py:50
 msgid "Możesz dodać tylko 9 zdjęć do galerii."
 msgstr "You can add only 9 images to gallery."
 
@@ -136,6 +136,35 @@ msgstr "Order"
 msgid "Zamówienie złożone, dziękujemy"
 msgstr "Order placed, thank you"
 
+#: panel/templates/panel/create_image.html:3
+#: panel/templates/panel/create_image.html:10
+msgid "Dodaj obraz"
+msgstr "Add Image"
+
+#: panel/templates/panel/update_image.html:3
+#, fuzzy
+#| msgid "Zaktualizowano"
+msgid "Aktualizuj obraz"
+msgstr "Updated"
+
+#: panel/templates/panel/update_image.html:10
+msgid "Aktualizuj"
+msgstr "Update"
+
+#: panel/views.py:98
+#, fuzzy
+#| msgid "Obrazy"
+msgid "Obraz dodany"
+msgstr "Images"
+
+#: panel/views.py:107
+msgid "Zmiany wykonane"
+msgstr "Updates finished"
+
+#: panel/views.py:116
+msgid "Obraz usunięty"
+msgstr "Image deleted"
+
 #: templates/base.html:64
 msgid "Tworzymy profesjonalne modele"
 msgstr "We create professional models"
@@ -178,15 +207,15 @@ msgstr ""
 
 #: users/models.py:31
 msgid "Użytkownik musi posiadać email"
-msgstr ""
+msgstr "User must have an email"
 
 #: users/models.py:33
 msgid "Nie możesz użyć tego adresu email"
-msgstr ""
+msgstr "You can not use this email address"
 
 #: users/models.py:57
 msgid "Twój adres email"
-msgstr ""
+msgstr "Your email"
 
 #: venv/lib/python3.9/site-packages/_pytest/config/argparsing.py:458
 #, python-format

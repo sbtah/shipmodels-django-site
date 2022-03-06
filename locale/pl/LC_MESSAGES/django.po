@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-05 06:23+0000\n"
+"POT-Creation-Date: 2022-03-06 08:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "zamowienia/"
 msgstr ""
 
-#: gallery/forms.py:27
+#: gallery/forms.py:50
 msgid "Możesz dodać tylko 9 zdjęć do galerii."
 msgstr ""
 
@@ -136,6 +136,31 @@ msgstr ""
 
 #: orders/views.py:17
 msgid "Zamówienie złożone, dziękujemy"
+msgstr ""
+
+#: panel/templates/panel/create_image.html:3
+#: panel/templates/panel/create_image.html:10
+msgid "Dodaj obraz"
+msgstr ""
+
+#: panel/templates/panel/update_image.html:3
+msgid "Aktualizuj obraz"
+msgstr ""
+
+#: panel/templates/panel/update_image.html:10
+msgid "Aktualizuj"
+msgstr ""
+
+#: panel/views.py:98
+msgid "Obraz dodany"
+msgstr ""
+
+#: panel/views.py:107
+msgid "Zmiany wykonane"
+msgstr ""
+
+#: panel/views.py:116
+msgid "Obraz usunięty"
 msgstr ""
 
 #: templates/base.html:64

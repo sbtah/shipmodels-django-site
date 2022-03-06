@@ -20,7 +20,7 @@ class Order(models.Model):
     """Class for Order object."""
 
     imię_i_nazwisko = models.CharField(
-        max_length=50, verbose_name=_('Imię i Nazwisko'))
+        max_length=50, verbose_name=_('Imię i Nazwisko'))  # Implement validator for Full Name.
     numer_telefonu = models.DecimalField(
         max_digits=12,
         decimal_places=0,
@@ -45,3 +45,6 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order ID:{self.id}, By:{self.imię_i_nazwisko}, Model:{self.model}"
+
+
+# Implement singal that will save an email when order is placed by a user.
