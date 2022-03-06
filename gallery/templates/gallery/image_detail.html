@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
+{% block metaSEO %}
+<meta name="description"
+    content="Zdjęcię wykonane podczas tworzenia modelu statku: {{ image.title }}. {{ image.obraz_opis }}" />
+{% endblock metaSEO %}
 {% block title %}{{ image.tytuł }}{% endblock title %}
 {% block content %}
-{{ image }}
+<img src="{{ image.obraz.url }}" alt="{{ image.tytuł }}">
+<p>{{ image.obraz_opis }}</p>
+<p>{{ image.dodał }}</p>
+<p>{{ image.dodano }}</p>
 {% endblock content %}

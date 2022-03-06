@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block metaSEO %}
+<meta name="description" content="Galeria zdjęć prac nad {{ gallery.tytuł }}" />
+{% endblock metaSEO %}
 {% block title %}{{ gallery.tytuł }}{% endblock title %}
 {% block content %}
 {{ gallery.obraz }}
 {% for img in gallery.zdjęcia.all %}
 <h1>{{ img.tytuł }}</h1>
 <img src="{{ img.obraz.url }}" alt="">
-
+<a href="{% url 'gallery:image-detail' img.slug %}">LINK do OBRAZU</a>
 {% endfor %}
 {% endblock content %}
