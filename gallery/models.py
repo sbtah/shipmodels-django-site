@@ -12,30 +12,46 @@ from unidecode import unidecode
 class ImagePost(models.Model):
     """Class for ImagePost object."""
 
-    title = models.CharField(
+    tytuł = models.CharField(
         max_length=25,
-        help_text=(_("Short Title")),
-        unique=True
+        help_text=(_("Krótki tytuł")),
+        unique=True,
+        verbose_name=_('Tytuł')
     )
-    slug = models.CharField(max_length=100, unique=True, blank=True, null=True)
-    image = models.ImageField(
+    slug = models.CharField(
+        max_length=100,
+        unique=True,
+        blank=True,
+        null=True,
+        verbose_name=_('Link')
+    )
+    obraz = models.ImageField(
         upload_to="images/",
         default="default.jpg",
         blank=True,
-        null=True
+        null=True,
+        verbose_name=_('Obraz')
     )
-    image_description = models.CharField(
+    obraz_opis = models.CharField(
         max_length=100,
-        help_text=(_("Alt Description for Photo"))
+        help_text=(_("Alt opis dla zdjęcia")),
+        verbose_name=_('Obraz opis')
     )
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    created_by = models.ForeignKey(get_user_model(),
-                                   on_delete=models.CASCADE)
+    dodano = models.DateTimeField(
+        auto_now_add=True, verbose_name=_('Dodano'))
+    zaktualizowano = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('Zaktualizowano'),
+    )
+    dodał = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        verbose_name=_('Dodał')
+    )
 
     class Meta:
 
-        ordering = ('-created',)
+        ordering = ('-dodano',)
 
     def get_absolute_url(self):
         return reverse('gallery:image-detail', kwargs={'slug': self.slug})
@@ -43,52 +59,66 @@ class ImagePost(models.Model):
     def save(self, *args, **kwargs):
         """Custom save method that scales down images that customer will upload."""
 
-        if self.image:
+        if self.obraz:
             super().save(*args, **kwargs)
-            img = Image.open(self.image.path)
+            img = Image.open(self.obraz.path)
             if img.height > 700 or img.width > 700:
                 output_size = (700, 700)
                 img.thumbnail(output_size)
-                img.save(self.image.path)
+                img.save(self.obraz.path)
 
     def __str__(self):
-        return self.title
+        return self.tytuł
 
 
 class ImageGallery(models.Model):
     """Class for ImageGallery object."""
 
-    title = models.CharField(max_length=50, unique=True)
+    tytuł = models.CharField(
+        max_length=50,
+        unique=True,
+        verbose_name=_('Tytuł'),
+    )
     slug = models.CharField(
         max_length=100,
         unique=True,
         blank=True,
-        null=True
+        null=True,
+        verbose_name=_('Link'),
     )
-    gallery = models.ManyToManyField(ImagePost)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    created_by = models.ForeignKey(get_user_model(),
-                                   on_delete=models.CASCADE)
+    zdjęcia = models.ManyToManyField(
+        ImagePost,
+        verbose_name=_('Zdjęcia'),
+    )
+    dodano = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('Dodano'),
+    )
+    zaktualizowano = models.DateTimeField(
+        auto_now=True, verbose_name=_('Zaktualizowano'))
+    dodał = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        verbose_name=_('Dodał')
+    )
 
     class Meta:
 
-        ordering = ('-created',)
+        ordering = ('-dodano',)
         verbose_name_plural = 'ImageGalleries'
 
     def get_absolute_url(self):
-        return reverse('galeria:gallery', kwargs={'slug': self.slug})
+        return reverse('gallery:gallery-detail', kwargs={'slug': self.slug})
 
-    # TD: Slug on save POLISH slug!
     def __str__(self):
-        return self.title
+        return self.tytuł
 
 
 @receiver(post_save, sender=ImagePost)
 def create_slug_for_post(sender, instance, created, **kwargs):
     """Slugify signal for ImagePost object."""
     if created:
-        instance.slug = slugify(unidecode(instance.title))
+        instance.slug = slugify(unidecode(instance.tytuł))
         instance.save()
 
 
@@ -96,5 +126,5 @@ def create_slug_for_post(sender, instance, created, **kwargs):
 def create_slug_for_gallery(sender, instance, created, **kwargs):
     """Slugify signal for ImageGallery object."""
     if created:
-        instance.slug = slugify(unidecode(instance.title))
+        instance.slug = slugify(unidecode(instance.tytuł))
         instance.save()

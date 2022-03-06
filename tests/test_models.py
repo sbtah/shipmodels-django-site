@@ -21,26 +21,26 @@ class TestImagePostModel():
     def test_str_method_of_image(self):
         """Test that __str__ is properly generated."""
 
-        image = mixer.blend(ImagePost, title='Test')
+        image = mixer.blend(ImagePost, tytuł='Test')
         assert str(image) == "Test"
 
     def test_create_slug_for_image_signal(self):
         """Test that creating slug from title is working on save."""
 
-        image = mixer.blend(ImagePost, title='Testąt')
+        image = mixer.blend(ImagePost, tytuł='Testąt')
         assert image.slug == 'testat'
 
     def test_create_slug_for_image_must_be_unique(self):
         """Test that slug can only be saved with unique slug."""
 
-        image = mixer.blend(ImagePost, title='Testąt')
+        image = mixer.blend(ImagePost, tytuł='Testąt')
         with pytest.raises(Exception) as error:
-            image_2 = mixer.blend(ImagePost, title='Testąt')
+            image_2 = mixer.blend(ImagePost, tytuł='Testąt')
 
     def test_absolute_url_of_created_image(self):
         """Test get_absolute_url() method of ImagePost objects."""
 
-        image = mixer.blend(ImagePost, title='Testąt')
+        image = mixer.blend(ImagePost, tytuł='Testąt')
         assert image.get_absolute_url() == reverse(
             'gallery:image-detail',
             args=[image.slug])
@@ -58,27 +58,29 @@ class TestImageGalleryModel():
     def test_str_method_of_gallery(self):
         """Test that __str__ is properly generated."""
 
-        gallery = mixer.blend(ImageGallery, title='Test')
+        gallery = mixer.blend(ImageGallery, tytuł='Test')
         assert str(gallery) == "Test"
 
     def test_create_slug_for_gallery_signal(self):
         """Test that creating slug from title is working on save."""
 
-        gallery = mixer.blend(ImageGallery, title='Testąt')
+        gallery = mixer.blend(ImageGallery, tytuł='Testąt')
         assert gallery.slug == 'testat'
 
     def test_create_slug_for_gallery_must_be_unique(self):
         """Test that slug can only be saved with unique slug."""
 
-        gallery = mixer.blend(ImageGallery, title='Testąt')
+        gallery = mixer.blend(ImageGallery, tytuł='Testąt')
         with pytest.raises(Exception) as error:
-            gallery_2 = mixer.blend(ImageGallery, title='Testąt')
+            gallery_2 = mixer.blend(ImageGallery, tytuł='Testąt')
 
-    def test_absolute_url_of_created_image(self):
+    def test_absolute_url_of_created_gallery(self):
         """Test get_absolute_url() method of ImageGallery objects."""
 
-        # Implement after DetailView
-        pass
+        gallery = mixer.blend(ImageGallery, tytuł='Testąt')
+        assert gallery.get_absolute_url() == reverse(
+            'gallery:gallery-detail',
+            args=[gallery.slug])
 
 
 class TestUserModel():
@@ -154,15 +156,15 @@ class TestOrderModel():
     def test_str_method_of_order(self):
         """Test that __str__ is properly generated."""
 
-        order = mixer.blend(Order, full_name='Tester', model='Statek')
+        order = mixer.blend(Order, imię_i_nazwisko='Tester', model='Statek')
         assert str(
             order) == "Order ID:1, By:Tester, Model:Statek"
 
-    # def test_order_model_absolute_url(self):
-    #     """Test absolute url method of Order model."""
+    def test_order_model_absolute_url(self):
+        """Test absolute url method of Order model."""
 
-    #     order = mixer.blend(Order)
-    #     assert order.get_absolute_url() != reverse(
-    #         'orders:order-detail',
-    #         args=[order.id]
-    #     )
+        order = mixer.blend(Order)
+        assert order.get_absolute_url() == reverse(
+            'panel:order-detail',
+            args=[order.id]
+        )

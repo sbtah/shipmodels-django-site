@@ -1,3 +1,4 @@
+from ast import arg
 import pytest
 from django.urls import reverse
 from django.contrib.auth import get_user_model
@@ -7,17 +8,23 @@ from mixer.backend.django import mixer
 
 
 pytestmark = pytest.mark.django_db
+
+
+PANEL_URL = reverse('panel:panel')
 LOGIN_URL = reverse('panel:login')
 LOGOUT_URL = reverse('panel:logout')
-CREATE_ORDER_URL = reverse('orders:order-create')
+CREATE_IMAGE_URL = reverse('panel:image-create')
 LIST_ORDER_URL = reverse('panel:order-list')
-LIST_IMAGEPOST_URL = reverse('gallery:gallery-list')
+LIST_IMAGEPOST_URL = reverse('gallery:image-list')
+CREATE_ORDER_URL = reverse('orders:order-create')
 
 
 @pytest.mark.parametrize('param', [
     ('about'),
-    ('panel:login'),
     ('home'),
+    ('cookies'),
+    ('privacy-policy'),
+    ('panel:login'),
     ('orders:order-create'),
     ('gallery:gallery-list'),
     ('gallery:image-list'),
@@ -67,7 +74,7 @@ class TestLoginCustomUserView():
         # Decode response to HTML to check for error message.
         html = response.content.decode('utf8')
         assert response.status_code == 200
-        assert 'Please enter a correct email and password. Note that both fields may be case-sensitive.' in html
+        assert 'Wprowadź poprawne wartości pól email oraz hasło. Uwaga: wielkość liter ma znaczenie.' in html
 
 
 class TestLogoutCustomUserView():
@@ -93,6 +100,7 @@ class TestLogoutCustomUserView():
         assert response.status_code == 302
 
 
+# Order related Test cases.
 class TestOrderCreateView():
     """Test cases for Order's Public CreateView."""
 
@@ -105,6 +113,78 @@ class TestOrderCreateView():
         assert Order.objects.filter(email='test@test.com').exists() == True
         assert response.status_code == 302
         assert response.url == reverse('home')
+
+
+class TestOrderUpdateView():
+    """Test cases for OrderUpdateView."""
+
+    def test_update_order_view_without_user(self, client):
+        """Test that order can not be updated without user logged in."""
+
+        data = {
+            'imię_i_nazwisko': 'Test tester',
+            'numer_telefonu': 671671671,
+            'email': 'test@test.com',
+            'model': 'Ship',
+            'komentarz': 'Do it asap!',
+        }
+        order = mixer.blend(Order, imię_i_nazwisko='Joe Doe')
+        assert Order.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:order-update', kwargs={'pk': order.id}), data=data)
+        assert response.status_code == 302
+        assert Order.objects.filter(
+            imię_i_nazwisko='Test tester').exists() == False
+
+    def test_update_order_view_user_logged_in(self, client, example_user):
+        """Test that order can be updated with authenticated user."""
+
+        user = example_user
+        client.force_login(user)
+        data = {
+            'imię_i_nazwisko': 'Test tester',
+            'numer_telefonu': 671671671,
+            'email': 'test@test.com',
+            'model': 'Ship',
+            'komentarz': 'Do it asap!',
+        }
+        order = mixer.blend(Order, imię_i_nazwisko='Joe Doe')
+        assert Order.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:order-update', kwargs={'pk': order.id}), data=data)
+        assert response.status_code == 302
+        assert Order.objects.filter(
+            imię_i_nazwisko='Test tester').exists() == True
+
+
+class TestOrderDeleteView():
+    """Test cases for OrderUpdateView."""
+
+    def test_delete_order_view_without_user(self, client):
+        """Test that order can not be deleted without user logged in."""
+
+        order = mixer.blend(Order, imię_i_nazwisko='Joe Doe')
+        assert Order.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:order-delete', kwargs={'pk': order.id}))
+        assert response.status_code == 302
+        assert Order.objects.all().count() == 1
+        assert Order.objects.filter(
+            imię_i_nazwisko='Joe Doe').exists() == True
+
+    def test_delete_order_view_user_logged_in(self, client, example_user):
+        """Test that order can be deleted by authenticated user."""
+
+        user = example_user
+        client.force_login(user)
+        order = mixer.blend(Order, imię_i_nazwisko='Joe Doe')
+        assert Order.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:order-delete', kwargs={'pk': order.id}))
+        assert response.status_code == 302
+        assert Order.objects.all().count() == 0
+        assert Order.objects.filter(
+            imię_i_nazwisko='Joe Doe').exists() == False
 
 
 class TestOrderListView():
@@ -151,8 +231,9 @@ class TestOrderDetailView():
         assert response.status_code == 200
 
 
+# ImagePost related Test cases.
 class TestImagePostListView():
-    """Test cases for ImagePostListView."""
+    """Test cases for public ImagePostListView."""
 
     def test_list_image_view_lists_data(self, client):
         """Test that image list view properly lists data."""
@@ -160,17 +241,18 @@ class TestImagePostListView():
         image_1 = mixer.blend(ImagePost)
         image_2 = mixer.blend(ImagePost)
         response = client.get(LIST_IMAGEPOST_URL)
+        assert ImagePost.objects.all().count() == 2
         assert len(response.context_data['object_list']) == 2
         assert response.status_code == 200
 
 
 class TestImagePostDetailView():
-    """Test cases for ImagePostDetailView."""
+    """Test cases for public ImagePostDetailView."""
 
     def test_detail_image_view_return_data(self, client):
         """Test that image detail view properly returns data."""
 
-        image_1 = mixer.blend(ImagePost, title='test slug')
+        image_1 = mixer.blend(ImagePost, tytuł='test slug')
         response = client.get(reverse(
             'gallery:image-detail',
             args=[image_1.slug]),
@@ -178,3 +260,126 @@ class TestImagePostDetailView():
         html = response.content.decode('utf8')
         assert '<title>Shipmodels | test slug</title>' in html
         assert response.status_code == 200
+
+
+class TestImagePostCreateView():
+    """Test cases for ImagePostCreateView - this view is for logged users only."""
+
+    def test_image_post_create_view_without_user(self, client):
+        """Test that image cant be created by unauthenticated user."""
+
+        assert ImagePost.objects.all().count() == 0
+        response = client.get(CREATE_IMAGE_URL)
+        assert response.status_code == 302
+
+    def test_image_post_create_view_user_logged_in(self, client, example_user):
+        """Test that image is created by authenticated user."""
+
+        user = example_user
+        image_data = {
+            'tytuł': 'test',
+            'obraz_opis': 'opis',
+            'dodał': user.id
+        }
+        client.force_login(user)
+        assert ImagePost.objects.all().count() == 0
+        response = client.post(CREATE_IMAGE_URL, data=image_data, follow=True)
+        html = response.content.decode('utf8')
+        assert '<title>Shipmodels | Admin</title>' in html
+        assert ImagePost.objects.all().count() == 1
+        assert response.status_code == 200
+
+
+class TestImagePostUpdateView():
+    """Test cases for ImagePostUpdateView - this view is for logged users only."""
+
+    def test_image_post_update_view_without_user(self, client):
+        """Test that image can not be updated without authenticated user."""
+
+        data = {
+            'tytuł': 'fail',
+            'obraz_opis': 'test',
+        }
+        image = mixer.blend(ImagePost, tytuł='test')
+        assert ImagePost.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:image-update', args=[image.id]), data=data)
+        assert response.status_code == 302
+        image.refresh_from_db()
+        assert ImagePost.objects.filter(tytuł='fail').exists() == False
+
+    def test_image_post_update_view_user_logged_in(self, client, example_user):
+        """Test that image post can be updated"""
+
+        user = example_user
+        client.force_login(user)
+        data = {
+            'tytuł': 'fail',
+            'obraz_opis': 'test',
+            'dodał': user.id
+        }
+        image = mixer.blend(ImagePost, tytuł='test')
+        assert ImagePost.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:image-update', args=[image.id]),
+            data=data,
+            follow=True
+        )
+        assert response.status_code == 200
+        image.refresh_from_db()
+        assert ImagePost.objects.filter(tytuł='fail').exists() == True
+
+
+class TestImagePostDeleteView():
+    """Test cases for ImagePostDeleteView - this view is for logged users only."""
+
+    def test_image_post_delete_view_without_user(self, client):
+        """Test that image can not be deleted by unauthenticated user."""
+
+        assert ImagePost.objects.all().count() == 0
+        image = mixer.blend(ImagePost, tytuł='test')
+        assert ImagePost.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:image-delete', args=[image.id]),
+        )
+        assert response.status_code == 302
+        assert ImagePost.objects.all().count() == 1
+        assert ImagePost.objects.filter(tytuł='test').exists() == True
+
+    def test_image_post_delete_view_user_logged_in(self, client, example_user):
+        """Test that image post can be deleted"""
+
+        user = example_user
+        client.force_login(user)
+        image = mixer.blend(ImagePost, tytuł='test')
+        assert ImagePost.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:image-delete', args=[image.id]),
+        )
+        assert response.status_code == 302
+        assert ImagePost.objects.all().count() == 0
+        assert ImagePost.objects.filter(tytuł='test').exists() == False
+
+
+class Test_main_panel_view():
+    """Test cases for main_panel_view."""
+
+    def test_main_panel_view_without_user(self, client):
+        """Test that only logged users can access mini admin panel."""
+
+        response = client.get(PANEL_URL, follow=True)
+        html = response.content.decode('utf8')
+        assert '<title>Shipmodels | Login</title>' in html
+        assert response.status_code == 200
+
+    def test_main_panel_view_lists_data(self, client, example_user):
+        """Test main_panel_view with logged user."""
+
+        user = example_user
+        client.force_login(user)
+        order = mixer.blend(Order, full_name='tester tester')
+        gallery = mixer.blend(ImageGallery, title='Test Ship')
+        response = client.get(PANEL_URL)
+        assert response.status_code == 200
+        assert response.context['galleries_count'] == 1
+        assert response.context['orders_count'] == 1

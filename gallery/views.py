@@ -1,8 +1,8 @@
-from gallery.models import ImagePost
+from gallery.models import ImageGallery, ImagePost
 from django.views import generic
-from django.shortcuts import get_object_or_404
 
 
+# Views for ImagePosts
 class ImagePostListView(generic.ListView):
     """Public ListView for ImagePost objects."""
 
@@ -19,9 +19,18 @@ class ImagePostDetailView(generic.DetailView):
     context_object_name = 'image'
 
 
+# Views for ImageGalleries
 class ImageGalleryListView(generic.ListView):
     """Public ListView for ImageGallery objects."""
 
-    model = ImagePost
+    model = ImageGallery
     template_name = 'gallery/gallery_list.html'
     context_object_name = 'galleries'
+
+
+class ImageGalleryDetailView(generic.DetailView):
+    """Public DetailView for ImageGallery object."""
+
+    model = ImageGallery
+    template_name = 'gallery/gallery_detail.html'
+    context_object_name = 'gallery'

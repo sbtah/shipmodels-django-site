@@ -1,0 +1,59 @@
+{% load i18n %}
+<!-- SCROLL TO TOP  BUTTON -->
+<a class="scroll-link top-link" href="#home">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        class="svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+        <path
+            d="M12.707 7.293a.997.997 0 0 0-1.414 0L7.05 11.536a1 1 0 0 0 1.414 1.414L11 10.414V16a1 1 0 0 0 2 0v-5.586l2.536 2.536a1 1 0 0 0 1.414-1.414l-4.243-4.243zM6 2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4z" />
+    </svg>
+</a>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__contact">
+            <h4 class="footer__h4">
+                GÓRECKI SHIPMODELS <br />
+                NIP: 671-102-04-83
+            </h4>
+            <!-- Contact item 1 -->
+            <div class="contact__info">
+                <span class="iconify" data-icon="carbon:location-filled"></span>
+                <p class="contact__p">
+                    78-100 Kołobrzeg <br />
+                    Zwycięzców 15/1 <br />
+                    Poland
+                </p>
+            </div>
+            <!-- Contact item 2 -->
+            <div class="contact__info">
+                <span class="iconify" data-icon="carbon:location-filled"></span>
+                <p class="contact__p">
+                    Tel : +48 94 354 74 80 <br />
+                    Mobile: +48 502 179 802
+                </p>
+            </div>
+            <!-- Contact item 3 -->
+            <div class="contact__info">
+                <span class="iconify" data-icon="carbon:location-filled"></span>
+                <p class="contact__p">ekg1@poczta.onet.pl</p>
+            </div>
+            <div class="social__icons">
+                <a href="https://facebook.com"><span class="iconify" data-icon="fa-brands:facebook-square"></span></a>
+                <a href="https://instagram.com"><span class="iconify" data-icon="gg:instagram"></span></a>
+                <a href="https://linkedin.com"><span class="iconify" data-icon="fa-brands:linkedin"></span></a>
+                <a href="https://twitter.com"><span class="iconify" data-icon="fa6-brands:twitter-square"></span></a>
+                <a href="https://pinterest.com"><span class="iconify" data-icon="fa-brands:pinterest-square"></span></a>
+            </div>
+        </div>
+        <div class="footer__links">
+            <a href="{% url 'privacy-policy' %}" class="footer__link">{% translate "Polityka Prywatności" %}</a>
+            <a href="{% url 'cookies' %}" class="footer__link">{% translate "Polityka Cookies" %}</a>
+        </div>
+    </div>
+    <!-- Dynamic date set in js -->
+    <p class="footer__p" id="date"></p>
+    <p class="footer__p">
+        {% translate "© Strona Wykonana przez : Marcin Zygan & Grzegorz Zygan" %}
+    </p>
+</footer>

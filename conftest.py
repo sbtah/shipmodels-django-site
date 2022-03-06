@@ -13,13 +13,13 @@ def user_data():
 @pytest.fixture
 def order_data():
     return {
-        'full_name': 'Test tester',
-        'phone_number': '123123123',
+        'imię_i_nazwisko': 'Test tester',
+        'numer_telefonu': '123123123',
         'email': 'test@test.com',
         'model': 'Statek',
-        'comment': 'This is a test',
-        'created': '2022-04-01',
-        'updated': '2022-04-01',
+        'komentarz': 'This is a test',
+        'dodano': '2022-04-01',
+        'zaktualizowano': '2022-04-01',
     }
 
 

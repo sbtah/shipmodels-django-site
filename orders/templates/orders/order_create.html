@@ -1,10 +1,49 @@
 {% extends 'base.html' %}
-{% block title %}Order{% endblock title %}
+{% load i18n %}
+{% block title %}{% translate 'Zamówienia' %}{% endblock title %}
 {% block content %}
-Order:
-<form class="" action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" name="Submit">Place order</button>
-</form>
+<!-- SECTION ORDERS -->
+<div id="orders">
+    <h2 class="section__h2">{% translate 'Zamówienia' %}</h2>
+    <h3>
+        {% translate 'W razie jakichkolwiek pytań prosimy o kontakt w dowolnej formie podanej poniżej.' %}
+    </h3>
+    <section class="orders">
+        <h2 class="orders__h2">GÓRECKI SHIPMODELS</h2>
+        <div class="orders__container">
+            <!-- Contact item 1 -->
+            <div class="contact__container">
+                <div class="contact__info">
+                    <span class="iconify" data-icon="carbon:location-filled"></span>
+                    <p class="contact__p">
+                        78-100 Kołobrzeg <br />
+                        Zwycięzców 15/1 <br />
+                        Poland
+                    </p>
+                </div>
+                <!-- Contact item 2 -->
+                <div class="contact__info">
+                    <span class="iconify" data-icon="carbon:location-filled"></span>
+                    <p class="contact__p">
+                        Tel : +48 94 354 74 80 <br />
+                        Mobile: +48 502 179 802
+                    </p>
+                </div>
+                <!-- Contact item 3 -->
+                <div class="contact__info">
+                    <span class="iconify" data-icon="carbon:location-filled"></span>
+                    <p class="contact__p">ekg1@poczta.onet.pl</p>
+                </div>
+            </div>
+            <!-- FORM -->
+            <div class="form__container">
+                <form action="" method="POST" enctype="" class="form">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="btn" type="submit">{% translate 'Zamów' %}</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock content %}
