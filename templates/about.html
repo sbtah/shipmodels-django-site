@@ -9,7 +9,7 @@
     <h3>{% translate 'Modele to nasza pasja' %}</h3>
     <section class="about__us">
         <div class="about__us-container">
-            <img src="{ static 'images/default.jpg' }" alt="" class="about__img" />
+            <img src="{% static 'images/default.jpg' %}" alt="" class="about__img" />
             <p class="about__txt">
                 {% translate 'Specjalizujemy się w budowie modeli statków handlowych oraz okrętów wojennych.' %} <br>
                 {% translate 'Wykonujemy także modele żaglowców.' %}
@@ -83,4 +83,5 @@
         <a href="{% url 'gallery:gallery-list' %}" class="btn gallery__btn">{% translate 'Galeria' %}</a>
     </section>
 </div>
+<script src="{% static 'js/slider.js' %}"></script>
 {% endblock content %}

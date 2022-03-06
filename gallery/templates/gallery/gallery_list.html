@@ -9,7 +9,7 @@
     <div class="gallery__container">
         {% for gallery in galleries %}
         <!-- Item 1 -->
-        <a href="{{ gallery.get_absolute_url }}" class="card">
+        <a href="{{ gallery.get_absolute_url }}" class="gallery__card">
             <div class="card__overlay">
                 <img src="{% static 'images/background.jpg' %}" alt="{{ gallery.tytuł }}" class="card__img" />
             </div>
