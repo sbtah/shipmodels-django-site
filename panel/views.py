@@ -19,6 +19,8 @@ def main_panel_view(request):
 
     orders = Order.objects.all()
     orders_count = orders.count()
+    images = ImagePost.objects.all()
+    images_count = images.count()
     galleries = ImageGallery.objects.all()
     galleries_count = galleries.count()
 
@@ -27,6 +29,8 @@ def main_panel_view(request):
         'galleries': galleries,
         'orders_count': orders_count,
         'galleries_count': galleries_count,
+        'images': images,
+        'images_count': images_count,
     })
 
 

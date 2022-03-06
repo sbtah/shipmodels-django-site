@@ -20,13 +20,13 @@ urlpatterns = [
          views.ImagePostDeleteView.as_view(), name='image-delete'),
 
     # Orders urls.
-    path('order-list/',
+    path('orders/',
          views.OrderListView.as_view(), name='order-list'),
-    path('order-detail/<int:pk>/',
+    path('order/<int:pk>/detail/',
          views.OrderDetailView.as_view(), name='order-detail'),
-    path('order-update/<int:pk>/',
+    path('order/<int:pk>/update/',
          views.OrderUpdateView.as_view(), name='order-update'),
-    path('order-delete/<int:pk>/',
+    path('order/<int:pk>/delete/',
          views.OrderDeleteView.as_view(), name='order-delete')
 
 ]

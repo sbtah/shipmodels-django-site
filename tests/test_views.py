@@ -234,18 +234,69 @@ class TestImagePostUpdateView():
     def test_image_post_update_view_without_user(self, client):
         """Test that image can not be updated without authenticated user."""
 
+        data = {
+            'tytuł': 'fail',
+            'obraz_opis': 'test',
+        }
         image = mixer.blend(ImagePost, tytuł='test')
         assert ImagePost.objects.all().count() == 1
         response = client.post(
-            reverse('panel:image-update', args=[image.id]), data={'tytuł': 'fail'})
+            reverse('panel:image-update', args=[image.id]), data=data)
         assert response.status_code == 302
+        image.refresh_from_db()
         assert ImagePost.objects.filter(tytuł='fail').exists() == False
+
+    def test_image_post_update_view_user_logged_in(self, client, example_user):
+        """Test that image post can be updated"""
+
+        user = example_user
+        client.force_login(user)
+        data = {
+            'tytuł': 'fail',
+            'obraz_opis': 'test',
+            'dodał': user.id
+        }
+        image = mixer.blend(ImagePost, tytuł='test')
+        assert ImagePost.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:image-update', args=[image.id]),
+            data=data,
+            follow=True
+        )
+        assert response.status_code == 200
+        image.refresh_from_db()
+        assert ImagePost.objects.filter(tytuł='fail').exists() == True
 
 
 class TestImagePostDeleteView():
     """Test cases for ImagePostDeleteView - this view is for logged users only."""
-    # View is not implemented yet!
-    pass
+
+    def test_image_post_delete_view_without_user(self, client):
+        """Test that image can not be deleted by unauthenticated user."""
+
+        assert ImagePost.objects.all().count() == 0
+        image = mixer.blend(ImagePost, tytuł='test')
+        assert ImagePost.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:image-delete', args=[image.id]),
+        )
+        assert response.status_code == 302
+        assert ImagePost.objects.all().count() == 1
+        assert ImagePost.objects.filter(tytuł='test').exists() == True
+
+    def test_image_post_delete_view_user_logged_in(self, client, example_user):
+        """Test that image post can be deleted"""
+
+        user = example_user
+        client.force_login(user)
+        image = mixer.blend(ImagePost, tytuł='test')
+        assert ImagePost.objects.all().count() == 1
+        response = client.post(
+            reverse('panel:image-delete', args=[image.id]),
+        )
+        assert response.status_code == 302
+        assert ImagePost.objects.all().count() == 0
+        assert ImagePost.objects.filter(tytuł='test').exists() == False
 
 
 class Test_main_panel_view():
