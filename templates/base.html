@@ -39,30 +39,7 @@
   {% endfor %}
   {% endif %}
   <!-- END of MESSAGES - place it elsewhere if needed-->
-  <div class="hero__container" id="home">
-    <div class="overlay">
-      <header>
-        <div class="logo">
-          {% get_current_language as LANGUAGE_CODE %}
-          {% get_available_languages as LANGUAGES %}
-          {% get_language_info_list for LANGUAGES as languages %}
-
-          {% if languages.0.code == LANGUAGE_CODE %}
-          <a href="/{{ languages.1.code }}/"><img src="{% static 'images/eng.png' %}" alt="" class="logo__lang" /></a>
-          {% else %}
-          <a href="/{{ languages.0.code }}/"><img src="{% static 'images/pol.png' %}" alt="" class="logo__lang" /></a>
-          {% endif %}
-          <a href="{% url 'home' %}" class="logo__text">Shipmodels.pl</a>
-        </div>
-        {% include 'navbar.html' %}
-      </header>
-
-      <div class="hero__content">
-        <h1 class="hero__h1">{% translate "Tworzymy profesjonalne modele" %}</h1>
-        <a href="{% url 'about' %}" class="btn work__btn" id="work__btn">{% translate 'Więcej' %}</a>
-      </div>
-    </div>
-  </div>
+  {% include 'navbar.html' %}
   {% block content %}{% endblock content %}
   {% include 'footer.html' %}
   <!-- JS -->
@@ -70,7 +47,7 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
   <script src="{% static 'js/main.js' %}"></script>
-  
+
 
 </body>
 

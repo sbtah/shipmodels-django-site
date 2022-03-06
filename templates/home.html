@@ -1,3 +1,14 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
 {% block title %}Home{% endblock title %}
-{% block content %}{% endblock content %}
+{% block content %}
+<div class="hero__container" id="home">
+    <div class="overlay">
+        <div class="hero__content">
+            <h1 class="hero__h1">{% translate "Tworzymy profesjonalne modele" %}</h1>
+            <a href="{% url 'about' %}" class="btn work__btn" id="work__btn">{% translate 'Więcej' %}</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
