@@ -8,7 +8,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
+  <!-- SEO dynamic META -->
+  {% if request.path == '/pl/' or request.path == 'en' %}
   <meta name="description" content="Here is a precise description of my awesome webpage." />
+  {% else %}
+  {% block metaSEO %}
+  {% endblock metaSEO %}
+  {% endif %}
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,7 +46,9 @@
   {% endif %}
   <!-- END of MESSAGES - place it elsewhere if needed-->
   {% include 'navbar.html' %}
+  <p>{{ request.path }}</p>
   {% block content %}{% endblock content %}
+
   {% include 'footer.html' %}
   <!-- JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
