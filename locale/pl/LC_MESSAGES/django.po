@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-06 08:55+0000\n"
+"POT-Creation-Date: 2022-03-06 09:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,7 +89,8 @@ msgid "Zdjęcia"
 msgstr ""
 
 #: gallery/templates/gallery/gallery_list.html:4
-#: gallery/templates/gallery/gallery_list.html:6 templates/navbar.html:11
+#: gallery/templates/gallery/gallery_list.html:6 templates/about.html:83
+#: templates/navbar.html:11
 msgid "Galeria"
 msgstr ""
 
@@ -130,7 +131,13 @@ msgstr ""
 msgid "Zamówienia"
 msgstr ""
 
-#: orders/templates/orders/order_create.html:44
+#: orders/templates/orders/order_create.html:9
+msgid ""
+"W razie jakichkolwiek pytań prosimy o kontakt w dowolnej formie podanej "
+"poniżej."
+msgstr ""
+
+#: orders/templates/orders/order_create.html:43
 msgid "Zamów"
 msgstr ""
 
@@ -163,6 +170,76 @@ msgstr ""
 msgid "Obraz usunięty"
 msgstr ""
 
+#: templates/about.html:4 templates/about.html:8 templates/navbar.html:8
+msgid "O nas"
+msgstr ""
+
+#: templates/about.html:9
+msgid "Modele to nasza pasja"
+msgstr ""
+
+#: templates/about.html:14
+msgid ""
+"Specjalizujemy się w budowie modeli statków handlowych oraz okrętów "
+"wojennych."
+msgstr ""
+
+#: templates/about.html:15
+msgid "Wykonujemy także modele żaglowców."
+msgstr ""
+
+#: templates/about.html:27
+msgid "Doświadczenie"
+msgstr ""
+
+#: templates/about.html:29
+msgid "Mamy wieloletnie doświadczenie w budowie modeli redukcyjnych."
+msgstr ""
+
+#: templates/about.html:30
+msgid "Specializujemy się w drewnianych modelach szkutniczych."
+msgstr ""
+
+#: templates/about.html:31
+msgid "Nasza codziennośc to wielkoformatowe modele z tworzyw sztucznych"
+msgstr ""
+
+#: templates/about.html:39
+msgid "Dokładność"
+msgstr ""
+
+#: templates/about.html:41
+msgid "Oferujemy wierne repliki w skalach wyłącznie 1:50 i 1:100."
+msgstr ""
+
+#: templates/about.html:42
+msgid "Do budowy wykorzystujemy plany stoczniowe, modelarskie oraz zdjęcia."
+msgstr ""
+
+#: templates/about.html:43
+msgid "Nasze modele cechują się dokładnością i wiernością z oryginałami."
+msgstr ""
+
+#: templates/about.html:52
+msgid "Wybór"
+msgstr ""
+
+#: templates/about.html:54
+msgid "Na życzenie stosujemy dowolne materiały do stylizacji osprzętu:"
+msgstr ""
+
+#: templates/about.html:55
+msgid "Chromowanie"
+msgstr ""
+
+#: templates/about.html:56
+msgid "Złocenie"
+msgstr ""
+
+#: templates/about.html:64
+msgid "Nasza praca"
+msgstr ""
+
 #: templates/base.html:64
 msgid "Tworzymy profesjonalne modele"
 msgstr ""
@@ -181,10 +258,6 @@ msgstr ""
 
 #: templates/footer.html:57
 msgid "© Strona Wykonana przez : Marcin Zygan & Grzegorz Zygan"
-msgstr ""
-
-#: templates/navbar.html:8
-msgid "O nas"
 msgstr ""
 
 #: users/admin.py:14

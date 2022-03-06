@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-06 08:55+0000\n"
+"POT-Creation-Date: 2022-03-06 09:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,8 @@ msgid "Zdjęcia"
 msgstr "Images"
 
 #: gallery/templates/gallery/gallery_list.html:4
-#: gallery/templates/gallery/gallery_list.html:6 templates/navbar.html:11
+#: gallery/templates/gallery/gallery_list.html:6 templates/about.html:83
+#: templates/navbar.html:11
 msgid "Galeria"
 msgstr "Gallery"
 
@@ -128,7 +129,13 @@ msgstr "Comment"
 msgid "Zamówienia"
 msgstr "Orders"
 
-#: orders/templates/orders/order_create.html:44
+#: orders/templates/orders/order_create.html:9
+msgid ""
+"W razie jakichkolwiek pytań prosimy o kontakt w dowolnej formie podanej "
+"poniżej."
+msgstr "If you have any questions, please contact us in any form provided below."
+
+#: orders/templates/orders/order_create.html:43
 msgid "Zamów"
 msgstr "Order"
 
@@ -165,6 +172,76 @@ msgstr "Updates finished"
 msgid "Obraz usunięty"
 msgstr "Image deleted"
 
+#: templates/about.html:4 templates/about.html:8 templates/navbar.html:8
+msgid "O nas"
+msgstr "About Us"
+
+#: templates/about.html:9
+msgid "Modele to nasza pasja"
+msgstr "Models are our passion"
+
+#: templates/about.html:14
+msgid ""
+"Specjalizujemy się w budowie modeli statków handlowych oraz okrętów "
+"wojennych."
+msgstr "We specialize in building models of commercial ships and ships and war ships."
+
+#: templates/about.html:15
+msgid "Wykonujemy także modele żaglowców."
+msgstr "We also make models of sailing ships."
+
+#: templates/about.html:27
+msgid "Doświadczenie"
+msgstr "Experience"
+
+#: templates/about.html:29
+msgid "Mamy wieloletnie doświadczenie w budowie modeli redukcyjnych."
+msgstr "We have many years of experience in building reduction models."
+
+#: templates/about.html:30
+msgid "Specializujemy się w drewnianych modelach szkutniczych."
+msgstr "We specialize in wooden boatbuilding models."
+
+#: templates/about.html:31
+msgid "Nasza codziennośc to wielkoformatowe modele z tworzyw sztucznych"
+msgstr "Our everyday life is large-format plastic models"
+
+#: templates/about.html:39
+msgid "Dokładność"
+msgstr "Precision"
+
+#: templates/about.html:41
+msgid "Oferujemy wierne repliki w skalach wyłącznie 1:50 i 1:100."
+msgstr "We offer faithful replicas in scales only 1:50 and 1: 100."
+
+#: templates/about.html:42
+msgid "Do budowy wykorzystujemy plany stoczniowe, modelarskie oraz zdjęcia."
+msgstr "For construction, we use shipbuilding plans, modeling plans and photos."
+
+#: templates/about.html:43
+msgid "Nasze modele cechują się dokładnością i wiernością z oryginałami."
+msgstr "Our models are accurate and faithful to the originals."
+
+#: templates/about.html:52
+msgid "Wybór"
+msgstr "Selection"
+
+#: templates/about.html:54
+msgid "Na życzenie stosujemy dowolne materiały do stylizacji osprzętu:"
+msgstr "On request, we use any materials for styling the accessories:"
+
+#: templates/about.html:55
+msgid "Chromowanie"
+msgstr "Chrome plating"
+
+#: templates/about.html:56
+msgid "Złocenie"
+msgstr "Gilding"
+
+#: templates/about.html:64
+msgid "Nasza praca"
+msgstr "Our work"
+
 #: templates/base.html:64
 msgid "Tworzymy profesjonalne modele"
 msgstr "We create professional models"
@@ -184,10 +261,6 @@ msgstr "Cookies Policy"
 #: templates/footer.html:57
 msgid "© Strona Wykonana przez : Marcin Zygan & Grzegorz Zygan"
 msgstr "© Website Created by: Marcin Zygan & Grzegorz Zygan"
-
-#: templates/navbar.html:8
-msgid "O nas"
-msgstr "About Us"
 
 #: users/admin.py:14
 msgid "Personal Info"
