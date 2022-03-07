@@ -7,6 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.text import slugify
 from unidecode import unidecode
+from gallery.utils import upload_to
 
 
 class ImagePost(models.Model):
@@ -26,7 +27,7 @@ class ImagePost(models.Model):
         verbose_name=_('Link')
     )
     obraz = models.ImageField(
-        upload_to="images/",
+        upload_to=upload_to("images/"),
         default="default.jpg",
         blank=True,
         null=True,
@@ -68,7 +69,7 @@ class ImagePost(models.Model):
                 img.save(self.obraz.path)
 
     def __str__(self):
-        return self.tytuł
+        return f'Obraz:{self.tytuł} Dodano:{self.dodano.strftime("%b-%d-%Y")}'
 
 
 class ImageGallery(models.Model):
@@ -85,6 +86,15 @@ class ImageGallery(models.Model):
         blank=True,
         null=True,
         verbose_name=_('Link'),
+    )
+    główne_zdjęcie = models.OneToOneField(
+        ImagePost,
+        default="default.jpg",
+        on_delete=models.SET_DEFAULT,
+        blank=True,
+        null=True,
+        verbose_name=_('Główne zdjęcie'),
+        related_name='main_image',
     )
     zdjęcia = models.ManyToManyField(
         ImagePost,
@@ -111,7 +121,7 @@ class ImageGallery(models.Model):
         return reverse('gallery:gallery-detail', kwargs={'slug': self.slug})
 
     def __str__(self):
-        return self.tytuł
+        return f'Galeria:{self.tytuł} Dodał:{self.dodał.email}'
 
 
 @receiver(post_save, sender=ImagePost)

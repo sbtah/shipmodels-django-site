@@ -2,6 +2,9 @@
 {% load i18n %}
 {% load static %}
 {% block title %}{% translate "Galeria" %}{% endblock title %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
+{% endblock extracss %}
 {% block content %}
 <h2 class="section__h2">{% translate "Galeria" %}</h2>
 <h3>{% translate "Poniżej przedstawiamy nasze dostępne modele." %}</h3>
@@ -11,7 +14,7 @@
         <!-- Item 1 -->
         <a href="{{ gallery.get_absolute_url }}" class="gallery__card">
             <div class="card__overlay">
-                <img src="{% static 'images/background.jpg' %}" alt="{{ gallery.tytuł }}" class="card__img" />
+                <img src="{{ gallery.główne_zdjęcie.obraz.url }}" alt="{{ gallery.tytuł }}" class="card__img" />
             </div>
             <div class="card__title">{{ gallery.slug }}</div>
         </a>
