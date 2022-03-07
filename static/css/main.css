@@ -470,7 +470,42 @@ header {
   letter-spacing: 1px;
   padding: 0.5rem;
 }
-
+/* ORDERS ALERT */
+.orders__alert{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: var(--clr-gray);
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+  z-index: 10000;
+  box-shadow: 6px 8px 9px -3px rgba(0, 0, 0, 0.25);
+  border-radius: 0.8rem;
+}
+.alert__msg{
+  font-size: var(--fs-h3);
+  text-align: center;
+  margin:0;
+  padding: 0 2rem 2rem 2rem;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-close{
+  position: relative;
+  top:0;
+  margin:0.5rem;
+  height: 40px;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 /* ARROW ICON BACK TO TOP */
 .svg {
   fill: var(--clr-primary);
@@ -615,6 +650,9 @@ footer {
   :root {
     --fs-h1: 5.25rem;
   }
+  .alert__msg{
+    padding: 0 3rem 3rem 3rem;
+  }
   /* .hero__content {
     padding:10rem 20rem 0 0;
   } */
@@ -705,10 +743,3 @@ footer {
   }
 }
 
-/* ALERT Message */
-/* To trzeba jakos wystylizowac funkcjonalność działa po stronie Javascriptu */
-/* Dodatkowo ma element button , cały HTML jest w Base.html */
-.alert {
-  background-color: yellow;
-  color: blue;
-}
