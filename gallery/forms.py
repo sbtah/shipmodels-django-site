@@ -37,6 +37,8 @@ class ImageGalleryForm(forms.ModelForm):
             {'class': 'form__input form__label'})
         self.fields['slug'].widget.attrs.update(
             {'class': 'form__input form__label'})
+        self.fields['główne_zdjęcie'].widget.attrs.update(
+            {'class': 'form__input form__label'})
         self.fields['zdjęcia'].widget.attrs.update(
             {'class': 'form__input form__label'})
         self.fields['dodał'].widget.attrs.update(
@@ -52,4 +54,4 @@ class ImageGalleryForm(forms.ModelForm):
 
     class Meta:
         model = ImageGallery
-        fields = ('tytuł', 'slug', 'zdjęcia', 'dodał')
+        fields = ('tytuł', 'slug', 'główne_zdjęcie', 'zdjęcia', 'dodał')

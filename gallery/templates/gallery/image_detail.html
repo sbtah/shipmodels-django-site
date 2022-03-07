@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block metaSEO %}
 <meta name="description"
     content="Zdjęcię wykonane podczas tworzenia modelu statku: {{ image.title }}. {{ image.obraz_opis }}" />
 {% endblock metaSEO %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
+{% endblock extracss %}
 {% block title %}{{ image.tytuł }}{% endblock title %}
 {% block content %}
 <img src="{{ image.obraz.url }}" alt="{{ image.tytuł }}">

@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
 {% block title %}{% translate 'Obrazy' %}{% endblock title %}
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
+{% endblock extracss %}
 {% block content %}
 {% for image in images %}
 {{ image }}
