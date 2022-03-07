@@ -9,6 +9,6 @@
 {% for img in gallery.zdjęcia.all %}
 <h1>{{ img.tytuł }}</h1>
 <img src="{{ img.obraz.url }}" alt="">
-<a href="{% url 'gallery:image-detail' img.slug %}">LINK do OBRAZU</a>
+<a href="{{ img.get_absolute_url }}">LINK do OBRAZU</a>
 {% endfor %}
 {% endblock content %}
