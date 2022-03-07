@@ -3,7 +3,7 @@
 }
 .gallery__container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   max-width: 1600px;
   align-content: center;
   justify-content: center;
@@ -22,6 +22,7 @@
   color: var(--clr-primary);
 }
 .gallery__card{
+  
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -41,4 +42,11 @@
 }
 .gallery__card:hover > .card__title {
   color: var(--clr-gray);
+}
+.gallery__img{
+  opacity: 0.5;
+  height: 30rem;
+  width: 50rem;
+  object-fit: cover;
+  
 }
