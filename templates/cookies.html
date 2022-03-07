@@ -1,2 +1,19 @@
 {% extends 'base.html' %}
-test
+{% load static %}
+{% load i18n %}
+{% block content %}
+<h2 class="section__h2">{% translate 'Polityka Cookies' %}</h2>
+<h3>{% translate 'Nasz serwis korzysta z plików cookie.' %}</h3>
+<section>
+<p class="policy__txt">Chcąc udogodnić Ci korzystanie z naszej strony wykorzystujemy pliki cookie, które są umieszczane na Twoim komputerze, telefonie komórkowym lub tablecie. <br>
+    Pliki te pomagają nam zrozumieć Twoje potrzeby i dzięki temu doskonalić funkcjonalności naszej witryny.<br>
+    Są one także wykorzystywane do dostarczania spersonalizowanych treści i reklam. <br>
+    Część z plików jest niezbędna do prawidłowego działania serwisu i jego funkcjonalności.<br>
+    Szczegółowe informacje na ten temat znajdziesz w naszej <a href="{% url 'privacy-policy' %}">Polityce prywatności</a>. </p>
+</section> 
+  
+  
+{% endblock content %}
+
+
+  
