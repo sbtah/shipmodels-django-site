@@ -561,6 +561,13 @@ footer {
   line-height: 2;
   padding-bottom: 2rem;
 }
+/* MODEL ITEMS PAGE */
+.model__item-container{
+  margin:0;
+}
+.img__main{
+  margin:0;
+}
 /* MEDIA QUERY */
 /* 400Px */
 @media (min-width: 400px) {
