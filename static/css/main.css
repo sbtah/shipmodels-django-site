@@ -84,6 +84,7 @@ h4::after {
   background-color: var(--clr-accent);
   border-radius: 0.2rem;
 }
+
 p {
   font-size: var(--fs-body);
   margin: 2rem 0 2rem 0;
@@ -554,6 +555,12 @@ footer {
   margin: 0;
   padding: 0 1rem 1rem 1rem;
 }
+/* POLICIES */
+.policy__txt{
+  text-align: left;
+  line-height: 2;
+  padding-bottom: 2rem;
+}
 /* MEDIA QUERY */
 /* 400Px */
 @media (min-width: 400px) {
@@ -653,6 +660,10 @@ footer {
   .alert__msg{
     padding: 0 3rem 3rem 3rem;
   }
+  .policy__txt{
+    padding-right: 25rem;
+  }
+
   /* .hero__content {
     padding:10rem 20rem 0 0;
   } */
@@ -669,7 +680,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: baseline;
   }
   .form__container {
     margin: 0;

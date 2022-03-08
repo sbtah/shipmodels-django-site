@@ -14,7 +14,7 @@
         <!-- Item 1 -->
         <a href="{{ gallery.get_absolute_url }}" class="gallery__card">
             <div class="card__overlay">
-                <img src="{{ gallery.główne_zdjęcie.obraz.url }}" alt="{{ gallery.tytuł }}" class="card__img" />
+                <img src="{{ gallery.główne_zdjęcie.obraz.url }}" alt="{{ gallery.tytuł }}" class="gallery__img" />
             </div>
             <div class="card__title">{{ gallery.slug }}</div>
         </a>
