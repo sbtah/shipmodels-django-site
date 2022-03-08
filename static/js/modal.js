@@ -31,7 +31,6 @@ modalBtn.addEventListener("click" , (e) =>{
     if(modal.classList.contains("modal")) {
         modal.classList.remove("open");
         original.classList.remove("open")
-        console.log("click");
         
     }
     
