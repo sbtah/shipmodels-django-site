@@ -22,7 +22,7 @@ class TestImagePostModel():
         """Test that __str__ is properly generated."""
 
         image = mixer.blend(ImagePost, tytuł='Test')
-        assert str(image) == "Test"
+        assert str(image) == "Obraz:Test Dodano:Mar-08-2022"
 
     def test_create_slug_for_image_signal(self):
         """Test that creating slug from title is working on save."""
@@ -55,11 +55,13 @@ class TestImageGalleryModel():
         gallery = mixer.blend(ImageGallery)
         assert ImageGallery.objects.all().count() == 1
 
-    def test_str_method_of_gallery(self):
+    def test_str_method_of_gallery(self, example_user):
         """Test that __str__ is properly generated."""
 
-        gallery = mixer.blend(ImageGallery, tytuł='Test')
-        assert str(gallery) == "Test"
+        user = example_user
+        gallery = mixer.blend(ImageGallery, tytuł='Test',
+                              dodał=user)
+        assert str(gallery) == "Galeria:Test Dodał:test@test.com"
 
     def test_create_slug_for_gallery_signal(self):
         """Test that creating slug from title is working on save."""

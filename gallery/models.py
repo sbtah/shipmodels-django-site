@@ -89,8 +89,7 @@ class ImageGallery(models.Model):
     )
     główne_zdjęcie = models.OneToOneField(
         ImagePost,
-        default="default.jpg",
-        on_delete=models.SET_DEFAULT,
+        on_delete=models.SET_NULL,
         blank=True,
         null=True,
         verbose_name=_('Główne zdjęcie'),
