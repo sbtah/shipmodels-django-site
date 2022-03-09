@@ -1,3 +1,4 @@
+from tkinter import Image
 from gallery.models import ImageGallery, ImagePost
 from django.views import generic
 
@@ -17,6 +18,13 @@ class ImagePostDetailView(generic.DetailView):
     model = ImagePost
     template_name = 'gallery/image_detail.html'
     context_object_name = 'image'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(ImageGalleryDetailView, self).get_context_data(
+    #         **kwargs)  # get the default context data
+    #     context['voted_links'] = Image.objects.filter(
+    #         imagegallery__in=self)  # add extra field to the context
+    #     return context
 
 
 # Views for ImageGalleries

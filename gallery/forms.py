@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models import Q
 from gallery.models import ImageGallery, ImagePost
 from django.utils.translation import gettext_lazy as _
 
@@ -29,10 +30,16 @@ class ImagePostForm(forms.ModelForm):
 class ImageGalleryForm(forms.ModelForm):
     """Model form for ImageGallery object."""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, ** kwargs):
         """Custom __init__ that applies css classes to form style."""
 
-        super().__init__(*args, **kwargs)
+        super(ImageGalleryForm, self).__init__(*args, **kwargs)
+        # print(args, kwargs)
+        # self.fields['główne_zdjęcie'].queryset = ImagePost.objects.filter(
+        #     Q(imagegallery__isnull=True) & Q(imagegallery__id=kwargs.get('instance')))
+        # self.fields['zdjęcia'].queryset = ImagePost.objects.filter(
+        #     Q(imagegallery__isnull=True) & Q(imagegallery__id=kwargs.get('instance')))
+
         self.fields['tytuł'].widget.attrs.update(
             {'class': 'form__input form__label'})
         self.fields['slug'].widget.attrs.update(

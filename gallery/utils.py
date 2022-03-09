@@ -5,6 +5,9 @@ import hashlib
 
 
 def _update_filename(instance, filename, path):
+    """Custom upload and rename function for 'upload_to='
+         at ImageField of ImageGallery model."""
+
     path = path
 
     filename = f'Tytuł-{instance.tytuł}-{date.today().strftime("%b-%d-%Y")}.jpg'
