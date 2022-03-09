@@ -1,12 +1,12 @@
 from django.contrib import admin
-from gallery.models import ImagePost, ImageGallery
-from gallery.forms import ImageGalleryForm
+from gallery.models import Image, Gallery
+from gallery.forms import GalleryForm
 
 
-class ImageGalleryAdmin(admin.ModelAdmin):
+class GalleryAdmin(admin.ModelAdmin):
     """Custom model admin that utilizes ImageGalleryForm."""
-    form = ImageGalleryForm
+    form = GalleryForm
 
 
-admin.site.register(ImagePost)
-admin.site.register(ImageGallery, ImageGalleryAdmin)
+admin.site.register(Image)
+admin.site.register(Gallery, GalleryAdmin)

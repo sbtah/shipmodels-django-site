@@ -1,5 +1,5 @@
 import os
-from PIL import Image
+from PIL import Image as IMG
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
@@ -11,7 +11,7 @@ from unidecode import unidecode
 from gallery.utils import upload_to
 
 
-class ImagePost(models.Model):
+class Image(models.Model):
     """Class for ImagePost object."""
 
     tytuł = models.CharField(
@@ -61,7 +61,7 @@ class ImagePost(models.Model):
     def get_absolute_url(self):
         return reverse('gallery:image-detail', kwargs={'slug': self.slug})
 
-    def get_image_name(self):
+    def get_image_filename(self):
         if not self.obraz:
             return ""
         file_path = self.obraz.name
@@ -72,7 +72,7 @@ class ImagePost(models.Model):
 
         if self.obraz:
             super().save(*args, **kwargs)
-            img = Image.open(self.obraz.path)
+            img = IMG.open(self.obraz.path)
             if img.height > 700 or img.width > 700:
                 output_size = (700, 700)
                 img.thumbnail(output_size)
@@ -82,7 +82,7 @@ class ImagePost(models.Model):
         return f'Obraz:{self.tytuł} Dodano:{self.dodano.strftime("%b-%d-%Y")}'
 
 
-class ImageGallery(models.Model):
+class Gallery(models.Model):
     """Class for ImageGallery object."""
 
     tytuł = models.CharField(
@@ -98,7 +98,7 @@ class ImageGallery(models.Model):
         verbose_name=_('Link'),
     )
     główne_zdjęcie = models.OneToOneField(
-        ImagePost,
+        Image,
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
@@ -106,7 +106,7 @@ class ImageGallery(models.Model):
         related_name='main_image',
     )
     zdjęcia = models.ManyToManyField(
-        ImagePost,
+        Image,
         verbose_name=_('Zdjęcia'),
         limit_choices_to={'użyty': False},
     )
@@ -125,7 +125,7 @@ class ImageGallery(models.Model):
     class Meta:
 
         ordering = ('-dodano',)
-        verbose_name_plural = 'ImageGalleries'
+        verbose_name_plural = 'Galleries'
 
     def get_absolute_url(self):
         return reverse('gallery:gallery-detail', kwargs={'slug': self.slug})
@@ -134,7 +134,7 @@ class ImageGallery(models.Model):
         return f'Galeria:{self.tytuł} Dodał:{self.dodał.email}'
 
 
-@receiver(post_save, sender=ImagePost)
+@receiver(post_save, sender=Image)
 def create_slug_for_post(sender, instance, created, **kwargs):
     """Slugify signal for ImagePost object."""
     if created:
@@ -142,7 +142,7 @@ def create_slug_for_post(sender, instance, created, **kwargs):
         instance.save()
 
 
-@receiver(post_save, sender=ImageGallery)
+@receiver(post_save, sender=Gallery)
 def create_slug_for_gallery(sender, instance, created, **kwargs):
     """Slugify signal for ImageGallery object."""
     if created:
@@ -150,7 +150,7 @@ def create_slug_for_gallery(sender, instance, created, **kwargs):
         instance.save()
 
 
-@receiver(m2m_changed, sender=ImageGallery.zdjęcia.through)
+@receiver(m2m_changed, sender=Gallery.zdjęcia.through)
 def image_post_used(sender, instance, action, *args, **kwargs):
     if action == 'post_add':
         qs = kwargs.get('model').objects.filter(pk__in=kwargs.get('pk_set'))

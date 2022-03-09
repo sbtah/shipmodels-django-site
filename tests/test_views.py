@@ -1,9 +1,8 @@
-from ast import arg
 import pytest
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from orders.models import Order
-from gallery.models import ImagePost, ImageGallery
+from gallery.models import Image, Gallery
 from mixer.backend.django import mixer
 
 
@@ -231,17 +230,17 @@ class TestOrderDetailView():
         assert response.status_code == 200
 
 
-# ImagePost related Test cases.
+# Image related Test cases.
 class TestImagePostListView():
     """Test cases for public ImagePostListView."""
 
     def test_list_image_view_lists_data(self, client):
         """Test that image list view properly lists data."""
 
-        image_1 = mixer.blend(ImagePost)
-        image_2 = mixer.blend(ImagePost)
+        image_1 = mixer.blend(Image)
+        image_2 = mixer.blend(Image)
         response = client.get(LIST_IMAGEPOST_URL)
-        assert ImagePost.objects.all().count() == 2
+        assert Image.objects.all().count() == 2
         assert len(response.context_data['object_list']) == 2
         assert response.status_code == 200
 
@@ -252,7 +251,7 @@ class TestImagePostDetailView():
     def test_detail_image_view_return_data(self, client):
         """Test that image detail view properly returns data."""
 
-        image_1 = mixer.blend(ImagePost, tytuł='test slug')
+        image_1 = mixer.blend(Image, tytuł='test slug')
         response = client.get(reverse(
             'gallery:image-detail',
             args=[image_1.slug]),
@@ -268,7 +267,7 @@ class TestImagePostCreateView():
     def test_image_post_create_view_without_user(self, client):
         """Test that image cant be created by unauthenticated user."""
 
-        assert ImagePost.objects.all().count() == 0
+        assert Image.objects.all().count() == 0
         response = client.get(CREATE_IMAGE_URL)
         assert response.status_code == 302
 
@@ -282,11 +281,11 @@ class TestImagePostCreateView():
             'dodał': user.id
         }
         client.force_login(user)
-        assert ImagePost.objects.all().count() == 0
+        assert Image.objects.all().count() == 0
         response = client.post(CREATE_IMAGE_URL, data=image_data, follow=True)
         html = response.content.decode('utf8')
         assert '<title>Shipmodels | Admin</title>' in html
-        assert ImagePost.objects.all().count() == 1
+        assert Image.objects.all().count() == 1
         assert response.status_code == 200
 
 
@@ -300,13 +299,13 @@ class TestImagePostUpdateView():
             'tytuł': 'fail',
             'obraz_opis': 'test',
         }
-        image = mixer.blend(ImagePost, tytuł='test')
-        assert ImagePost.objects.all().count() == 1
+        image = mixer.blend(Image, tytuł='test')
+        assert Image.objects.all().count() == 1
         response = client.post(
             reverse('panel:image-update', args=[image.id]), data=data)
         assert response.status_code == 302
         image.refresh_from_db()
-        assert ImagePost.objects.filter(tytuł='fail').exists() == False
+        assert Image.objects.filter(tytuł='fail').exists() == False
 
     def test_image_post_update_view_user_logged_in(self, client, example_user):
         """Test that image post can be updated"""
@@ -318,8 +317,8 @@ class TestImagePostUpdateView():
             'obraz_opis': 'test',
             'dodał': user.id
         }
-        image = mixer.blend(ImagePost, tytuł='test')
-        assert ImagePost.objects.all().count() == 1
+        image = mixer.blend(Image, tytuł='test')
+        assert Image.objects.all().count() == 1
         response = client.post(
             reverse('panel:image-update', args=[image.id]),
             data=data,
@@ -327,7 +326,7 @@ class TestImagePostUpdateView():
         )
         assert response.status_code == 200
         image.refresh_from_db()
-        assert ImagePost.objects.filter(tytuł='fail').exists() == True
+        assert Image.objects.filter(tytuł='fail').exists() == True
 
 
 class TestImagePostDeleteView():
@@ -336,29 +335,29 @@ class TestImagePostDeleteView():
     def test_image_post_delete_view_without_user(self, client):
         """Test that image can not be deleted by unauthenticated user."""
 
-        assert ImagePost.objects.all().count() == 0
-        image = mixer.blend(ImagePost, tytuł='test')
-        assert ImagePost.objects.all().count() == 1
+        assert Image.objects.all().count() == 0
+        image = mixer.blend(Image, tytuł='test')
+        assert Image.objects.all().count() == 1
         response = client.post(
             reverse('panel:image-delete', args=[image.id]),
         )
         assert response.status_code == 302
-        assert ImagePost.objects.all().count() == 1
-        assert ImagePost.objects.filter(tytuł='test').exists() == True
+        assert Image.objects.all().count() == 1
+        assert Image.objects.filter(tytuł='test').exists() == True
 
     def test_image_post_delete_view_user_logged_in(self, client, example_user):
         """Test that image post can be deleted"""
 
         user = example_user
         client.force_login(user)
-        image = mixer.blend(ImagePost, tytuł='test')
-        assert ImagePost.objects.all().count() == 1
+        image = mixer.blend(Image, tytuł='test')
+        assert Image.objects.all().count() == 1
         response = client.post(
             reverse('panel:image-delete', args=[image.id]),
         )
         assert response.status_code == 302
-        assert ImagePost.objects.all().count() == 0
-        assert ImagePost.objects.filter(tytuł='test').exists() == False
+        assert Image.objects.all().count() == 0
+        assert Image.objects.filter(tytuł='test').exists() == False
 
 
 class Test_main_panel_view():
@@ -378,7 +377,7 @@ class Test_main_panel_view():
         user = example_user
         client.force_login(user)
         order = mixer.blend(Order, full_name='tester tester')
-        gallery = mixer.blend(ImageGallery, title='Test Ship')
+        gallery = mixer.blend(Gallery, title='Test Ship')
         response = client.get(PANEL_URL)
         assert response.status_code == 200
         assert response.context['galleries_count'] == 1
