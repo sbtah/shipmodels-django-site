@@ -1,3 +1,4 @@
+import os
 from PIL import Image
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -59,6 +60,12 @@ class ImagePost(models.Model):
 
     def get_absolute_url(self):
         return reverse('gallery:image-detail', kwargs={'slug': self.slug})
+
+    def get_image_name(self):
+        if not self.obraz:
+            return ""
+        file_path = self.obraz.name
+        return os.path.basename(file_path)
 
     def save(self, *args, **kwargs):
         """Custom save method that scales down images that customer will upload."""
@@ -151,11 +158,10 @@ def image_post_used(sender, instance, action, *args, **kwargs):
             item.użyty = True
             item.użyty_w_galerii = str(instance.tytuł)
             item.save()
-            print(item.użyty)
+
     elif action == 'post_remove':
         qs = kwargs.get('model').objects.filter(pk__in=kwargs.get('pk_set'))
         for item in qs:
             item.użyty = False
             item.użyty_w_galerii = None
             item.save()
-            print(item.użyty)

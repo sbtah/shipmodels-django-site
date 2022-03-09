@@ -22,7 +22,8 @@ class TestImagePostModel():
         """Test that __str__ is properly generated."""
 
         image = mixer.blend(ImagePost, tytuł='Test')
-        assert str(image) == "Obraz:Test Dodano:Mar-08-2022"
+        assert str(
+            image) == f'Obraz:Test Dodano:{image.dodano.strftime("%b-%d-%Y")}'
 
     def test_create_slug_for_image_signal(self):
         """Test that creating slug from title is working on save."""

@@ -37,18 +37,19 @@
 </head>
 
 <body>
-   <!-- MESSAGES needs to be styled! -->
-   {% if messages %} {% for message in messages %}
-   <div class="alert  orders__alert" role="alert">
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span class="iconify" data-icon="ep:close-bold"></span></button>
+  <!-- MESSAGES needs to be styled! -->
+  {% if messages %} {% for message in messages %}
+  <div class="alert  orders__alert" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span class="iconify"
+        data-icon="ep:close-bold"></span></button>
     <p class="alert__msg">{{message}}</p>
   </div>
-   {% endfor %}
-   {% endif %}
-   <!-- END of MESSAGES - place it elsewhere if needed-->
+  {% endfor %}
+  {% endif %}
+  <!-- END of MESSAGES - place it elsewhere if needed-->
   {% include 'navbar.html' %}
   <p>{{ request.path }}</p>
-  
+
   {% block content %}{% endblock content %}
 
   {% include 'footer.html' %}
@@ -57,7 +58,8 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
   <script src="{% static 'js/main.js' %}"></script>
-
+  {% block extrajs %}
+  {% endblock extrajs %}
 
 </body>
 
