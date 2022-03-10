@@ -72,7 +72,7 @@ class Image(models.Model):
                 img.save(self.obraz.path)
 
     def __str__(self):
-        return f'Obraz:{self.tytuł} Dodano:{self.dodano.strftime("%b-%d-%Y")}'
+        return f'GalleryIMG:{self.tytuł}:{self.dodano.strftime("%b-%d-%Y")}'
 
 
 # Model of Gallery object and it's methods.
