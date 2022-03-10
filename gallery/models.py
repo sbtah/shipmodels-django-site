@@ -11,8 +11,9 @@ from unidecode import unidecode
 from gallery.utils import upload_to
 
 
+# Model of Image object and it's methods.
 class Image(models.Model):
-    """Class for ImagePost object."""
+    """Class for Image object."""
 
     tytuł = models.CharField(
         max_length=50,
@@ -74,6 +75,7 @@ class Image(models.Model):
         return f'Obraz:{self.tytuł} Dodano:{self.dodano.strftime("%b-%d-%Y")}'
 
 
+# Model of Gallery object and it's methods.
 class Gallery(models.Model):
     """Class for Gallery object."""
 
@@ -161,6 +163,7 @@ class Gallery(models.Model):
         return f'Galeria:{self.tytuł} Dodał:{self.dodał.email}'
 
 
+# Signals for all models.
 @ receiver(post_save, sender=Image)
 def create_slug_for_post(sender, instance, created, **kwargs):
     """Slugify signal for ImagePost object."""
