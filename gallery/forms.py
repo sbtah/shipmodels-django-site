@@ -19,12 +19,10 @@ class ImageForm(forms.ModelForm):
             {'class': 'form__input form__label'})
         self.fields['obraz_opis'].widget.attrs.update(
             {'class': 'form__input form__label'})
-        self.fields['dodał'].widget.attrs.update(
-            {'class': 'form__input form__label'})
 
     class Meta:
         model = Image
-        fields = ('tytuł', 'slug', 'obraz', 'obraz_opis', 'dodał')
+        fields = ('tytuł', 'slug', 'obraz', 'obraz_opis',)
 
 
 class GalleryForm(forms.ModelForm):
@@ -42,8 +40,22 @@ class GalleryForm(forms.ModelForm):
 
         self.fields['tytuł'].widget.attrs.update(
             {'class': 'form__input form__label'})
+
         self.fields['slug'].widget.attrs.update(
             {'class': 'form__input form__label'})
+        self.fields['opis_modelu'].widget.attrs.update(
+            {'class': 'form__input form__label'})
+        self.fields['skala_modelu'].widget.attrs.update(
+            {'class': 'form__input form__label'})
+        self.fields['długość_modelu'].widget.attrs.update(
+            {'class': 'form__input form__label'})
+        self.fields['szerokość_modelu'].widget.attrs.update(
+            {'class': 'form__input form__label'})
+        self.fields['wysokość_modelu'].widget.attrs.update(
+            {'class': 'form__input form__label'})
+        self.fields['waga_modelu'].widget.attrs.update(
+            {'class': 'form__input form__label'})
+
         self.fields['główne_zdjęcie'].widget.attrs.update(
             {'class': 'form__input form__label'})
         self.fields['zdjęcia'].widget.attrs.update(
@@ -61,4 +73,16 @@ class GalleryForm(forms.ModelForm):
 
     class Meta:
         model = Gallery
-        fields = ('tytuł', 'slug', 'główne_zdjęcie', 'zdjęcia', 'dodał')
+        fields = (
+            'tytuł',
+            'slug',
+            'opis_modelu',
+            'skala_modelu',
+            'długość_modelu',
+            'szerokość_modelu',
+            'wysokość_modelu',
+            'waga_modelu',
+            'główne_zdjęcie',
+            'zdjęcia',
+            'dodał'
+        )

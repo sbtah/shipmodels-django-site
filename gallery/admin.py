@@ -4,7 +4,7 @@ from gallery.forms import GalleryForm
 
 
 class GalleryAdmin(admin.ModelAdmin):
-    """Custom model admin that utilizes ImageGalleryForm."""
+    """Custom model admin that utilizes GalleryForm."""
     form = GalleryForm
 
 

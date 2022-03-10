@@ -15,7 +15,7 @@ class Image(models.Model):
     """Class for ImagePost object."""
 
     tytuł = models.CharField(
-        max_length=25,
+        max_length=50,
         help_text=(_("Krótki tytuł")),
         unique=True,
         verbose_name=_('Tytuł')
@@ -37,18 +37,13 @@ class Image(models.Model):
     obraz_opis = models.CharField(
         max_length=100,
         help_text=(_("Alt opis dla zdjęcia")),
-        verbose_name=_('Obraz opis')
+        verbose_name=_('Obraz SEO opis')
     )
     dodano = models.DateTimeField(
         auto_now_add=True, verbose_name=_('Dodano'))
     zaktualizowano = models.DateTimeField(
         auto_now=True,
         verbose_name=_('Zaktualizowano'),
-    )
-    dodał = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.CASCADE,
-        verbose_name=_('Dodał')
     )
     użyty = models.BooleanField(default=False, verbose_name=_('Użyty'))
     użyty_w_galerii = models.CharField(
@@ -61,11 +56,8 @@ class Image(models.Model):
     def get_absolute_url(self):
         return reverse('gallery:image-detail', kwargs={'slug': self.slug})
 
-    def get_image_filename(self):
-        if not self.obraz:
-            return ""
-        file_path = self.obraz.name
-        return os.path.basename(file_path)
+    def get_filename(self):
+        return os.path.basename(self.obraz.name)
 
     def save(self, *args, **kwargs):
         """Custom save method that scales down images that customer will upload."""
@@ -83,7 +75,7 @@ class Image(models.Model):
 
 
 class Gallery(models.Model):
-    """Class for ImageGallery object."""
+    """Class for Gallery object."""
 
     tytuł = models.CharField(
         max_length=50,
@@ -96,6 +88,42 @@ class Gallery(models.Model):
         blank=True,
         null=True,
         verbose_name=_('Link'),
+        help_text=_('Automatycznie generowany'),
+    )
+    opis_modelu = models.TextField(
+        verbose_name=_('Opis modelu'),
+        blank=True,
+        null=True,
+    )
+    skala_modelu = models.CharField(
+        max_length=50,
+        verbose_name=_('Skala modelu'),
+        blank=True,
+        null=True,
+    )
+    długość_modelu = models.CharField(
+        max_length=50,
+        verbose_name=_('Długość modelu'),
+        blank=True,
+        null=True,
+    )
+    szerokość_modelu = models.CharField(
+        max_length=50,
+        verbose_name=_('Szerokość modelu'),
+        blank=True,
+        null=True,
+    )
+    wysokość_modelu = models.CharField(
+        max_length=50,
+        verbose_name=_('Wysokość modelu'),
+        blank=True,
+        null=True,
+    )
+    waga_modelu = models.CharField(
+        max_length=50,
+        verbose_name=_('Waga modelu'),
+        blank=True,
+        null=True,
     )
     główne_zdjęcie = models.OneToOneField(
         Image,
@@ -108,7 +136,6 @@ class Gallery(models.Model):
     zdjęcia = models.ManyToManyField(
         Image,
         verbose_name=_('Zdjęcia'),
-        limit_choices_to={'użyty': False},
     )
     dodano = models.DateTimeField(
         auto_now_add=True,
@@ -134,7 +161,7 @@ class Gallery(models.Model):
         return f'Galeria:{self.tytuł} Dodał:{self.dodał.email}'
 
 
-@receiver(post_save, sender=Image)
+@ receiver(post_save, sender=Image)
 def create_slug_for_post(sender, instance, created, **kwargs):
     """Slugify signal for ImagePost object."""
     if created:
@@ -142,7 +169,7 @@ def create_slug_for_post(sender, instance, created, **kwargs):
         instance.save()
 
 
-@receiver(post_save, sender=Gallery)
+@ receiver(post_save, sender=Gallery)
 def create_slug_for_gallery(sender, instance, created, **kwargs):
     """Slugify signal for ImageGallery object."""
     if created:
@@ -150,7 +177,7 @@ def create_slug_for_gallery(sender, instance, created, **kwargs):
         instance.save()
 
 
-@receiver(m2m_changed, sender=Gallery.zdjęcia.through)
+@ receiver(m2m_changed, sender=Gallery.zdjęcia.through)
 def image_post_used(sender, instance, action, *args, **kwargs):
     if action == 'post_add':
         qs = kwargs.get('model').objects.filter(pk__in=kwargs.get('pk_set'))
