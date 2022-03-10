@@ -9,7 +9,6 @@ class ImageListView(generic.ListView):
 
     model = Image
     template_name = 'gallery/image_list.html'
-    context_object_name = 'images'
 
 
 class ImageDetailView(generic.DetailView):

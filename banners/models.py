@@ -42,7 +42,7 @@ class BannerImage(models.Model):
                 img.save(self.obraz.path)
 
     def __str__(self):
-        return f'BanerIMG:{self.tytuł}{self.dodano.strftime("%b-%d-%Y")}'
+        return f'BanerIMG:{self.tytuł}'
 
 
 # Model of Banner object and it's methods.
@@ -63,4 +63,13 @@ class Banner(models.Model):
         return reverse('banners:banner-detail', kwargs={'slug': self.slug})
 
     def __str__(self):
-        return f'Galeria:{self.tytuł} Dodał:{self.dodał.email}'
+        return f'Bannner:{self.tytuł}'
+
+    class Meta:
+        abstract = True
+
+
+class AboutBanner(Banner):
+    """Class for Banner displayed on About Us page."""
+
+    is_active = models.BooleanField(default=False, verbose_name=_('Aktywny'))

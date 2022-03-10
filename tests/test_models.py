@@ -23,7 +23,7 @@ class TestImagePostModel():
 
         image = mixer.blend(Image, tytuł='Test')
         assert str(
-            image) == f'Obraz:Test Dodano:{image.dodano.strftime("%b-%d-%Y")}'
+            image) == f'GalleryIMG:{image.tytuł}:{image.dodano.strftime("%b-%d-%Y")}'
 
     def test_create_slug_for_image_signal(self):
         """Test that creating slug from title is working on save."""
