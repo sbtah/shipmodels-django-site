@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'users',
     'orders',
     'panel',
+    'banners',
 ]
 
 MIDDLEWARE = [

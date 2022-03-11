@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from gallery.forms import ImagePostForm
+from gallery.forms import ImageForm
 from orders.models import Order
 from orders.forms import OrderForm
-from gallery.models import ImageGallery, ImagePost
+from gallery.models import Gallery, Image
 from django.contrib.auth.decorators import login_required
 from users.forms import CustomUserAuthenticationForm
 from django.views import generic
@@ -19,9 +19,9 @@ def main_panel_view(request):
 
     orders = Order.objects.all()
     orders_count = orders.count()
-    images = ImagePost.objects.all()
+    images = Image.objects.all()
     images_count = images.count()
-    galleries = ImageGallery.objects.all()
+    galleries = Gallery.objects.all()
     galleries_count = galleries.count()
 
     return render(request, 'panel/admin_panel.html', {
@@ -91,8 +91,8 @@ class OrderDeleteView(LoginRequiredMixin, generic.DeleteView):
 class ImagePostCreateView(LoginRequiredMixin, generic.CreateView):
     """CreateView for ImagePost object - for logged users only."""
 
-    model = ImagePost
-    form_class = ImagePostForm
+    model = Image
+    form_class = ImageForm
     template_name = 'panel/create_image.html'
     success_url = reverse_lazy('panel:panel')
     success_message = _("Obraz dodany")
@@ -101,8 +101,8 @@ class ImagePostCreateView(LoginRequiredMixin, generic.CreateView):
 class ImagePostUpdateView(LoginRequiredMixin, generic.UpdateView):
     """Update view for ImagePost object - only for logged users."""
 
-    model = ImagePost
-    form_class = ImagePostForm
+    model = Image
+    form_class = ImageForm
     template_name = 'panel/update_image.html'
     success_message = _("Zmiany wykonane")
     success_url = reverse_lazy('panel:panel')
@@ -111,7 +111,7 @@ class ImagePostUpdateView(LoginRequiredMixin, generic.UpdateView):
 class ImagePostDeleteView(LoginRequiredMixin, generic.DeleteView):
     """DeleteView for ImagePost object - only for logged users."""
 
-    model = ImagePost
+    model = Image
     template_name = 'panel/delete_image.html'
     success_message = _("Obraz usunięty")
     success_url = reverse_lazy('panel:panel')

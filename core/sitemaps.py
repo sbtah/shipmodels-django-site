@@ -1,6 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from gallery.models import ImagePost, ImageGallery
+from gallery.models import Image, Gallery
 
 
 class StaticViewSitemap(Sitemap):
@@ -22,10 +22,10 @@ class StaticViewSitemap(Sitemap):
 class ImagePostSitemap(Sitemap):
 
     def items(self):
-        return ImagePost.objects.all()
+        return Image.objects.all()
 
 
 class ImageGallerySitemap(Sitemap):
 
     def items(self):
-        return ImageGallery.objects.all()
+        return Gallery.objects.all()

@@ -1,19 +1,61 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block metaSEO %}
-<meta name="description" content="Galeria zdjęć prac nad {{ gallery.tytuł }}" />
+<meta name="description" content="Galeria zdjęć z prac nad modelem: {{ gallery.tytuł }}" />
 {% endblock metaSEO %}
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />
 {% endblock extracss %}
 {% block title %}{{ gallery.tytuł }}{% endblock title %}
 {% block content %}
-{{ gallery.obraz }}
-{% for img in gallery.zdjęcia.all %}
-<h1>{{ img.tytuł }}</h1>
-<img src="{{ img.obraz.url }}" alt="">
-<a href="{{ img.get_absolute_url }}">LINK do OBRAZU</a>
-<p>{{ img.dodał }}</p>
-<p>{{ img.dodano }}</p>
-{% endfor %}
+<!-- STARTS HERE  -->
+<h1 class="section__h2"><strong>Model statku: {{ gallery.tytuł }}</strong></h1>
+<section>
+    <!-- Zdjecie głowne i dane techniczne  -->
+    <div class="technical__container">
+        <img src="{{ gallery.główne_zdjęcie.obraz.url }}" alt="Zdjęcie główne modelu:{{ gallery.tytuł }}"
+            class="about__img" />
+        <div class="technical__info">
+            {% if gallery.skala_modelu %}
+            <p class="technical__p">Skala: <strong>{{ gallery.skala_modelu }}</strong></p>
+            {% endif %}
+            {% if gallery.długość_modelu %}
+            <p class="technical__p">Długość: <strong>{{ gallery.długość_modelu }}</strong></p>
+            {% endif %}
+            {% if gallery.szerokość_modelu %}
+            <p class="technical__p">Szerokość: <strong>{{ gallery.szerokość_modelu }}</strong></p>
+            {% endif %}
+            {% if gallery.wysokość_modelu %}
+            <p class="technical__p">Szerokość: <strong>{{ gallery.wysokość_modelu }}</strong></p>
+            {% endif %}
+            {% if gallery.waga_modelu %}
+            <p class="technical__p">Szerokość: <strong>{{ gallery.waga_modelu }}</strong></p>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Opis Modelu -->
+    <p class="ship__txt">{{ gallery.opis_modelu|safe }}</p>
+    <div class="modal__gallery">
+        <!-- IMAGES -->
+        {% for img in gallery.zdjęcia.all %}
+        <div class="modal__container">
+            <img src="{{ img.obraz.url }}" alt="{{ img.obraz_opis }}" class="gallery__img gallery__img2"
+                data-original="{{ img.get_filename }}" />
+        </div>
+        <p>{{ img.get_filename }}</p>
+        {% endfor %}
+    </div>
+    <a href="{% url 'orders:order-create' %}" class="btn gallery__btn">Zamów Model</a>
+</section>
+<!-- MODAL -->
+<div class="modal">
+    <div class="modal__img-container">
+        <img src="{{ img.obraz.url }}" alt="" class="modal__full-img">
+        <p class="caption"></p>
+    </div>
+    <div class="modal__btn"><span class="iconify" data-icon="ep:close-bold"></span></div>
+</div>
 {% endblock content %}
+{% block extrajs %}
+<script src="{% static 'js/modal.js' %}"></script>
+{% endblock extrajs %}

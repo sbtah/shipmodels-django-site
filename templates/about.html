@@ -7,9 +7,37 @@
 {% endblock metaSEO %}
 {% block title %}{% translate 'O nas' %}{% endblock title %}
 {% block content %}
+
+
+
+
+
 <!-- SECTION ABOUT US -->
+<div id="work">
+    <h1 class="section__h2">{% translate 'O nas' %}</h1>
+    {% for banner in about_banner.all %}
+    {% if banner.is_active %}
+    <section class="work">
+        <div class="slider">
+            {% for img in banner.zdjęcia.all %}
+            <div class="slide">
+                <img src="{{ img.obraz.url }}" alt="{{ img.obraz_opis }}" />
+            </div>
+            {% endfor %}
+            <button class="slider__btn slider__btn--left">&larr;</button>
+            <button class="slider__btn slider__btn--right">&rarr;</button>
+        </div>
+        <div class="dots"></div>
+        <a href="{% url 'gallery:gallery-list' %}" class="btn gallery__btn">{% translate 'Galeria' %}</a>
+    </section>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<!-- SECTION WORK -->
 <div id="about">
-    <h2 class="section__h2">{% translate 'O nas' %}</h2>
+    <h2 class="section__h2">{% translate 'Nasza praca' %}</h2>
+
     <h3>{% translate 'Modele to nasza pasja' %}</h3>
     <section class="about__us">
         <div class="about__us-container">
@@ -63,29 +91,6 @@
         </div>
     </section>
 </div>
-<!-- SECTION WORK -->
-<div id="work">
-    <h2 class="section__h2">{% translate 'Nasza praca' %}</h2>
-    <section class="work">
-        <div class="slider">
-            <div class="slide">
-                <img src="{% static 'images/background.jpg' %}" alt="Photo 1" />
-            </div>
-            <div class="slide">
-                <img src="{% static 'images/background.jpg' %}" alt="Photo 2" />
-            </div>
-            <div class="slide">
-                <img src="{% static 'images/background.jpg' %}" alt="Photo 3" />
-            </div>
-            <div class="slide">
-                <img src="{% static 'images/background.jpg' %}" alt="Photo 4" />
-            </div>
-            <button class="slider__btn slider__btn--left">&larr;</button>
-            <button class="slider__btn slider__btn--right">&rarr;</button>
-        </div>
-        <div class="dots"></div>
-        <a href="{% url 'gallery:gallery-list' %}" class="btn gallery__btn">{% translate 'Galeria' %}</a>
-    </section>
-</div>
+
 <script src="{% static 'js/slider.js' %}"></script>
 {% endblock content %}

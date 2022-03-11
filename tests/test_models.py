@@ -1,6 +1,6 @@
 import pytest
 from django.urls import reverse
-from gallery.models import ImagePost, ImageGallery
+from gallery.models import Image, Gallery
 from orders.models import Order
 from django.contrib.auth import get_user_model
 from mixer.backend.django import mixer
@@ -14,33 +14,34 @@ class TestImagePostModel():
 
     def test_image_can_be_created(self):
         """Test that ImagePost object is created"""
-        assert ImagePost.objects.all().count() == 0
-        image = mixer.blend(ImagePost)
-        assert ImagePost.objects.all().count() == 1
+        assert Image.objects.all().count() == 0
+        image = mixer.blend(Image)
+        assert Image.objects.all().count() == 1
 
     def test_str_method_of_image(self):
         """Test that __str__ is properly generated."""
 
-        image = mixer.blend(ImagePost, tytuł='Test')
-        assert str(image) == "Test"
+        image = mixer.blend(Image, tytuł='Test')
+        assert str(
+            image) == f'GalleryIMG:{image.tytuł}:{image.dodano.strftime("%b-%d-%Y")}'
 
     def test_create_slug_for_image_signal(self):
         """Test that creating slug from title is working on save."""
 
-        image = mixer.blend(ImagePost, tytuł='Testąt')
+        image = mixer.blend(Image, tytuł='Testąt')
         assert image.slug == 'testat'
 
     def test_create_slug_for_image_must_be_unique(self):
         """Test that slug can only be saved with unique slug."""
 
-        image = mixer.blend(ImagePost, tytuł='Testąt')
+        image = mixer.blend(Image, tytuł='Testąt')
         with pytest.raises(Exception) as error:
-            image_2 = mixer.blend(ImagePost, tytuł='Testąt')
+            image_2 = mixer.blend(Image, tytuł='Testąt')
 
     def test_absolute_url_of_created_image(self):
         """Test get_absolute_url() method of ImagePost objects."""
 
-        image = mixer.blend(ImagePost, tytuł='Testąt')
+        image = mixer.blend(Image, tytuł='Testąt')
         assert image.get_absolute_url() == reverse(
             'gallery:image-detail',
             args=[image.slug])
@@ -51,33 +52,35 @@ class TestImageGalleryModel():
 
     def test_gallery_can_be_created(self):
         """Test that ImagePost object is created"""
-        assert ImageGallery.objects.all().count() == 0
-        gallery = mixer.blend(ImageGallery)
-        assert ImageGallery.objects.all().count() == 1
+        assert Gallery.objects.all().count() == 0
+        gallery = mixer.blend(Gallery)
+        assert Gallery.objects.all().count() == 1
 
-    def test_str_method_of_gallery(self):
+    def test_str_method_of_gallery(self, example_user):
         """Test that __str__ is properly generated."""
 
-        gallery = mixer.blend(ImageGallery, tytuł='Test')
-        assert str(gallery) == "Test"
+        user = example_user
+        gallery = mixer.blend(Gallery, tytuł='Test',
+                              dodał=user)
+        assert str(gallery) == "Galeria:Test Dodał:test@test.com"
 
     def test_create_slug_for_gallery_signal(self):
         """Test that creating slug from title is working on save."""
 
-        gallery = mixer.blend(ImageGallery, tytuł='Testąt')
+        gallery = mixer.blend(Gallery, tytuł='Testąt')
         assert gallery.slug == 'testat'
 
     def test_create_slug_for_gallery_must_be_unique(self):
         """Test that slug can only be saved with unique slug."""
 
-        gallery = mixer.blend(ImageGallery, tytuł='Testąt')
+        gallery = mixer.blend(Gallery, tytuł='Testąt')
         with pytest.raises(Exception) as error:
-            gallery_2 = mixer.blend(ImageGallery, tytuł='Testąt')
+            gallery_2 = mixer.blend(Gallery, tytuł='Testąt')
 
     def test_absolute_url_of_created_gallery(self):
         """Test get_absolute_url() method of ImageGallery objects."""
 
-        gallery = mixer.blend(ImageGallery, tytuł='Testąt')
+        gallery = mixer.blend(Gallery, tytuł='Testąt')
         assert gallery.get_absolute_url() == reverse(
             'gallery:gallery-detail',
             args=[gallery.slug])
