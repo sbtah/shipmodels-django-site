@@ -7,12 +7,19 @@
 {% endblock metaSEO %}
 {% block title %}{% translate 'O nas' %}{% endblock title %}
 {% block content %}
+
+
+
+
+
 <!-- SECTION ABOUT US -->
 <div id="work">
     <h1 class="section__h2">{% translate 'O nas' %}</h1>
+    {% for banner in about_banner.all %}
+    {% if banner.is_active %}
     <section class="work">
         <div class="slider">
-            {% for img in about_banner.zdjęcia.all %}
+            {% for img in banner.zdjęcia.all %}
             <div class="slide">
                 <img src="{{ img.obraz.url }}" alt="{{ img.obraz_opis }}" />
             </div>
@@ -23,7 +30,10 @@
         <div class="dots"></div>
         <a href="{% url 'gallery:gallery-list' %}" class="btn gallery__btn">{% translate 'Galeria' %}</a>
     </section>
+    {% endif %}
+    {% endfor %}
 </div>
+
 <!-- SECTION WORK -->
 <div id="about">
     <h2 class="section__h2">{% translate 'Nasza praca' %}</h2>

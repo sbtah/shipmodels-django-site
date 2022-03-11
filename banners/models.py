@@ -4,6 +4,18 @@ from django.urls import reverse
 from PIL import Image as IMG
 from django.utils.translation import gettext_lazy as _
 from gallery.utils import upload_to
+from django.core.exceptions import ValidationError
+
+
+def validate_active_status(val):
+    """Custom validator that checks that there can be only one AboutBanner with is_avtive status."""
+
+    about_banners = AboutBanner.objects.filter(is_active=True).exists()
+    if about_banners == True and val == True:
+        raise ValidationError(
+            _('Możesz mieć tylko jeden aktywny baner'),
+            params={'value': val},
+        )
 
 
 # Model of BannerImage object and it's methods.
@@ -72,4 +84,5 @@ class Banner(models.Model):
 class AboutBanner(Banner):
     """Class for Banner displayed on About Us page."""
 
-    is_active = models.BooleanField(default=False, verbose_name=_('Aktywny'))
+    is_active = models.BooleanField(default=False, verbose_name=_(
+        'Aktywny'), validators=[validate_active_status])

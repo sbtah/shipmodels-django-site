@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from banners.models import AboutBanner
-from django.shortcuts import get_object_or_404
 
 
 def home_view(request):
@@ -14,7 +13,7 @@ def home_view(request):
 def about_view(request):
     """Mini About us view."""
 
-    about_banner = get_object_or_404(AboutBanner, is_active=True)
+    about_banner = AboutBanner.objects.all()
 
     return render(request, 'about.html', {
         'about_banner': about_banner,
