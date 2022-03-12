@@ -5,7 +5,13 @@ from django.utils.translation import gettext_lazy as _
 def phone_number_validator(val):
     """Custom validator for orders's phone_number"""
 
-    if val < 0:
+    if not all(x.isnumeric() for x in val):
+        raise ValidationError(
+            _('Błędny numer telefonu'),
+            params={'value': val}
+        )
+
+    elif val == '':
         raise ValidationError(
             _('Błędny numer telefonu'),
             params={'value': val}
@@ -17,12 +23,12 @@ def fullname_validator(val):
 
     if len(val) < 2:
         raise ValidationError(
-            _('Błędne Imię i Nazwisko 1'),
+            _('Błędne Imię i Nazwisko'),
             params={'value': val}
         )
 
     elif not all(x.isalpha() or x.isspace() for x in val):
         raise ValidationError(
-            _('Błędne Imię i Nazwisko 2'),
+            _('Błędne Imię i Nazwisko'),
             params={'value': val}
         )

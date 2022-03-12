@@ -1,5 +1,5 @@
 from django.db import models
-from core.validators import phone_number_validator, fullname_validator
+from core.validators import fullname_validator, phone_number_validator
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -12,11 +12,10 @@ class Order(models.Model):
         verbose_name=_('Imię i Nazwisko'),
         validators=[fullname_validator]
     )
-    numer_telefonu = models.DecimalField(
-        max_digits=12,
-        decimal_places=0,
+    numer_telefonu = models.CharField(
+        max_length=20,
+        verbose_name=_('Numer telefonu'),
         validators=[phone_number_validator],
-        verbose_name=_('Numer telefonu')
     )
     email = models.EmailField(verbose_name=_('Email'))
     model = models.CharField(max_length=50, verbose_name=_('Model'))
