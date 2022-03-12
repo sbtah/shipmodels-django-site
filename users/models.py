@@ -1,24 +1,8 @@
 from django.db import models
+from core.validators import fullname_validator
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ValidationError
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
-
-
-def fullname_validator(val):
-    """Custom validator for user's full_name"""
-
-    if len(val) < 2:
-        raise ValidationError(
-            _('Błędne Imię i Nazwisko'),
-            params={'value': val}
-        )
-
-    elif not val.isalpha():
-        raise ValidationError(
-            _('Błędne Imię i Nazwisko'),
-            params={'value': val}
-        )
 
 
 class UserManager(BaseUserManager):
