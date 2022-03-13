@@ -45,14 +45,14 @@ img {
 section {
   margin: 1.5rem;
 }
-h2 {
+.section__h1 {
   font-family: var(--ff-secondary);
   font-size: var(--fs-h2);
   font-weight: var(--fw-bold);
   letter-spacing: 1px;
   padding: 1.5rem;
 }
-h2::after {
+.section__h1::after {
   content: "";
   display: block;
   width: 7.5rem;
@@ -148,8 +148,8 @@ header {
   color: var(--clr-primary);
 }
 .nav-toggle {
-  margin-right: 0.5em;
-  padding: 0.5em;
+  margin-right: 1.5rem;
+  padding: 0.5rem;
   background: transparent;
   border: 0;
   cursor: pointer;
@@ -164,8 +164,9 @@ header {
   justify-content: flex-end;
   list-style: none;
 }
+
 .nav__link {
-  padding: 0.5em 1em;
+  padding: 0.5rem 1rem;
   letter-spacing: 1px;
   text-align: right;
   text-decoration: none;
@@ -185,7 +186,7 @@ header {
 
 @media (max-width: 800px) {
   .logo__text {
-    z-index: 1000;
+    z-index: 100;
   }
   .nav {
     position: fixed;
@@ -219,7 +220,7 @@ header {
     text-decoration: none;
   }
   .nav-toggle {
-    padding: 0.5em;
+    padding: 0.5rem;
     background: transparent;
     border: 0;
     cursor: pointer;
@@ -236,11 +237,11 @@ header {
 /* HERO SECTION */
 .overlay {
   background-color: var(--clr-secondary);
-  min-height: calc(100vh - 5.5rem);
+  min-height: calc(100vh - 4.5rem);
 }
 .hero__container {
   position: relative;
-  min-height: calc(100vh - 5.5rem);
+  min-height: calc(100vh - 4.5rem);
   background-image: url(/static/images/background.jpg);
   background-size: cover;
   background-position: center;
@@ -379,7 +380,8 @@ header {
   opacity: 1;
 }
 .gallery__btn {
-  margin-top: 2rem;
+  margin:2rem auto 2rem auto;
+ 
 }
 
 
@@ -572,12 +574,12 @@ footer {
     --fs-body: 1rem;
     --fs-footer: 0.8rem;
   }
-  h2,
+  .section__h1,
   h3 {
     /* margin-right: 6rem; */
-    padding: 3rem;
+    padding: 3rem 3rem 1.5rem 3rem;
   }
-  h2::after,
+  .section__h1::after,
   h4::after {
     width: 10rem;
     margin-top: 10px;
@@ -678,9 +680,9 @@ footer {
     --fs-body: 1.25rem;
   }
   section {
-    margin: 6rem;
+    margin: 3rem 6rem 3rem 6rem;
   }
-  h2,
+  .section__h1,
   h3 {
     padding-left: 6rem;
   }
@@ -697,9 +699,9 @@ footer {
 /* 1800px */
 @media (min-width: 1800px) {
   section {
-    margin: 9rem;
+    margin: 3rem 9rem 3rem 9rem;
   }
-  h2,
+  .section__h1,
   h3 {
     margin-right: 12rem;
     padding-left: 9rem;

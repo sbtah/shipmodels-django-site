@@ -9,15 +9,71 @@
 {% block content %}
 
 
-
-
-
 <!-- SECTION ABOUT US -->
+<div id="about">
+    <h1 class="section__h1">{% translate 'O nas' %}</h1>
+    <h3>{% translate 'Modele to nasza pasja' %}</h3>
+  <section class="about__us">
+        <div class="about__us-container">
+            <img src="{% static 'images/default.jpg' %}" alt="" class="about__img" />
+            <p class="about__txt">
+                {% translate 'Specjalizujemy się w budowie modeli statków handlowych oraz okrętów wojennych.' %} <br>
+                {% translate 'Wykonujemy także modele żaglowców.' %}
+            </p>
+        </div>
+    <!-- CARDS CONTAINER -->
+    <div class="card__container">
+        <!-- Card 1 -->
+      <div class="card">
+          <div class="card__overlay">
+            <img src="{% static 'images/background.jpg' %}" alt="picture of ship" class="card__img" />
+          </div>
+          <h4 class="card__title">{% translate 'Doświadczenie' %}</h4>
+          <p class="card__txt">
+            {% translate 'Mamy wieloletnie doświadczenie w budowie modeli redukcyjnych.' %}
+            {% translate 'Specializujemy się w drewnianych modelach szkutniczych.' %}
+            {% translate 'Nasza codziennośc to wielkoformatowe modele z tworzyw sztucznych' %}
+        </p>
+     </div>
+        <!-- CARD 2 -->
+        <div class="card">
+            <div class="card__overlay">
+                <img src="{% static 'images/background.jpg' %}" alt="picture of ship" class="card__img" />
+            </div>
+            <h4 class="card__title">{% translate 'Dokładność' %}</h4>
+            <p class="card__txt">
+                {% translate 'Oferujemy wierne repliki w skalach wyłącznie 1:50 i 1:100.' %}
+                {% translate 'Do budowy wykorzystujemy plany stoczniowe, modelarskie oraz zdjęcia.' %}
+                {% translate 'Nasze modele cechują się dokładnością i wiernością z oryginałami.' %}
+            </p>
+        </div>
+        <!-- CARD 3 -->
+        <div class="card">
+            <div class="card__overlay">
+                <img src="{% static 'images/background.jpg' %}" alt="picture of ship" class="card__img" />
+            </div>
+
+            <h4 class="card__title">{% translate 'Wybór' %}</h4>
+            <p class="card__txt">
+                {% translate 'Na życzenie stosujemy dowolne materiały do stylizacji osprzętu:' %} <br>
+                {% translate 'Chromowanie' %} <br>
+                {% translate 'Złocenie' %} <br>
+            </p>
+        </div>
+    </div>
+    </section>
+</div>
+
+
+
+<!-- SECTION WORK -->
+
 <div id="work">
-    <h1 class="section__h2">{% translate 'O nas' %}</h1>
+    <h1 class="section__h1">{% translate 'Nasza praca' %}</h1>
+    
     {% for banner in about_banner.all %}
     {% if banner.is_active %}
-    <section class="work">
+<section class="work">
         <div class="slider">
             {% for img in banner.zdjęcia.all %}
             <div class="slide">
@@ -29,66 +85,9 @@
         </div>
         <div class="dots"></div>
         <a href="{% url 'gallery:gallery-list' %}" class="btn gallery__btn">{% translate 'Galeria' %}</a>
-    </section>
+    
     {% endif %}
-    {% endfor %}
-</div>
-
-<!-- SECTION WORK -->
-<div id="about">
-    <h2 class="section__h2">{% translate 'Nasza praca' %}</h2>
-
-    <h3>{% translate 'Modele to nasza pasja' %}</h3>
-    <section class="about__us">
-        <div class="about__us-container">
-            <img src="{% static 'images/default.jpg' %}" alt="" class="about__img" />
-            <p class="about__txt">
-                {% translate 'Specjalizujemy się w budowie modeli statków handlowych oraz okrętów wojennych.' %} <br>
-                {% translate 'Wykonujemy także modele żaglowców.' %}
-            </p>
-        </div>
-
-        <!-- CARDS CONTAINER -->
-        <div class="card__container">
-            <!-- Card 1 -->
-
-            <div class="card">
-                <div class="card__overlay">
-                    <img src="{% static 'images/background.jpg' %}" alt="picture of ship" class="card__img" />
-                </div>
-                <h4 class="card__title">{% translate 'Doświadczenie' %}</h4>
-                <p class="card__txt">
-                    {% translate 'Mamy wieloletnie doświadczenie w budowie modeli redukcyjnych.' %}
-                    {% translate 'Specializujemy się w drewnianych modelach szkutniczych.' %}
-                    {% translate 'Nasza codziennośc to wielkoformatowe modele z tworzyw sztucznych' %}
-                </p>
-            </div>
-            <!-- CARD 2 -->
-            <div class="card">
-                <div class="card__overlay">
-                    <img src="{% static 'images/background.jpg' %}" alt="picture of ship" class="card__img" />
-                </div>
-                <h4 class="card__title">{% translate 'Dokładność' %}</h4>
-                <p class="card__txt">
-                    {% translate 'Oferujemy wierne repliki w skalach wyłącznie 1:50 i 1:100.' %}
-                    {% translate 'Do budowy wykorzystujemy plany stoczniowe, modelarskie oraz zdjęcia.' %}
-                    {% translate 'Nasze modele cechują się dokładnością i wiernością z oryginałami.' %}
-                </p>
-            </div>
-            <!-- CARD 3 -->
-            <div class="card">
-                <div class="card__overlay">
-                    <img src="{% static 'images/background.jpg' %}" alt="picture of ship" class="card__img" />
-                </div>
-
-                <h4 class="card__title">{% translate 'Wybór' %}</h4>
-                <p class="card__txt">
-                    {% translate 'Na życzenie stosujemy dowolne materiały do stylizacji osprzętu:' %} <br>
-                    {% translate 'Chromowanie' %} <br>
-                    {% translate 'Złocenie' %} <br>
-                </p>
-            </div>
-        </div>
+    {% endfor %}   
     </section>
 </div>
 
