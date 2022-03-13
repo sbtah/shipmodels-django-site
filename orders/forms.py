@@ -33,6 +33,10 @@ class OrderForm(forms.ModelForm):
             raise forms.ValidationError(
                 _('Błędny numer telefonu'))
 
+        elif len(phone_number) < 7:
+            raise forms.ValidationError(
+                _('Numer telefonu jest za krótki'))
+
         return phone_number
 
     def clean_imię_i_nazwisko(self):

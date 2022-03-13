@@ -89,3 +89,6 @@ class TestGalleryForm():
         form.save()
         assert Gallery.objects.all().count() == 1
         assert Gallery.objects.filter(tytuł='Test').exists() == True
+
+    def test_gallery_form_clean_zdjęcia(self):
+        pass

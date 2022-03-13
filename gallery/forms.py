@@ -47,21 +47,12 @@ class GalleryForm(forms.ModelForm):
             {'class': 'form__input form__label'})
         self.fields['waga_modelu'].widget.attrs.update(
             {'class': 'form__input form__label'})
-
         self.fields['główne_zdjęcie'].widget.attrs.update(
             {'class': 'form__input form__label'})
         self.fields['zdjęcia'].widget.attrs.update(
             {'class': 'form__input form__label'})
         self.fields['dodał'].widget.attrs.update(
             {'class': 'form__input form__label'})
-
-    def clean_posts(self):
-        """Custom clean """
-        posts = self.cleaned_data['zdjęcia']
-        if len(posts) > 9:
-            raise forms.ValidationError(
-                _('Możesz dodać tylko 9 zdjęć do galerii.'))
-        return posts
 
     class Meta:
         model = Gallery
@@ -78,3 +69,13 @@ class GalleryForm(forms.ModelForm):
             'zdjęcia',
             'dodał'
         )
+
+    def clean_zdjęcia(self):
+        """Custom clean method that limits number of images in Gallery."""
+
+        zdjęcia = self.cleaned_data['zdjęcia']
+        if len(zdjęcia) > 8:
+            raise forms.ValidationError(
+                _('Możesz dodać tylko 8 zdjęć do galerii.'))
+
+        return zdjęcia
