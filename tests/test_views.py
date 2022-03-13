@@ -111,7 +111,6 @@ class TestOrderCreateView():
         assert Order.objects.all().count() == 1
         assert Order.objects.filter(email='test@test.com').exists() == True
         assert response.status_code == 302
-        assert response.url == reverse('home')
 
 
 class TestOrderUpdateView():

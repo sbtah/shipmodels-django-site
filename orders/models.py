@@ -1,31 +1,21 @@
 from django.db import models
+from core.validators import fullname_validator, phone_number_validator
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ValidationError
-# from django.contrib.auth import get_user_model
-# TD : User have to be logged in to create an Order.
-
-
-def phone_number_validator(val):
-    """Custom validator for orders's phone_number"""
-
-    if val < 0:
-        raise ValidationError(
-            _('Błędny numer telefonu'),
-            params={'value': val}
-        )
 
 
 class Order(models.Model):
     """Class for Order object."""
 
     imię_i_nazwisko = models.CharField(
-        max_length=50, verbose_name=_('Imię i Nazwisko'))  # Implement validator for Full Name.
-    numer_telefonu = models.DecimalField(
-        max_digits=12,
-        decimal_places=0,
+        max_length=50,
+        verbose_name=_('Imię i Nazwisko'),
+        validators=[fullname_validator]
+    )
+    numer_telefonu = models.CharField(
+        max_length=20,
+        verbose_name=_('Numer telefonu'),
         validators=[phone_number_validator],
-        verbose_name=_('Numer telefonu')
     )
     email = models.EmailField(verbose_name=_('Email'))
     model = models.CharField(max_length=50, verbose_name=_('Model'))
