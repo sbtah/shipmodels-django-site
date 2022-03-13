@@ -20,11 +20,14 @@ class TestOrderForm():
             'komentarz': 'Do it now!',
         }
         form = OrderForm(data=order_data)
+        print(form.errors)
         assert form.is_valid()
         assert Order.objects.all().count() == 0
         form.is_valid()
         form.save()
         assert Order.objects.all().count() == 1
+        assert Order.objects.filter(
+            imię_i_nazwisko='Test Tester').exists() == True
 
     def test_order_form_clean_phone_number(self):
         """Test that data cannot be saved with bad phone number"""

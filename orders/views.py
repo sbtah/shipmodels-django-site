@@ -16,6 +16,3 @@ class OrderCreateView(SuccessMessageMixin, generic.CreateView):
     template_name = 'orders/order_create.html'
     success_message = _('Zamówienie złożone, dziękujemy')
     model = Order
-
-    def get_success_url(self):
-        return reverse('home')

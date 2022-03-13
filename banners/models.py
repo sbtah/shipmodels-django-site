@@ -36,9 +36,6 @@ class BannerImage(models.Model):
         verbose_name=_('Obraz SEO opis')
     )
 
-    def get_absolute_url(self):
-        return reverse('banners:bannerimage-detail', kwargs={'pk': self.id})
-
     def get_filename(self):
         return os.path.basename(self.obraz.name)
 
