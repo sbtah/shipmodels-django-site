@@ -1,6 +1,8 @@
 import pytest
 from orders.models import Order
 from orders.forms import OrderForm
+from gallery.models import Image, Gallery
+from gallery.forms import ImageForm, GalleryForm
 
 
 pytestmark = pytest.mark.django_db
@@ -43,3 +45,22 @@ class TestOrderForm():
         assert Order.objects.all().count() == 0
         assert 'Błędny numer telefonu' in form['numer_telefonu'].errors
         assert form.is_valid() == False
+
+
+class TestImageForm():
+    """Test case for ImageForm."""
+
+    def test_image_form_object_created(self):
+        """Test that image object is created through form."""
+
+        image_data = {
+            'tytuł': 'test1',
+            'obraz_opis': 'Opis test',
+        }
+        form = ImageForm(data=image_data)
+        assert form.is_valid()
+        assert Image.objects.all().count() == 0
+        form.is_valid()
+        form.save()
+        assert Image.objects.all().count() == 1
+        assert Image.objects.filter(tytuł='test1').exists() == True
