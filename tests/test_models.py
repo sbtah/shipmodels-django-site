@@ -9,8 +9,8 @@ from mixer.backend.django import mixer
 pytestmark = pytest.mark.django_db
 
 
-class TestImagePostModel():
-    """Test cases for ImagePost object."""
+class TestImagetModel():
+    """Test cases for Image object."""
 
     def test_image_can_be_created(self):
         """Test that ImagePost object is created"""
@@ -47,8 +47,8 @@ class TestImagePostModel():
             args=[image.slug])
 
 
-class TestImageGalleryModel():
-    """Test cases for ImagePost object."""
+class TestGalleryModel():
+    """Test cases for Gallery object."""
 
     def test_gallery_can_be_created(self):
         """Test that ImagePost object is created"""
