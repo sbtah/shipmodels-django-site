@@ -6,3 +6,4 @@
 - Have fun reading the code.
 - Project is built with django templating language.
 - In future project will be updated to DRF/React.
+- Project is almost finished.

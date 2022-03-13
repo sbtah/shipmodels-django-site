@@ -9,7 +9,7 @@
 {% block title %}{{ gallery.tytuł }}{% endblock title %}
 {% block content %}
 <!-- STARTS HERE  -->
-<h1 class="section__h2"><strong>Model statku: {{ gallery.tytuł }}</strong></h1>
+<h1 class="section__h1">Model statku: <span class="gallery__h1-sub">{{ gallery.tytuł }}</span></h1>
 <section>
     <!-- Zdjecie głowne i dane techniczne  -->
     <div class="technical__container">
@@ -17,19 +17,19 @@
             class="about__img" />
         <div class="technical__info">
             {% if gallery.skala_modelu %}
-            <p class="technical__p">Skala: <strong>{{ gallery.skala_modelu }}</strong></p>
+            <p class="technical__p"><span class="technical__heading">Skala:</span>    <span class="technical__stats">{{ gallery.skala_modelu }}</span> </span></p>
             {% endif %}
             {% if gallery.długość_modelu %}
-            <p class="technical__p">Długość: <strong>{{ gallery.długość_modelu }}</strong></p>
+            <p class="technical__p"><span class="technical__heading">Długość:</span> <span class="technical__stats">{{ gallery.długość_modelu }}</span></p>
             {% endif %}
             {% if gallery.szerokość_modelu %}
-            <p class="technical__p">Szerokość: <strong>{{ gallery.szerokość_modelu }}</strong></p>
+            <p class="technical__p"><span class="technical__heading">Szerokość:</span> <span class="technical__stats">{{ gallery.szerokość_modelu }}</span></p>
             {% endif %}
             {% if gallery.wysokość_modelu %}
-            <p class="technical__p">Szerokość: <strong>{{ gallery.wysokość_modelu }}</strong></p>
+            <p class="technical__p"><span class="technical__heading">Wysokość:</span> <span class="technical__stats">{{ gallery.wysokość_modelu }}</span></p>
             {% endif %}
             {% if gallery.waga_modelu %}
-            <p class="technical__p">Szerokość: <strong>{{ gallery.waga_modelu }}</strong></p>
+            <p class="technical__p"><span class="technical__heading">Waga:</span> <span class="technical__stats">{{ gallery.waga_modelu }}</span></p>
             {% endif %}
         </div>
     </div>
