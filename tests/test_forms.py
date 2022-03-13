@@ -14,13 +14,13 @@ class TestOrderForm():
 
         order_data = {
             'imię_i_nazwisko': 'Test Tester',
-            'numer_telefonu': 712712712,
+            'numer_telefonu': '712712712',
             'email': 'test@test.com',
             'model': 'Statek',
             'komentarz': 'Do it now!',
         }
+
         form = OrderForm(data=order_data)
-        print(form.errors)
         assert form.is_valid()
         assert Order.objects.all().count() == 0
         form.is_valid()

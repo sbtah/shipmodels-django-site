@@ -31,8 +31,8 @@ urlpatterns += i18n_patterns(
     path('cookies/', views.cookies_view, name='cookies'),
     path(_('polityka-prywatnosci/'),
          views.privacy_policy_view, name='privacy-policy'),
-    path(_('galeria/'), include('gallery.urls')),
-    path(_('zamowienia/'), include('orders.urls')),
+    path(_('galeria/'), include('gallery.urls', namespace='gallery')),
+    path(_('zamowienia/'), include('orders.urls', namespace='orders')),
 )
 
 
