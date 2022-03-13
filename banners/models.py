@@ -68,12 +68,6 @@ class Banner(models.Model):
         verbose_name=_('Zdjęcia'),
     )
 
-    def get_absolute_url(self):
-        return reverse('banners:banner-detail', kwargs={'slug': self.slug})
-
-    def __str__(self):
-        return f'Bannner:{self.tytuł}'
-
     class Meta:
         abstract = True
 
@@ -83,3 +77,6 @@ class AboutBanner(Banner):
 
     is_active = models.BooleanField(default=False, verbose_name=_(
         'Aktywny'), validators=[validate_active_status])
+
+    def __str__(self):
+        return f"Bannner:{self.tytuł} Status:{'AKTYWNY' if self.is_active == True else 'NIEAKTYWNY'}"
