@@ -64,3 +64,28 @@ class TestImageForm():
         form.save()
         assert Image.objects.all().count() == 1
         assert Image.objects.filter(tytuł='test1').exists() == True
+
+
+class TestGalleryForm():
+    """Test case for GalleryForm."""
+
+    def test_gallery_form_object_created(self, example_user):
+
+        image = Image.objects.create(
+            tytuł='Test image',
+            obraz_opis='Test opis',
+        )
+        user = example_user
+        gallery_data = {
+            'tytuł': 'Test',
+            'opis_modelu': 'Opis modelu',
+            'zdjęcia': [image.id, ],
+            'dodał': user.id,
+        }
+        form = GalleryForm(data=gallery_data)
+        assert form.is_valid()
+        assert Gallery.objects.all().count() == 0
+        form.is_valid()
+        form.save()
+        assert Gallery.objects.all().count() == 1
+        assert Gallery.objects.filter(tytuł='Test').exists() == True
