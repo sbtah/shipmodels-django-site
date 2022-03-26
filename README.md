@@ -17,6 +17,7 @@ Features implemented:
 - Admin user can add and create banners in About Us page.
 - Banners also scale down and resize uploaded image files.
 - Customer can place an order for a model.
+- Project is translated to english and a language picker is implemented.
 
 Features to implement:
 - In future project will be updated to DRF/React (^^)
