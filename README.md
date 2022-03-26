@@ -1,9 +1,24 @@
 # Commercial project of Shipmodels.pl
 
-- Site has to be redesigned from scratch.
+What we have done:
+
+- Site had to be redesigned from scratch.
 - Entire frontend and redesign phase was done by Marcin Zygan.
-- Backend and SEO was done by Sbtah.
-- Have fun reading the code.
-- Project is built with django templating language.
-- In future project will be updated to DRF/React.
-- Project is almost finished.
+- Backend and SEO was done by Grzegorz Zygan.
+- Project is built with django's templating language.
+- Tests are done with pytest.
+
+Features implemented:
+- Admin can add, update, delete images.
+- Admin can create, update, delete galleries for images.
+- Galleries with related images are displayed in Gallery section.
+- Galleries are limited to 9 pictures.
+- Images are scaling down and resize files used for Image object.
+- Admin user can add and create banners in About Us page.
+- Banners also scale down and resize uploaded image files.
+- Customer can place an order for a model.
+
+Features to implement:
+- In future project will be updated to DRF/React (^^)
+- Sending an email after order have been placed by a customer
+- Adding dynamic images in other sections, like About Us.
