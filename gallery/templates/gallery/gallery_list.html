@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
+{% block metaSEO %}
+<meta name="description" content="Galleria zdjęć wykonanych podczas tworzenia modeli statków w shipmodels.pl" />
+{% endblock metaSEO %}
 {% block title %}{% translate "Galeria" %}{% endblock title %}
 {% block extracss %}
 <link rel="stylesheet" href="{% static 'css/gallery.css' %}" />

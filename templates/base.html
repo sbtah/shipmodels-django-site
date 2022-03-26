@@ -9,8 +9,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow" />
   <!-- SEO dynamic META -->
-  {% if request.path == '/pl/' or request.path == 'en' %}
-  <meta name="description" content="Here is a precise description of my awesome webpage." />
+  {% if request.path == '/pl/' %}
+  <meta name="description"
+    content="Serwis Shipmodels.pl - Oferujemy usługę wykonania profesjonalnych modeli statków. Używamy wysokiej jakości materiałów. Nasze modele statków charatkeryzują się dbałością o każdy szczegół." />
+  {% elif request.path == '/en/' %}
+  <meta name="description"
+    content="Shipmodels.pl service - We offer a service of making professional models of ships. We use high-quality materials. Our models of ships are characterized by attention to every detail." />
   {% else %}
   {% block metaSEO %}
   {% endblock metaSEO %}

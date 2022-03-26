@@ -6,7 +6,7 @@ What we have done:
 - Entire frontend and redesign phase was done by Marcin Zygan.
 - Backend and SEO was done by Grzegorz Zygan.
 - Project is built with django's templating language.
-- Tests are done with pytest.
+- Project is tested with pytest.
 
 Features implemented:
 - Admin can add, update, delete images.

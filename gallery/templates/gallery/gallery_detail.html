@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block metaSEO %}
 <meta name="description" content="Galeria zdjęć z prac nad modelem: {{ gallery.tytuł }}" />
 {% endblock metaSEO %}
@@ -9,7 +10,7 @@
 {% block title %}{{ gallery.tytuł }}{% endblock title %}
 {% block content %}
 <!-- STARTS HERE  -->
-<h1 class="section__h1">Model statku: <span class="gallery__h1-sub">{{ gallery.tytuł }}</span></h1>
+<h1 class="section__h1">{% translate 'Model statku' %}: <span class="gallery__h1-sub">{{ gallery.tytuł }}</span></h1>
 <section>
     <!-- Zdjecie głowne i dane techniczne  -->
     <div class="technical__container">
@@ -49,7 +50,7 @@
         </div>
         {% endfor %}
     </div>
-    <a href="{% url 'orders:order-create' %}" class="btn gallery__btn">Zamów Model</a>
+    <a href="{% url 'orders:order-create' %}" class="btn gallery__btn">{% translate 'Zamów Model' %}</a>
 </section>
 <!-- MODAL -->
 <div class="modal">

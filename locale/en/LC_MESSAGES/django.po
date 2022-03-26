@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-07 17:01+0000\n"
+"POT-Creation-Date: 2022-03-26 22:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/settings.py:144
+#: banners/models.py:16
+msgid "Możesz mieć tylko jeden aktywny baner"
+msgstr "You can only have one active banner"
+
+#: banners/models.py:25 banners/models.py:64 gallery/models.py:22
+#: gallery/models.py:85
+msgid "Tytuł"
+msgstr "Title"
+
+#: banners/models.py:31
+msgid "Obraz baneru"
+msgstr "Banner image"
+
+#: banners/models.py:35 gallery/models.py:40
+msgid "Alt opis dla zdjęcia"
+msgstr "Alt description for the image"
+
+#: banners/models.py:36 gallery/models.py:41
+msgid "Obraz SEO opis"
+msgstr "SEO image description"
+
+#: banners/models.py:68 gallery/models.py:140
+msgid "Zdjęcia"
+msgstr "Images"
+
+#: banners/models.py:79
+msgid "Aktywny"
+msgstr "Active"
+
+#: core/settings.py:145
 msgid "Polski"
 msgstr "Polish"
 
-#: core/settings.py:145
+#: core/settings.py:146
 msgid "Angielski"
 msgstr "English"
 
@@ -42,104 +71,150 @@ msgstr "gallery/"
 msgid "zamowienia/"
 msgstr "orders/"
 
-#: gallery/forms.py:50
-msgid "Możesz dodać tylko 9 zdjęć do galerii."
-msgstr "You can add only 9 images to gallery."
+#: core/validators.py:10 core/validators.py:16 orders/forms.py:34
+msgid "Błędny numer telefonu"
+msgstr "Wrong phone number"
 
-#: gallery/models.py:17
+#: core/validators.py:26 core/validators.py:32
+msgid "Błędne Imię i Nazwisko"
+msgstr "Wrong name and surname"
+
+#: gallery/forms.py:79
+msgid "Możesz dodać tylko 8 zdjęć do galerii."
+msgstr "You can only add 8 photos to the gallery."
+
+#: gallery/models.py:20
 msgid "Krótki tytuł"
 msgstr "Short title"
 
-#: gallery/models.py:19 gallery/models.py:80
-msgid "Tytuł"
-msgstr "Title"
-
-#: gallery/models.py:26 gallery/models.py:87
+#: gallery/models.py:29 gallery/models.py:92
 msgid "Link"
 msgstr "Link"
 
-#: gallery/models.py:33
+#: gallery/models.py:36
 msgid "Obraz"
 msgstr "Image"
 
-#: gallery/models.py:37
-msgid "Alt opis dla zdjęcia"
-msgstr "Alt description for image"
-
-#: gallery/models.py:38
-msgid "Obraz opis"
-msgstr "Image description"
-
-#: gallery/models.py:41 gallery/models.py:95 orders/models.py:34
+#: gallery/models.py:44 gallery/models.py:144 orders/models.py:24
 msgid "Dodano"
-msgstr "Created"
+msgstr "Added"
 
-#: gallery/models.py:44 gallery/models.py:98 orders/models.py:36
+#: gallery/models.py:47 gallery/models.py:147 orders/models.py:26
 msgid "Zaktualizowano"
 msgstr "Updated"
 
-#: gallery/models.py:49 gallery/models.py:102
+#: gallery/models.py:49
+msgid "Użyty"
+msgstr "Used"
+
+#: gallery/models.py:51
+msgid "Użyty w galerii:"
+msgstr "Used in gallery:"
+
+#: gallery/models.py:93
+msgid "Automatycznie generowany"
+msgstr "Automatically generated"
+
+#: gallery/models.py:96
+msgid "Opis modelu"
+msgstr "Model description"
+
+#: gallery/models.py:102
+msgid "Skala modelu"
+msgstr "Model scale"
+
+#: gallery/models.py:108
+msgid "Długość modelu"
+msgstr "Model length"
+
+#: gallery/models.py:114
+msgid "Szerokość modelu"
+msgstr "Model width"
+
+#: gallery/models.py:120
+msgid "Wysokość modelu"
+msgstr "Model height"
+
+#: gallery/models.py:126
+msgid "Waga modelu"
+msgstr "Model weight"
+
+#: gallery/models.py:135
+msgid "Główne zdjęcie"
+msgstr "Main photo"
+
+#: gallery/models.py:151
 msgid "Dodał"
-msgstr "Created By"
+msgstr "Added by"
 
-#: gallery/models.py:91
-msgid "Zdjęcia"
-msgstr "Images"
+#: gallery/templates/gallery/gallery_detail.html:13
+msgid "Model statku"
+msgstr "Ship model"
 
-#: gallery/templates/gallery/gallery_list.html:4
-#: gallery/templates/gallery/gallery_list.html:6 templates/about.html:87
-#: templates/navbar.html:28
+#: gallery/templates/gallery/gallery_detail.html:53
+msgid "Zamów Model"
+msgstr "Order a Model"
+
+#: gallery/templates/gallery/gallery_list.html:7
+#: gallery/templates/gallery/gallery_list.html:12 templates/about.html:84
+#: templates/navbar.html:27
 msgid "Galeria"
 msgstr "Gallery"
 
-#: gallery/templates/gallery/gallery_list.html:7
+#: gallery/templates/gallery/gallery_list.html:13
 msgid "Poniżej przedstawiamy nasze dostępne modele."
 msgstr "Our available models are presented below."
 
-#: gallery/templates/gallery/image_list.html:3
+#: gallery/templates/gallery/image_list.html:4
 msgid "Obrazy"
 msgstr "Images"
 
 #: gallery/urls.py:12
-#, fuzzy
-#| msgid "Obrazy"
 msgid "obrazy/"
-msgstr "Images"
+msgstr "images/"
 
 #: gallery/urls.py:13
 msgid "<str:slug>/"
-msgstr "<str:slug>/"
+msgstr ""
 
 #: gallery/urls.py:15
 msgid "obraz/<str:slug>/"
 msgstr "image/<str:slug>/"
 
-#: orders/forms.py:14 orders/models.py:14
-msgid "Błędny numer telefonu"
-msgstr "Wrong phone number"
+#: orders/forms.py:38
+msgid "Numer telefonu jest za krótki"
+msgstr "The phone number is too short"
 
-#: orders/models.py:23
+#: orders/forms.py:48
+msgid "Podane Imię i Nazwisko jest za krótkie"
+msgstr "The given name and surname is too short"
+
+#: orders/forms.py:54
+msgid "Imię i Nazwisko może się składać tylko z liter"
+msgstr "Name and surname may only consist of letters"
+
+#: orders/models.py:12
 msgid "Imię i Nazwisko"
 msgstr "First name and last name"
 
-#: orders/models.py:28
+#: orders/models.py:17
 msgid "Numer telefonu"
 msgstr "Phone number"
 
-#: orders/models.py:30
+#: orders/models.py:20
 msgid "Email"
 msgstr "Email"
 
-#: orders/models.py:31
+#: orders/models.py:21
 msgid "Model"
-msgstr "Model;"
+msgstr "Model"
 
-#: orders/models.py:33
+#: orders/models.py:23
 msgid "Komentarz"
-msgstr "Comment"
+msgstr ""
 
 #: orders/templates/orders/order_create.html:6
-#: orders/templates/orders/order_create.html:10 templates/navbar.html:31
+#: orders/templates/orders/order_create.html:10 templates/navbar.html:30
 msgid "Zamówienia"
 msgstr "Orders"
 
@@ -148,15 +223,16 @@ msgid ""
 "W razie jakichkolwiek pytań prosimy o kontakt w dowolnej formie podanej "
 "poniżej."
 msgstr ""
-"If you have any questions, please contact us in any form provided below."
+"If you have any questions, please do not hesitate to contact us in any of "
+"the forms listed below."
 
-#: orders/templates/orders/order_create.html:46
+#: orders/templates/orders/order_create.html:49
 msgid "Zamów"
 msgstr "Order"
 
 #: orders/urls.py:10
 msgid "dodaj/"
-msgstr "create/"
+msgstr "add/"
 
 #: orders/views.py:17
 msgid "Zamówienie złożone, dziękujemy"
@@ -165,23 +241,19 @@ msgstr "Order placed, thank you"
 #: panel/templates/panel/create_image.html:3
 #: panel/templates/panel/create_image.html:10
 msgid "Dodaj obraz"
-msgstr "Add Image"
+msgstr "Add image"
 
 #: panel/templates/panel/update_image.html:3
-#, fuzzy
-#| msgid "Zaktualizowano"
 msgid "Aktualizuj obraz"
-msgstr "Updated"
+msgstr "Update image"
 
 #: panel/templates/panel/update_image.html:10
 msgid "Aktualizuj"
 msgstr "Update"
 
 #: panel/views.py:98
-#, fuzzy
-#| msgid "Obrazy"
 msgid "Obraz dodany"
-msgstr "Images"
+msgstr "Image added"
 
 #: panel/views.py:107
 msgid "Zmiany wykonane"
@@ -191,97 +263,221 @@ msgstr "Updates finished"
 msgid "Obraz usunięty"
 msgstr "Image deleted"
 
-#: templates/about.html:8 templates/about.html:12 templates/navbar.html:25
-msgid "O nas"
-msgstr "About Us"
+#: templates/about.html:5
+msgid "About_Us_META"
+msgstr ""
+"Find out more about GÓRECKI SHIPMODELS. At GÓRECKI Shipmodels, we specialize "
+"in building plastic and boat models as well as reduction models. Find out "
+"how professional models of ships are made at GÓRECKI Shipmodels"
 
-#: templates/about.html:13
+#: templates/about.html:7 templates/about.html:11 templates/navbar.html:24
+msgid "O nas"
+msgstr "About us"
+
+#: templates/about.html:12
 msgid "Modele to nasza pasja"
 msgstr "Models are our passion"
 
-#: templates/about.html:18
+#: templates/about.html:17
 msgid ""
 "Specjalizujemy się w budowie modeli statków handlowych oraz okrętów "
 "wojennych."
-msgstr ""
-"We specialize in building models of commercial ships and ships and war ships."
+msgstr "We specialize in building models of commercial ships and warships."
 
-#: templates/about.html:19
+#: templates/about.html:18
 msgid "Wykonujemy także modele żaglowców."
 msgstr "We also make models of sailing ships."
 
-#: templates/about.html:31
+#: templates/about.html:28
 msgid "Doświadczenie"
 msgstr "Experience"
 
-#: templates/about.html:33
+#: templates/about.html:30
 msgid "Mamy wieloletnie doświadczenie w budowie modeli redukcyjnych."
 msgstr "We have many years of experience in building reduction models."
 
-#: templates/about.html:34
+#: templates/about.html:31
 msgid "Specializujemy się w drewnianych modelach szkutniczych."
 msgstr "We specialize in wooden boatbuilding models."
 
-#: templates/about.html:35
-msgid "Nasza codziennośc to wielkoformatowe modele z tworzyw sztucznych"
-msgstr "Our everyday life is large-format plastic models"
+#: templates/about.html:32
+msgid "Nasza codziennośc to wielkoformatowe modele z tworzyw sztucznych."
+msgstr "Our everyday life is large-format plastic models."
 
-#: templates/about.html:43
+#: templates/about.html:40
 msgid "Dokładność"
 msgstr "Precision"
 
-#: templates/about.html:45
+#: templates/about.html:42
 msgid "Oferujemy wierne repliki w skalach wyłącznie 1:50 i 1:100."
 msgstr "We offer faithful replicas in scales only 1:50 and 1: 100."
 
-#: templates/about.html:46
+#: templates/about.html:43
 msgid "Do budowy wykorzystujemy plany stoczniowe, modelarskie oraz zdjęcia."
 msgstr ""
 "For construction, we use shipbuilding plans, modeling plans and photos."
 
-#: templates/about.html:47
+#: templates/about.html:44
 msgid "Nasze modele cechują się dokładnością i wiernością z oryginałami."
 msgstr "Our models are accurate and faithful to the originals."
 
-#: templates/about.html:56
+#: templates/about.html:53
 msgid "Wybór"
-msgstr "Selection"
+msgstr "Choice"
 
-#: templates/about.html:58
+#: templates/about.html:55
 msgid "Na życzenie stosujemy dowolne materiały do stylizacji osprzętu:"
 msgstr "On request, we use any materials for styling the accessories:"
 
-#: templates/about.html:59
+#: templates/about.html:56
 msgid "Chromowanie"
 msgstr "Chrome plating"
 
-#: templates/about.html:60
+#: templates/about.html:57
 msgid "Złocenie"
 msgstr "Gilding"
 
-#: templates/about.html:68
+#: templates/about.html:69
 msgid "Nasza praca"
 msgstr "Our work"
 
-#: templates/footer.html:50
-msgid "Polityka Prywatności"
-msgstr "Pravacy Policy"
+#: templates/cookies.html:5
+msgid "Cookies_META"
+msgstr "The cookie policy of the shipmodels.pl website"
 
-#: templates/footer.html:51
+#: templates/cookies.html:7 templates/cookies.html:9 templates/footer.html:51
 msgid "Polityka Cookies"
-msgstr "Cookies Policy"
+msgstr "Cookies policy"
+
+#: templates/cookies.html:10
+msgid "Nasz serwis korzysta z plików cookie."
+msgstr "Our website uses cookies."
+
+#: templates/cookies.html:12
+msgid "Cookies_Policy_1"
+msgstr ""
+"To facilitate the use of our website, we use cookies that are placed on your "
+"computer, mobile phone or tablet. These files help us understand your needs "
+"and thus improve the functionality of our website. They are also used to "
+"deliver personalized content and advertisements. Some of the files are "
+"necessary for the proper operation of the website and its functionality. "
+"Detailed information on this subject can be found in our Privacy Policy."
+
+#: templates/footer.html:50 templates/privacy.html:7 templates/privacy.html:9
+msgid "Polityka Prywatności"
+msgstr "Privacy policy"
 
 #: templates/footer.html:57
 msgid "© Strona Wykonana przez : Marcin Zygan & Grzegorz Zygan"
 msgstr "© Website Created by: Marcin Zygan & Grzegorz Zygan"
 
-#: templates/home.html:10
+#: templates/home.html:9
 msgid "Tworzymy profesjonalne modele"
 msgstr "We create professional models"
 
-#: templates/home.html:11
+#: templates/home.html:10
 msgid "Więcej"
 msgstr "More"
+
+#: templates/privacy.html:5
+msgid "Privacy_Policy_META"
+msgstr "Privacy policy of the modeling website shipmodels.pl"
+
+#: templates/privacy.html:10
+msgid "Polityka prywatności serwisu shipmodels.pl"
+msgstr "Shipmodels.pl privacy policy"
+
+#: templates/privacy.html:13
+msgid "privacy_policy_1"
+msgstr ""
+"<strong>1.</strong> This Privacy Policy sets out the rules for the "
+"processing and protection of personal data provided by Users in connection "
+"with their use of services related to the purchase of ship and ship models."
+
+#: templates/privacy.html:16
+msgid "privacy_policy_2"
+msgstr ""
+"<strong>2.</strong> The administrator of personal data contained on the "
+"website is GÓRECKI SHIPMODELS based in Kołobrzeg, ZWYCIĘZCÓW 15/2, 78-100 "
+"NIP: 671-102-04-83."
+
+#: templates/privacy.html:19
+msgid "privacy_policy_3"
+msgstr ""
+"<strong>3.</strong> In the interests of the security of the data entrusted "
+"to us, we have developed internal procedures and recommendations to prevent "
+"disclosure of data to unauthorized persons. We control their performance and "
+"constantly check their compliance with the relevant legal acts - the Act on "
+"the protection of personal data, the Act on the provision of electronic "
+"services, as well as all types of executive acts and Community legislation."
+
+#: templates/privacy.html:22
+msgid "privacy_policy_4"
+msgstr ""
+"<strong>4.</strong> Personal data is processed on the basis of the consent "
+"expressed by the User and in cases where the law authorizes the "
+"Administrator to process personal data on the basis of legal provisions or "
+"to implement the contract concluded between the parties."
+
+#: templates/privacy.html:24
+msgid "privacy_policy_5"
+msgstr ""
+"<strong>5.</strong> The website obtains information about users and their "
+"behavior in the following way:"
+
+#: templates/privacy.html:25
+msgid "privacy_policy_a"
+msgstr "<strong>a.</strong> by information entered voluntarily in the forms"
+
+#: templates/privacy.html:26
+msgid "privacy_policy_b"
+msgstr "<strong>b.</strong> by collecting cookies (see cookies policy)"
+
+#: templates/privacy.html:29
+msgid "privacy_policy_6"
+msgstr ""
+"<strong>6.</strong> The website collects information voluntarily provided by "
+"the user."
+
+#: templates/privacy.html:32
+msgid "privacy_policy_7"
+msgstr ""
+"<strong>7.</strong> The data provided in the form are processed for the "
+"purpose resulting from the function of a specific form, e.g. to process the "
+"information contact."
+
+#: templates/privacy.html:35
+msgid "privacy_policy_8"
+msgstr ""
+"<strong>8.</strong> Personal data left on the website will not be sold or "
+"made available to third parties, in accordance with the provisions of the "
+"Act on the Protection of Personal Data."
+
+#: templates/privacy.html:38
+msgid "privacy_policy_9"
+msgstr ""
+"<strong>9.</strong> The data contained in the form may be viewed by the "
+"natural person who placed it there. This person also has the right to modify "
+"and stop processing his data at any time."
+
+#: templates/privacy.html:41
+msgid "privacy_policy_10"
+msgstr ""
+"<strong>10.</strong> We reserve the right to change the privacy policy of "
+"the website, which may be affected by the development of internet "
+"technology, possible changes to the law in the field of personal data "
+"protection and the development of our website. We will inform you about any "
+"changes in a visible and understandable way."
+
+#: templates/privacy.html:44
+msgid "privacy_policy_11"
+msgstr ""
+"<strong>11.</strong> Links to other websites may appear on the Website. Such "
+"websites operate independently of the Website and are not supervised in any "
+"way by the shipmodels.pl website. These websites may have their own privacy "
+"policies and regulations, which we recommend that you read. If in doubt "
+"about any of the provisions of this privacy policy, we are available - our "
+"data can be found in the tab - Orders."
 
 #: users/admin.py:14
 msgid "Personal Info"
@@ -295,21 +491,17 @@ msgstr ""
 msgid "Important dates"
 msgstr ""
 
-#: users/models.py:13 users/models.py:19
-msgid "Błędne Imię i Nazwisko"
-msgstr ""
-
-#: users/models.py:31
+#: users/models.py:15
 msgid "Użytkownik musi posiadać email"
 msgstr "User must have an email"
 
-#: users/models.py:33
+#: users/models.py:17
 msgid "Nie możesz użyć tego adresu email"
 msgstr "You can not use this email address"
 
-#: users/models.py:57
+#: users/models.py:41
 msgid "Twój adres email"
-msgstr "Your email"
+msgstr "Your email address"
 
 #: venv/lib/python3.9/site-packages/_pytest/config/argparsing.py:458
 #, python-format
@@ -1508,3 +1700,9 @@ msgstr ""
 #: venv/lib/python3.9/site-packages/django/views/templates/default_urlconf.html:249
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Home_META"
+#~ msgstr ""
+#~ "Shipmodels.pl service - We offer professional models of ships. We use "
+#~ "high-quality materials. Our models of ships are characterized by "
+#~ "attention to every detail."
