@@ -79,4 +79,4 @@ class AboutBanner(Banner):
         'Aktywny'), validators=[validate_active_status])
 
     def __str__(self):
-        return f"Bannner:{self.tytuł} Status:{'AKTYWNY' if self.is_active == True else 'NIEAKTYWNY'}"
+        return f"Bannner:{self.tytuł} Status:{_('AKTYWNY') if self.is_active == True else _('NIEAKTYWNY')}"
