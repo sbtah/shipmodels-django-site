@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+import django_heroku
+django_heroku.settings(locals())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,7 +17,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '1')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.environ.get('DEBUG')) == '1'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 if not DEBUG:
     ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOSTS')]
 
