@@ -24,5 +24,5 @@ Features to implement:
 - Sending an email after order have been placed by a customer
 - Adding dynamic images in other sections, like About Us.
 
-Projects is deployed!
-!!
+Projects was deployed to heroku as a showcase for client.
+https://ship-models.herokuapp.com/
