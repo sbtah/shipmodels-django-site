@@ -1,4 +1,7 @@
 # Commercial project of Shipmodels.pl
+------
+# Projects was deployed to heroku as a showcase for client.
+https://ship-models.herokuapp.com/
 
 What we have done:
 
@@ -13,7 +16,7 @@ Features implemented:
 - Admin can create, update, delete galleries for images.
 - Galleries with related images are displayed in Gallery section.
 - Galleries are limited to 9 pictures.
-- Images are scaling down and resize files used for Image object.
+- Image object is scaling down and resize files used for images.
 - Admin user can add and create banners in About Us page.
 - Banners also scale down and resize uploaded image files.
 - Customer can place an order for a model.
@@ -24,5 +27,3 @@ Features to implement:
 - Sending an email after order have been placed by a customer
 - Adding dynamic images in other sections, like About Us.
 
-Projects was deployed to heroku as a showcase for client.
-https://ship-models.herokuapp.com/
