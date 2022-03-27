@@ -23,3 +23,5 @@ Features to implement:
 - In future project will be updated to DRF/React (^^)
 - Sending an email after order have been placed by a customer
 - Adding dynamic images in other sections, like About Us.
+
+Projects is deployed!
