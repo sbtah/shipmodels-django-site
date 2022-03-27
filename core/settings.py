@@ -15,7 +15,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '1')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.environ.get('DEBUG')) == '1'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'shipmodels.pl']
+ALLOWED_HOSTS = []
+if not DEBUG:
+    ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOSTS')]
 
 
 # Application definition
