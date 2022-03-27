@@ -17,7 +17,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '1')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.environ.get('DEBUG')) == '1'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['ship-models.herokuapp.com/']
 if not DEBUG:
     ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOSTS')]
 
