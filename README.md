@@ -25,3 +25,4 @@ Features to implement:
 - Adding dynamic images in other sections, like About Us.
 
 Projects is deployed!
+!!
