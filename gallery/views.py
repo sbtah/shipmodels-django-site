@@ -1,4 +1,3 @@
-from tkinter import Image
 from gallery.models import Gallery, Image
 from django.views import generic
 
