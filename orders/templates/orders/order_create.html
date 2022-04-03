@@ -6,17 +6,20 @@
 {% block title %}{% translate 'Zamówienia' %}{% endblock title %}
 {% block content %}
 <!-- SECTION ORDERS -->
-<div id="orders">
+<div id="orders" class="orders__main">
     <h1 class="section__h1">{% translate 'Zamówienia' %}</h1>
-    <h3>
+   
+    <section class="orders">
+        
+        <div class="orders__container">
+
+            <div class="contact__container">
+                 <h3 class="orders__h3">
         {% translate 'W razie jakichkolwiek pytań prosimy o kontakt w dowolnej formie podanej poniżej.' %}
     </h3>
-    <section class="orders">
-        <div class="orders__container">
-            <div class="contact__container">
                 <!-- Contact heading -->
                 <div class="contact__info">
-                    <h2 class="orders__h2">GÓRECKI SHIPMODELS</h2>
+                    <p class="orders__p" >GÓRECKI SHIPMODELS</p>
                 </div>
                 <!-- Contact item 1 -->
                 <div class="contact__info">
@@ -29,7 +32,7 @@
                 </div>
                 <!-- Contact item 2 -->
                 <div class="contact__info">
-                    <span class="iconify" data-icon="carbon:location-filled"></span>
+                    <span class="iconify" data-icon="carbon:phone-voice-filled"></span>
                     <p class="contact__p">
                         Tel : +48 94 354 74 80 <br />
                         Mobile: +48 502 179 802
@@ -37,7 +40,7 @@
                 </div>
                 <!-- Contact item 3 -->
                 <div class="contact__info">
-                    <span class="iconify" data-icon="carbon:location-filled"></span>
+                    <span class="iconify" data-icon="ic:round-email"></span>
                     <p class="contact__p">ekg1@poczta.onet.pl</p>
                 </div>
             </div>

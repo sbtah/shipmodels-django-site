@@ -19,7 +19,7 @@ class OrderForm(forms.ModelForm):
         self.fields['model'].widget.attrs.update(
             {'class': 'form__input form__label'})
         self.fields['komentarz'].widget.attrs.update(
-            {'class': 'form__input form__label'})
+            {'class': 'form__input form__label form__comment'})
 
     class Meta:
         model = Order

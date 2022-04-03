@@ -153,3 +153,8 @@ cython_debug/
 
 # Media files
 .vscode
+
+# Ignore od Marcina
+
+Procfile
+core/settings.py
