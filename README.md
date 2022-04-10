@@ -27,3 +27,4 @@ Features to implement:
 - Sending an email after order have been placed by a customer
 - Adding dynamic images in other sections, like About Us.
 
+#Stable branch
